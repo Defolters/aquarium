@@ -21,17 +21,17 @@ public:
     Aquarium();
     ~Aquarium();
     
-    bool addCreature(Type type_);  //! добавить создание в аквариум по типу
-    bool removeCreature(int index_);  //! убрать создание из аквариума по индексу в векторе
-    void setCapacity(int capacity_);  //! устанавливает размер аквариума
+    bool addCreature(Type type);  //! добавить создание в аквариум по типу
+    bool removeCreature(int index);  //! убрать создание из аквариума по индексу в векторе
+    void setCapacity(int capacity);  //! устанавливает размер аквариума
     int getCapacity();  //! возвращает размер аквариума
+    int getNumberOfCreatures();  //!< используется в LifeManager для проверки, что живность не вымерла и пора выходить из игры, возвращает количество рыб
     std::vector<Creature*> getListOfCreatures();  //!< используется в LifeManager для вывода статистики на экран и может использоваться в Display, чтобы пройтись по вектору и получить координаты для отображения
-    int checkSize();  //!< используется в LifeManager для проверки, что живность не вымерла и пора выходить из игры
     
 private:
-    
     int capacity;  //! максимальное количество рыб
-    std::vector<Creature* > creatures;  //! вектор со всей живностью
+    int numberOfCreatures;  //! количество рыб в данный момент
+    std::vector<Creature*> creatures;  //! вектор со всей живностью
 };
 
 #endif  //! AQUARIUM_H
