@@ -2,6 +2,7 @@
 #define AQUARIUM_H
 #include <vector>
 #include "Creature.h"
+#include "LifeManager.h"
 //! типы созданий
 enum class Type {
     PLANKTON,
@@ -32,6 +33,7 @@ private:
     int capacity;  //! максимальное количество рыб
     int numberOfCreatures;  //! количество рыб в данный момент
     std::vector<Creature*> creatures;  //! вектор со всей живностью
+    LifeManager lf; // не указатель! При создании аквариума создается LifeManager, который инициализирует жизнь (добавляет начальных рыб как-то) и затем управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
 };
 
 #endif  //! AQUARIUM_H
