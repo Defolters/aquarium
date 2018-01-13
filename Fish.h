@@ -2,10 +2,10 @@
 #define FISH_H
 #include "Creature.h"
 /*  стоит ли делать разделение от обычной рыбы? или плотоядную наследовать от травоядной?
-    Fish -> HerbivoreFish (травоядная)
-    Fish -> CarnivoreFish (плотоядная)
+    Creature -> Fish -> HerbivoreFish (травоядная)
+    Creature -> Fish -> CarnivoreFish (плотоядная)
     или 
-    HerbivoreFish -> CarnivoreFish
+    Creature -> HerbivoreFish -> CarnivoreFish
 */
 class Fish :
     public Creature
@@ -13,6 +13,8 @@ class Fish :
 public:
     Fish();
     virtual ~Fish();
+private:
+    std::string name = "Fish";
 };
 
 #endif  //! FISH_H
