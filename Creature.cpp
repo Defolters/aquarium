@@ -16,7 +16,7 @@ Coordinates Creature::move()
     return Coordinates();
 }
 
-bool Creature::reproduce(bool near)
+bool Creature::reproduce()
 {
     return false;
 }

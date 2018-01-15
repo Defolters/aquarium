@@ -8,7 +8,7 @@ public:
     Plankton();
     virtual ~Plankton();
 private:
-    std::string name = "Plankton";
+    LifeType type = LifeType::PLANKTON;
 };
 
 #endif  //! PLANKTON_H

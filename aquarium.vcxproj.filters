@@ -59,5 +59,8 @@
     <ClInclude Include="Headers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LifeType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

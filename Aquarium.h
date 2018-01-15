@@ -3,12 +3,7 @@
 #include <vector>
 #include "Creature.h"
 #include "LifeManager.h"
-//! типы созданий
-enum class Type {
-    PLANKTON,
-    HERBIVOREFISH,
-    CARNIVOREFISH //??
-};
+#include "LifeType.h"
 
 /*!
 \brief Класс, реализующий аквариум
@@ -22,17 +17,17 @@ public:
     Aquarium();
     ~Aquarium();
     
-    bool addCreature(Type type);  //! добавить создание в аквариум по типу
+    bool addCreature(LifeType type);  //! добавить создание в аквариум по типу
     bool removeCreature(int index);  //! убрать создание по индексу в векторе
     void setCapacity(int capacity);  //! устанавливает размер аквариума
-    int getCapacity();  //! возвращает размер аквариума
+    int getCapacity() const;  //! возвращает размер аквариума
     //! getNumberOfCreatures используется в LifeManager для проверки, что 
     //! живность не вымерла и пора выходить из игры, возвращает количество рыб
-    int getNumberOfCreatures();  
+    int getNumberOfCreatures() const;  
     //! getListOfCreatures используется в LifeManager для вывода статистики 
     //! на экран и может использоваться в Display, чтобы пройтись по вектору 
     //! и получить координаты для отображения
-    std::vector<Creature*> getListOfCreatures();  
+    std::vector<Creature*>& getListOfCreatures();  
     
 private:
     int capacity;  //! максимальное количество рыб

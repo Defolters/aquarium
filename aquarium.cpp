@@ -12,7 +12,7 @@ Aquarium::~Aquarium()
 {
 }
 
-bool Aquarium::addCreature(Type type)
+bool Aquarium::addCreature(LifeType type)
 {
     return false;
 }
@@ -27,17 +27,17 @@ void Aquarium::setCapacity(int capacity)
     this->capacity = capacity;
 }
 
-int Aquarium::getCapacity()
+int Aquarium::getCapacity() const
 {
     return capacity;
 }
 
-int Aquarium::getNumberOfCreatures()
+int Aquarium::getNumberOfCreatures() const
 {
     return numberOfCreatures;
 }
 
-std::vector<Creature*> Aquarium::getListOfCreatures()
+std::vector<Creature*>& Aquarium::getListOfCreatures()
 {
     return creatures;
 }

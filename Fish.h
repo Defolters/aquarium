@@ -5,16 +5,16 @@
     Creature -> Fish -> HerbivoreFish (травоядная)
     Creature -> Fish -> CarnivoreFish (плотоядная)
     или 
-    Creature -> HerbivoreFish -> CarnivoreFish
+    Creature -> HerbivoreFish -> CarnivoreFish //<- это уже всеядная получается, лучше разделить
 */
-class Fish :
+class Fish abstract :
     public Creature
 {
-public:
+protected:
     Fish();
     virtual ~Fish();
 private:
-    std::string name = "Fish";
+	// я так понимаю что просто рыб все равно нет, это абстрактный родтиель так что тип лучше потом ставить
 };
 
 #endif  //! FISH_H

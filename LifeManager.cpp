@@ -11,19 +11,19 @@ LifeManager::~LifeManager()
 {
 }
 
-void LifeManager::killing()
+void LifeManager::onKilling() const
 {
 }
 
-void LifeManager::moving()
+void LifeManager::onMoving() const
 {
 }
 
-void LifeManager::eating()
+void LifeManager::onEating() const
 {
 }
 
-void LifeManager::mating()
+void LifeManager::onMating() const
 {
 }
 
@@ -31,6 +31,6 @@ void LifeManager::dayPassed()
 {
 }
 
-void LifeManager::printState()
+void LifeManager::printState() const
 {
 }
