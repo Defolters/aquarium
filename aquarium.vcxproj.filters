@@ -36,6 +36,21 @@
     <ClCompile Include="LifeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LifeEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Creature.h">
@@ -60,6 +75,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LifeType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

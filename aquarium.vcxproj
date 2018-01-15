@@ -154,23 +154,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Aquarium.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="Field.cpp" />
+    <ClCompile Include="LifeEvent.cpp" />
     <ClCompile Include="LifeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Fish.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Plankton.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Aquarium.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="Field.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="LifeEvent.h" />
     <ClInclude Include="LifeManager.h" />
     <ClInclude Include="LifeType.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Plankton.h" />
+    <ClInclude Include="SpriteList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

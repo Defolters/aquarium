@@ -2,7 +2,6 @@
 #define LIFE_MANAGER_H
 #include <vector>
 #include "Creature.h"
-#include "Display.h"
 /*!
 \brief Класс, реализующий управление аквариумом
 
@@ -41,7 +40,6 @@ public:
     void printState() const; // напечатать статистику (кол-во рыб всяких) в консоль
 
 private:
-	Display display;
     unsigned int days;  //! количество прошедших дней
     //std::vector<Creature*> creatures; // хранить создания, который полужили за один день у аквариума. тогда удалять надо и здесь, и у аквариума.
 };

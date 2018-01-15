@@ -1,10 +1,12 @@
 #ifndef AQUARIUM_H
 #define AQUARIUM_H
 #include <vector>
+#include <mutex>
+#include <queue>
 #include "Creature.h"
 #include "LifeManager.h"
 #include "LifeType.h"
-
+#include "LifeEvent.h"
 /*!
 \brief Класс, реализующий аквариум
 
@@ -28,7 +30,8 @@ public:
     //! на экран и может использоваться в Display, чтобы пройтись по вектору 
     //! и получить координаты для отображения
     std::vector<Creature*>& getListOfCreatures();  
-    
+	std::mutex eventQueueLocker;
+	std::queue<LifeEvent> events;
 private:
     int capacity;  //! максимальное количество рыб
     int numberOfCreatures;  //! количество рыб в данный момент
@@ -37,7 +40,7 @@ private:
     //! lf не указатель! При создании аквариума создается LifeManager, который
     //! инициализирует жизнь (добавляет начальных рыб как-то) и затем управляет
     //! жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
-    LifeManager lf; 
+    LifeManager manager; 
 };
 
 #endif  //! AQUARIUM_H

@@ -1,7 +1,8 @@
 #ifndef CREATURE_H
 #define CREATURE_H
-#include "Headers.h"
+#include "Object.h"
 #include "LifeType.h"
+#include <mutex>
 //! положение рыбы
 struct Coordinates
 {
@@ -11,8 +12,10 @@ struct Coordinates
 };
 
 class Creature
+	: Object
 {
 public:
+	std::mutex spriteLocker;
     Creature();
     virtual ~Creature();
     //!функци€, котора€ определ€ет движение
@@ -26,7 +29,6 @@ public:
     bool reproduce();  //есть р€дом рыба или нет провер€ть лучше в теле метода а не передавать как аргумент, имхо
     void dayPassed();  //! функци€, котора€ уменьшает значени€ жизни, периода и голода и которую вызывает dayPassed() у LifeManager, 
     void eat(); //! восстанавливает голод, ест только кого-то рангом ниже, при этом создание рангом ниже должно умереть, или вообще не ест (планктон, например)
-
 private:
     // ѕќ—“ќяЌЌџ≈ ѕ≈–≈ћ≈ЌЌџ≈ //<- посто€нные дл€ каждой отдельной рыбы или дл€ класса? если второе то лучше объ€вить их const
 	int lifeExpectancy;  //! продолжительность жизни
