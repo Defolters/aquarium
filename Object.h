@@ -1,5 +1,7 @@
 #pragma once
 #include "Field.h"
+#include "Coordinates.h"
+
 class Object
 {
 protected:
@@ -7,7 +9,8 @@ protected:
 	Field* field;
 	Sprite sprite;
 	Vector2f size;
-	Vector2f position;
+	Vector2f position; //on the screen 
+    Coordinates coordinates; //! положение рыбы в аквариуме
 	Vector2f rotation;
 	virtual void Calculate();
 
