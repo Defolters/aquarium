@@ -2,7 +2,11 @@
 #define OBJECT_h
 #include "Field.h"
 #include "Coordinates.h"
+/*!
+\brief Класс, реализующий анимацию
 
+нужны комменты к полям и методам, чтобы я мог помочь и понять.
+*/
 class Object
 {
 protected:

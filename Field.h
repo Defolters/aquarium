@@ -3,7 +3,11 @@
 #include <vector>
 #include "Headers.h"
 class Object;
+/*!
+\brief Класс, реализующий анимацию
 
+нужны комменты к полям и методам, чтобы я мог помочь и понять.
+*/
 class Field
 {
 protected:
