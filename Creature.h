@@ -3,13 +3,9 @@
 #include "Object.h"
 #include "LifeType.h"
 #include <mutex>
+//#include "Coordinates.h"
 //! положение рыбы
-struct Coordinates
-{
-    int x;
-    int y;
-    int z;
-};
+
 
 class Creature
 	: Object
@@ -49,7 +45,6 @@ private:
     int hungerLimit;  //! граница голода
 
     // »«ћ≈Ќ„»¬џ≈ ѕ≈–≈ћ≈ЌЌџ≈
-    Coordinates coordinates; //! положение рыбы в аквариуме
     int lifeDaysLeft;  //! количество дней, которые осталось жить рыбе
     int withoutFoodDaysLeft;  //! количество дней, кот. осталось жить рыбе без еды
     int reproductionDaysLeft;  //! количество дней, кот. остались до следующего размножени€

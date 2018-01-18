@@ -156,8 +156,10 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Aquarium.cpp" />
+    <ClCompile Include="CarnivoreFish.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="HerbivoreFish.cpp" />
     <ClCompile Include="LifeEvent.cpp" />
     <ClCompile Include="LifeManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -170,12 +172,15 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Aquarium.h" />
+    <ClInclude Include="CarnivoreFish.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Fish.h" />
+    <ClInclude Include="Coordinates.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="HerbivoreFish.h" />
     <ClInclude Include="LifeEvent.h" />
     <ClInclude Include="LifeManager.h" />
     <ClInclude Include="LifeType.h" />
