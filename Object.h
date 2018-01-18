@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "Field.h"
 #include "Coordinates.h"
 
@@ -10,7 +10,7 @@ protected:
 	Sprite sprite;
 	Vector2f size;
 	Vector2f position; //on the screen 
-    Coordinates coordinates; //! положение рыбы в аквариуме
+    Coordinates coordinates; //! РїРѕР»РѕР¶РµРЅРёРµ СЂС‹Р±С‹ РІ Р°РєРІР°СЂРёСѓРјРµ
 	Vector2f rotation;
 	virtual void Calculate();
 

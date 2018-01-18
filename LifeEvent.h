@@ -1,4 +1,4 @@
-#ifndef LIFE_EVENT_H
+﻿#ifndef LIFE_EVENT_H
 #define LIFE_EVENT_H
 class LifeEvent
 {

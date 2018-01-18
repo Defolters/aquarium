@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <SFML/Graphics.hpp>
 using namespace sf;
 const int SCREEN_WIDTH = 800;

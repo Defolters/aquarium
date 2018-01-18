@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Fish.h"
 #include "LifeType.h"
 class HerbivoreFish :
