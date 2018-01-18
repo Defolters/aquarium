@@ -7,6 +7,7 @@
 #include "LifeManager.h"
 #include "LifeType.h"
 #include "LifeEvent.h"
+
 /*!
 \brief Класс, реализующий аквариум
 
