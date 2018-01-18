@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef FIELD_H
+#define FIELD_H
 #include <vector>
 #include "Headers.h"
 class Object;
@@ -29,3 +30,4 @@ public:
 	~Field();
 };
 
+#endif //! FIELD_H

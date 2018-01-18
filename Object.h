@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef OBJECT_h
+#define OBJECT_h
 #include "Field.h"
 #include "Coordinates.h"
 
@@ -24,3 +25,4 @@ public:
 	virtual ~Object();
 };
 
+#endif //! OBJECT_h

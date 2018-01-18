@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef EFFECT_H
+#define EFFECT_H
 class Effect
 {
 public:
@@ -6,3 +7,4 @@ public:
 	~Effect();
 };
 
+#endif //! EFFECT_H
