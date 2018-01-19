@@ -1,7 +1,12 @@
-#pragma once
+﻿#ifndef OBJECT_h
+#define OBJECT_h
 #include "Field.h"
 #include "Coordinates.h"
+/*!
+\brief Класс, реализующий анимацию
 
+нужны комменты к полям и методам, чтобы я мог помочь и понять.
+*/
 class Object
 {
 protected:
@@ -10,7 +15,7 @@ protected:
 	Sprite sprite;
 	Vector2f size;
 	Vector2f position; //on the screen 
-    Coordinates coordinates; //! ��������� ���� � ���������
+    Coordinates coordinates; //! положение рыбы в аквариуме
 	Vector2f rotation;
 	virtual void Calculate();
 
@@ -24,3 +29,4 @@ public:
 	virtual ~Object();
 };
 
+#endif //! OBJECT_h

@@ -1,4 +1,5 @@
-#pragma once
+﻿#ifndef SPRITE_LIST_H
+#define SPRITE_LIST_H
 #include <SFML\Graphics.hpp>
 #include <vector>
 
@@ -20,4 +21,4 @@ struct SpriteList
 		framesPerRow = perRow_;
 	}
 };
-
+#endif //! SPRITE_LIST_H

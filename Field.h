@@ -1,8 +1,13 @@
-#pragma once
+﻿#ifndef FIELD_H
+#define FIELD_H
 #include <vector>
 #include "Headers.h"
 class Object;
+/*!
+\brief Класс, реализующий анимацию
 
+нужны комменты к полям и методам, чтобы я мог помочь и понять.
+*/
 class Field
 {
 protected:
@@ -29,3 +34,4 @@ public:
 	~Field();
 };
 
+#endif //! FIELD_H
