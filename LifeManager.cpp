@@ -1,10 +1,9 @@
 #include "LifeManager.h"
 #include <iostream>
 #include "Aquarium.h"
-LifeManager::LifeManager(Aquarium * aquarium) : aquarium(aquarium), days(0)
-{
-    std::cout << "lm\n";
 
+LifeManager::LifeManager(Aquarium * aquarium, std::list<Creature*>& creatures) : aquarium(aquarium), days(0), creatures(creatures)
+{
 }
 
 LifeManager::~LifeManager()
@@ -29,46 +28,69 @@ void LifeManager::startGame(bool isForever, int ticks)
 
 void LifeManager::onThinking() const
 {
-    // çäåñü òàêîå íå íóæíî, èáî íà ýòîì õîäó óáèéñòâ è ðîæäåíèé íå áóäåò
-    auto creatures = aquarium->getListOfCreatures();
-    auto end = creatures.end();
-    for (auto iter = creatures.begin(); iter != end; iter++)
+    //for each think about it
+    for (auto creature : creatures)
     {
-        aquarium->removeCreature(0);
-        std::cout << "removed!" << std::endl;
-        end = creatures.end();
+        creature->thinkAboutIt(creatures);
     }
-    //for (int i =0;;)
-    //{    }
-    //for each think about it
-}
-
-void LifeManager::onKilling() const
-{
-    //for each think about it
-}
-
-void LifeManager::onMoving() const
-{
-    //for each think about it
 }
 
 void LifeManager::onEating() const
 {
-    //for each think about it
+    //for each eat
+    //auto creatures = aquarium->getListOfCreatures();
+    // ÈÑÏÐÀÂÈÒÜ ÏÐÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
+    /*auto end = creatures.end();
+    for (auto iter = creatures.begin(); iter != end; iter++)
+    {
+    aquarium->removeCreature(0);
+    std::cout << "removed!" << std::endl;
+    iter = creatures.begin();
+    end = creatures.end();
+    }*/
 }
 
 void LifeManager::onReproducing() const
 {
-    //for each think about it
+    //for each reproduce
+    //auto creatures = aquarium->getListOfCreatures();
+    // ÈÑÏÐÀÂÈÒÜ ÏÐÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
+    /*auto end = creatures.end();
+    for (auto iter = creatures.begin(); iter != end; iter++)
+    {
+    aquarium->removeCreature(0);
+    std::cout << "removed!" << std::endl;
+    end = creatures.end();
+    }*/
+}
+
+void LifeManager::onMoving() const
+{
+    //auto creatures = aquarium->getListOfCreatures();
+    //for each move
 }
 
 void LifeManager::dayPassed()
 {
-    //for each think about it
+    //for each reduce life and increase hunger
+    //auto creatures = aquarium->getListOfCreatures();
+}
+
+void LifeManager::onKilling() const
+{
+    //for each kill if it should die
+    // ÈÑÏÐÀÂÈÒÜ ÏÐÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
+    //auto end = 
+    /*for (auto iter = creatures.begin(); iter != creatures.end(); ++iter)
+    {
+    aquarium->removeCreature(0);
+    std::cout << "removed!" << std::endl;
+    //iter = creatures.begin();
+    //end = creatures.end();
+    }*/
 }
 
 void LifeManager::printState() const
 {
-    //for each think about it
+    //print some state
 }

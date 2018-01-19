@@ -2,7 +2,7 @@
 #include <iostream>
 
 Aquarium::Aquarium(int capacity, Coordinates borders)
-    : capacity(capacity), borders(borders), numberOfCreatures(0), manager(LifeManager(this))
+    : capacity(capacity), borders(borders), numberOfCreatures(0), manager(LifeManager(this, creatures))
 {
     // выделить размер для листа.
 }
