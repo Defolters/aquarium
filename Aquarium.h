@@ -5,8 +5,6 @@
 #include <queue>
 #include "Creature.h"
 #include "LifeManager.h"
-#include "LifeType.h"
-#include "LifeEvent.h"
 
 /*!
 \brief Класс, реализующий аквариум
@@ -31,8 +29,6 @@ public:
     //! на экран и может использоваться в Display, чтобы пройтись по вектору 
     //! и получить координаты для отображения
     std::vector<Creature*>& getListOfCreatures();  
-	std::mutex eventQueueLocker; //!< для многопоточности?
-	std::queue<LifeEvent> events;
 private:
 
     int capacity;  //!< максимальное количество рыб

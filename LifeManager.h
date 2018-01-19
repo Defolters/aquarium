@@ -1,6 +1,6 @@
 ﻿#ifndef LIFE_MANAGER_H
 #define LIFE_MANAGER_H
-#include <vector>
+#include <list>
 #include "Creature.h"
 /*!
 \brief Класс, реализующий управление аквариумом
@@ -33,7 +33,7 @@ public:
     ~LifeManager();
 
 	//Везде видел что такие методы называют OnЧто-то. Хз почему но мы тоже не сирые.
-    void onPlanning();
+    void onPlanning() const;
     void onKilling() const;  //! ход убийство
     void onMoving() const;  //! ход движение
     void onEating() const;  //! ход прием пищи
@@ -43,8 +43,7 @@ public:
 
 private:
     unsigned int days;  //! количество прошедших дней
-    //shared_ptr 
-    //std::vector<Creature*> creatures; // хранить создания, который полужили за один день у аквариума. тогда удалять надо и здесь, и у аквариума.
+    std::unique_ptr<Aquarium> aquarium;
 };
 
 #endif //! LIFE_MANAGER_H

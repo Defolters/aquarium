@@ -2,6 +2,7 @@
 #define CREATURE_H
 #include "Object.h"
 #include "LifeType.h"
+#include "LifeEvent.h"
 #include <mutex>
 //#include "Coordinates.h"
 //! положение рыбы
@@ -12,7 +13,7 @@
 нужны комменты к полям и методам, чтобы я мог помочь и понять.
 */
 class Creature
-	: Object
+	//: Object
 {
 public:
 	std::mutex spriteLocker;
