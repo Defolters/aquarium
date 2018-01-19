@@ -1,46 +1,48 @@
-#ifndef AQUARIUM_H
+п»ї#ifndef AQUARIUM_H
 #define AQUARIUM_H
 #include <vector>
 #include <mutex>
 #include <queue>
 #include "Creature.h"
 #include "LifeManager.h"
-#include "LifeType.h"
-#include "LifeEvent.h"
-/*!
-\brief Класс, реализующий аквариум
 
-Класс содержит лишь список рыб, характеристику аквариума и возможность 
-добавить/убрать рыбу (на случай рождения или смерти).
+/*!
+\brief РљР»Р°СЃСЃ, СЂРµР°Р»РёР·СѓСЋС‰РёР№ Р°РєРІР°СЂРёСѓРј
+
+РљР»Р°СЃСЃ СЃРѕРґРµСЂР¶РёС‚ Р»РёС€СЊ СЃРїРёСЃРѕРє СЂС‹Р±, С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєСѓ Р°РєРІР°СЂРёСѓРјР° Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ 
+РґРѕР±Р°РІРёС‚СЊ/СѓР±СЂР°С‚СЊ СЂС‹Р±Сѓ (РЅР° СЃР»СѓС‡Р°Р№ СЂРѕР¶РґРµРЅРёСЏ РёР»Рё СЃРјРµСЂС‚Рё).
 */
 class Aquarium
 {
 public:
     Aquarium();
+    Aquarium(int capacity, Coordinates borders);
     ~Aquarium();
     
-    bool addCreature(LifeType type);  //! добавить создание в аквариум по типу
-    bool removeCreature(int index);  //! убрать создание по индексу в векторе
-    void setCapacity(int capacity);  //! устанавливает размер аквариума
-    int getCapacity() const;  //! возвращает размер аквариума
-    //! getNumberOfCreatures используется в LifeManager для проверки, что 
-    //! живность не вымерла и пора выходить из игры, возвращает количество рыб
-    int getNumberOfCreatures() const;  
-    //! getListOfCreatures используется в LifeManager для вывода статистики 
-    //! на экран и может использоваться в Display, чтобы пройтись по вектору 
-    //! и получить координаты для отображения
-    std::vector<Creature*>& getListOfCreatures();  
-	std::mutex eventQueueLocker;
-	std::queue<LifeEvent> events;
+    void startGame(); //!< РґР°РµРј СЃРёРіРЅР°Р» РјРµРЅРµРґР¶РµСЂСѓ, С‡С‚РѕР±С‹ Р·Р°РїСѓСЃС‚РёС‚СЊ С†РёРєР» СЂР°Р±РѕС‚С‹
+    void stopGame(); //!< РґР°РµРј СЃРёРЅР°Р» РјРµРЅРµРґР¶РµСЂСѓ, С‡С‚РѕР±С‹ РѕСЃС‚Р°РЅРѕРІРёР» СЂР°Р±РѕС‚Сѓ
+
+    bool addCreature(LifeType type);  //!< РґРѕР±Р°РІРёС‚СЊ СЃРѕР·РґР°РЅРёРµ РІ Р°РєРІР°СЂРёСѓРј РїРѕ С‚РёРїСѓ
+    bool removeCreature(int index);  //!< СѓР±СЂР°С‚СЊ СЃРѕР·РґР°РЅРёРµ РїРѕ РёРЅРґРµРєСЃСѓ РІ РІРµРєС‚РѕСЂРµ
+
+    void setCapacity(int capacity);  //!< СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЂР°Р·РјРµСЂ Р°РєРІР°СЂРёСѓРјР°
+    int getCapacity() const;  //!< РІРѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂ Р°РєРІР°СЂРёСѓРјР°
+
+    void setBorders(Coordinates borders); //!< СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіСЂР°РЅРёС†С‹ Р°РєРІР°СЂРёСѓРјР°
+    Coordinates getBorders() const; //!< РІРѕР·РІСЂР°С‰Р°РµС‚ РіСЂР°РЅРёС†С‹ Р°РєРІР°СЂРёСѓРјР°
+
+    int getNumberOfCreatures() const; //< РІРѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂС‹Р± РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚
+    std::vector<Creature*>& getListOfCreatures(); //< РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє СЂС‹Р±
+
+	std::mutex eventQueueLocker; //!< РґР»СЏ РјРЅРѕРіРѕРїРѕС‚РѕС‡РЅРѕСЃС‚Рё?
+
 private:
-    int capacity;  //! максимальное количество рыб
-    int numberOfCreatures;  //! количество рыб в данный момент
-    std::vector<Creature*> creatures;  //! вектор со всей живностью
-    Coordinates borders;
-    //! lf не указатель! При создании аквариума создается LifeManager, который
-    //! инициализирует жизнь (добавляет начальных рыб как-то) и затем управляет
-    //! жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
-    LifeManager manager; 
+
+    int capacity;  //!< РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂС‹Р±
+    int numberOfCreatures;  //!< РєРѕР»РёС‡РµСЃС‚РІРѕ СЂС‹Р± РІ РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚
+    std::vector<Creature*> creatures;  //!< РІРµРєС‚РѕСЂ СЃРѕ РІСЃРµР№ Р¶РёРІРЅРѕСЃС‚СЊСЋ
+    Coordinates borders;  //!< РіСЂР°РЅРёС†С‹ 3Рґ Р°РєРІР°СЂРёСѓРјР°
+    LifeManager manager; //!< СѓРїСЂР°РІР»СЏРµС‚ Р¶РёР·РЅСЊСЋ РІ Р°РєРІР°СЂСѓРёРјРµ (СЃС‡РёС‚Р°РµС‚ РґРЅРё, РґРІРёРіР°РµС‚ СЂС‹Р±, СЂР°Р·РјРЅРѕР¶Р°РµС‚, РєРѕСЂРјРёС‚ Рё СѓР±РёРІР°РµС‚)
 };
 
 #endif  //! AQUARIUM_H
