@@ -20,6 +20,7 @@ public:
 	void PullEvents();
 	void DrawAquarium() const;
 private:
-	const Aquarium& aquarium;
+	//const Aquarium& aquarium;
+    Aquarium* aquarium;
 };
 #endif  //! DISPLAY_H

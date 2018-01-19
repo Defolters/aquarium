@@ -2,9 +2,9 @@
 #define PLANKTON_H
 #include "Creature.h"
 /*!
-\brief Класс, реализующий анимацию
+\brief Класс, реализующий планктоны
 
-нужны комменты к полям и методам, чтобы я мог помочь и понять.
+сабж
 */
 class Plankton :
     public Creature
@@ -12,8 +12,10 @@ class Plankton :
 public:
     Plankton();
     virtual ~Plankton();
-private:
-    LifeType type = LifeType::PLANKTON;
-};
 
+    virtual void thinkAboutIt(std::list<Creature*>& creatures) override;//!< каждое существо рефлексирует и строит планы на будущее (чем заняться и в какую координату плыть) (СВЯЗАТЬ С ENUM)
+    virtual void eat() override;//!< восстанавливает голод, ест только кого-то рангом ниже, при этом создание рангом ниже должно умереть, или вообще не ест (планктон, например)
+    virtual bool reproduce() override;  //!< размножается (как добавить новую рыбу в аквариум?)
+    virtual Coordinates move() override; //!< передвигает жертву к цели, если в этом ходу мы будем двигаться
+};
 #endif  //! PLANKTON_H

@@ -32,6 +32,7 @@ bool Aquarium::addCreature(LifeType type)
     if (numberOfCreatures < capacity)
     {
         //добавить рыбу
+        return true;
     }
     else
     {
@@ -43,6 +44,7 @@ bool Aquarium::addCreature(LifeType type)
 bool Aquarium::removeCreature(int index)
 {
     //убрать рыбу из листа
+    return false;
 }
 
 void Aquarium::setCapacity(int capacity)
@@ -69,7 +71,7 @@ int Aquarium::getNumberOfCreatures() const
     return numberOfCreatures;
 }
 
-std::vector<Creature*>& Aquarium::getListOfCreatures()
+std::list<Creature*>& Aquarium::getListOfCreatures()
 {
     return creatures;
 }

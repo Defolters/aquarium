@@ -2,6 +2,7 @@
 #define LIFE_MANAGER_H
 #include <list>
 #include "Creature.h"
+
 /*!
 \brief Класс, реализующий управление аквариумом
 
@@ -43,7 +44,8 @@ public:
 
 private:
     unsigned int days;  //! количество прошедших дней
-    std::unique_ptr<Aquarium> aquarium;
+    //std::unique_ptr<Aquarium> aquarium;
+    Aquarium* aquarium;
 };
 
 #endif //! LIFE_MANAGER_H

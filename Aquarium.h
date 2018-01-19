@@ -1,6 +1,6 @@
 ﻿#ifndef AQUARIUM_H
 #define AQUARIUM_H
-#include <vector>
+#include <list>
 #include <mutex>
 #include <queue>
 #include "Creature.h"
@@ -32,7 +32,7 @@ public:
     Coordinates getBorders() const; //!< возвращает границы аквариума
 
     int getNumberOfCreatures() const; //< возвращает количество рыб в данный момент
-    std::vector<Creature*>& getListOfCreatures(); //< возвращает список рыб
+    std::list<Creature*>& getListOfCreatures(); //< возвращает список рыб
 
 	std::mutex eventQueueLocker; //!< для многопоточности?
 
@@ -40,7 +40,7 @@ private:
 
     int capacity;  //!< максимальное количество рыб
     int numberOfCreatures;  //!< количество рыб в данный момент
-    std::vector<Creature*> creatures;  //!< вектор со всей живностью
+    std::list<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
 };

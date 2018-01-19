@@ -32,6 +32,6 @@ struct LifeEvent
 		holder = holder_;
 		type = type_;
 	};
-	~LifeEvent();
+    ~LifeEvent() {};
 };
 #endif //! LIFE_EVENT_H

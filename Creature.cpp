@@ -12,25 +12,6 @@ Creature::~Creature()
 {
 }
 
-Coordinates Creature::move()
-{
-    return Coordinates();
-}
-
-bool Creature::reproduce()
-{
-    return false;
-}
-
 void Creature::dayPassed()
-{
-}
-
-void Creature::thinkAboutIt()
-{
-    // RIL TOK, BRO
-}
-
-void Creature::eat()
 {
 }
