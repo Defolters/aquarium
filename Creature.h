@@ -21,7 +21,7 @@ class Creature //abstract?
 	//: Object
 {
 public:
-    Creature(LifeType type, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
+    Creature(LifeType type, LifeType prey, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
     virtual ~Creature();
     //!планктон: если не находится в желаемой точке, то выбирает случайную точку(цель), до которой будет плыть.
     //!рыба: если голод ниже границы и период прошел, то смотрим вокруг и плывем к ближайшей рыбе размножаться
@@ -34,9 +34,9 @@ public:
     void dayPassed();  //!< функция, которая уменьшает значения жизни, периода и голода и которую вызывает dayPassed() у LifeManager, 
     
     std::mutex spriteLocker; //!< ВТФ?
-private:
+protected:
     LifeType type; //!< тип создания
-    LifeType target; //!< кого мы едим (как быть с этим для планктона? или там eat не реализован, поэтому все ок?) ДОБАВИТЬ В КОНСТРУКТОР
+    LifeType prey; //!< кого мы едим (как быть с этим для планктона? или там eat не реализован, поэтому все ок?) ДОБАВИТЬ В КОНСТРУКТОР
     int lifeExpectancy;  //!< продолжительность жизни
     int lifeWitoutFood; //!< сколько может жить без еды
     int reproductionPeriod; //!< период размножения (кажд 2 дня планктон делится, а рыба плывет к другой, чтобы размножиться)  

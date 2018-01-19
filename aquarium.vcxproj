@@ -161,7 +161,6 @@
     <ClCompile Include="EventControll.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="HerbivoreFish.cpp" />
-    <ClCompile Include="LifeEvent.cpp" />
     <ClCompile Include="LifeManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Creature.cpp" />

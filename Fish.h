@@ -11,11 +11,8 @@ class Fish abstract :
     public Creature
 {
 protected:
-    Fish(LifeType type, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
+    Fish(LifeType type, LifeType prey);
     virtual ~Fish();
-private:
-    LifeType target; //!< what I eat
-	// я так понимаю что просто рыб все равно нет, это абстрактный родтиель так что тип лучше потом ставить
 };
 
 #endif  //! FISH_H

@@ -2,10 +2,10 @@
 
 
 
-Fish::Fish()
+Fish::Fish(LifeType type, LifeType prey)
+    : Creature(type, prey,)
 {
 }
-
 
 Fish::~Fish()
 {
