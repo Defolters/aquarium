@@ -43,7 +43,6 @@ private:
 
     //! тип (рыба, планктон) для getCreatures в аквариуме, для статистики и прочего, чтобы отслеживать легко было.
     LifeType type; 
-    Color color;  //! цвет рыбы
     int rangeOfVision;  //! дальность зрения рыбы
     int hungerLimit;  //! граница голода
 

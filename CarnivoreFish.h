@@ -14,6 +14,7 @@ public:
     virtual ~CarnivoreFish();
 private:
     LifeType type = LifeType::CARNIVOREFISH;
+    LifeType target = LifeType::HERBIVOREFISH;
 };
 
 #endif //! CARNIVORE_FISH_H

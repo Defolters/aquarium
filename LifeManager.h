@@ -25,6 +25,7 @@
 7) Написать логи в консоль и перерисовать изображение на экране
 //Порядок 6 или 7 выбрать
 */
+class Aquarium;
 class LifeManager
 {
 public:
@@ -32,6 +33,7 @@ public:
     ~LifeManager();
 
 	//Везде видел что такие методы называют OnЧто-то. Хз почему но мы тоже не сирые.
+    void onPlanning();
     void onKilling() const;  //! ход убийство
     void onMoving() const;  //! ход движение
     void onEating() const;  //! ход прием пищи
@@ -41,6 +43,7 @@ public:
 
 private:
     unsigned int days;  //! количество прошедших дней
+    //shared_ptr 
     //std::vector<Creature*> creatures; // хранить создания, который полужили за один день у аквариума. тогда удалять надо и здесь, и у аквариума.
 };
 

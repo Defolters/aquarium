@@ -15,6 +15,7 @@ public:
     virtual ~HerbivoreFish();
 private:
     LifeType type = LifeType::HERBIVOREFISH;
+    LifeType target = LifeType::PLANKTON;
 };
 #endif //! CARNIVORE_FISH_H
 
