@@ -1,5 +1,5 @@
 #include "Aquarium.h"
-
+#include <iostream>
 
 
 Aquarium::Aquarium() 
@@ -17,25 +17,32 @@ Aquarium::~Aquarium()
 {
 }
 
-void Aquarium::startGame()
+void Aquarium::startGame(bool isForever, int ticks)
 {
     //manager.startGame();
-}
-
-void Aquarium::stopGame()
-{
-    //manager.stopGame();
 }
 
 bool Aquarium::addCreature(LifeType type)
 {
     if (numberOfCreatures < capacity)
     {
-        //добавить рыбу
+        if (type == LifeType::PLANKTON) 
+        {
+            creatures.push_back(new Plankton());
+        }
+        else if (type == LifeType::CARNIVOREFISH)
+        {
+            creatures.push_back(new CarnivoreFish());
+        }
+        else
+        {
+            creatures.push_back(new HerbivoreFish());
+        }
         return true;
     }
     else
     {
+        std::cout << "I can't add fish, because aquarium is full" << std::endl;
         return false;
     }
     
@@ -43,7 +50,20 @@ bool Aquarium::addCreature(LifeType type)
 
 bool Aquarium::removeCreature(int index)
 {
-    //убрать рыбу из листа
+    if (index > creatures.size()-1)
+    {
+        std::cout << "No such index in creatures" << std::endl  ;
+        return false;
+    }
+    // определить с начала искать или с конца (зависит от того, к чему ближе индекс)
+    // пройтись по листу
+    auto iter = creatures.begin();
+    for (int i = 0; i < index; i++)
+    {
+        iter++;
+    }
+    creatures.erase(iter);
+    //удалить 
     return false;
 }
 

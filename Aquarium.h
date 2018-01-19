@@ -4,6 +4,9 @@
 #include <mutex>
 #include <queue>
 #include "Creature.h"
+#include "CarnivoreFish.h"
+#include "HerbivoreFish.h"
+#include "Plankton.h"
 #include "LifeManager.h"
 
 /*!
@@ -19,11 +22,10 @@ public:
     Aquarium(int capacity, Coordinates borders);
     ~Aquarium();
     
-    void startGame(); //!< даем сигнал менеджеру, чтобы запустить цикл работы
-    void stopGame(); //!< даем синал менеджеру, чтобы остановил работу
+    void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
     bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
-    bool removeCreature(int index);  //!< убрать создание по индексу в векторе
+    bool removeCreature(int index);  //!< убрать создание по индексу в векторе // or by id
 
     void setCapacity(int capacity);  //!< устанавливает размер аквариума
     int getCapacity() const;  //!< возвращает размер аквариума

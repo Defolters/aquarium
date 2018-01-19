@@ -1,6 +1,10 @@
 #include "Object.h"
 #include <algorithm>
-/*
+
+Object::Object()
+{
+}
+
 void Object::Calculate()
 {
 	Resize();
@@ -21,6 +25,8 @@ Object::~Object()
 {
 }
 
+
+
 Vector2f Object::GetPosition()
 {
 	return position;
@@ -29,6 +35,11 @@ Vector2f Object::GetPosition()
 Vector2f Object::GetRotation()
 {
 	return rotation;
+}
+
+Sprite Object::GetSprite()
+{
+    return Sprite();
 }
 
 void Object::Resize()
@@ -70,4 +81,4 @@ void Field::RemoveObject(Object * ptr)
 	auto itr = std::find(objects.begin(), objects.end(), ptr);
 	if (itr != objects.end())
 		objects.erase(itr);
-}*/
+}

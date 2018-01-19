@@ -19,7 +19,7 @@ move()
 */
 
 class Creature //abstract?
-	//: Object
+	: Object
 {
 public:
     Creature(LifeType type, LifeType prey, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
