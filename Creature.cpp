@@ -1,9 +1,12 @@
 #include "Creature.h"
 
-Creature::Creature()
+Creature::Creature(LifeType type, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
+    : type(type), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
+    hungerLimit(hungerLimit), speed(speed), lifeDaysLeft(lifeExpectancy), hunger(0), reproductionDaysLeft(reproductionPeriod), purpose(Coordinates()),
+    task(TaskType::RUN)
 {
+    
 }
-
 
 Creature::~Creature()
 {
@@ -21,6 +24,11 @@ bool Creature::reproduce()
 
 void Creature::dayPassed()
 {
+}
+
+void Creature::thinkAboutIt()
+{
+    // RIL TOK, BRO
 }
 
 void Creature::eat()

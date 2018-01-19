@@ -158,6 +158,7 @@
     <ClCompile Include="Aquarium.cpp" />
     <ClCompile Include="CarnivoreFish.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EventControll.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="HerbivoreFish.cpp" />
     <ClCompile Include="LifeEvent.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="EventControll.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Coordinates.h" />
@@ -187,6 +189,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Plankton.h" />
     <ClInclude Include="SpriteList.h" />
+    <ClInclude Include="TaskType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
