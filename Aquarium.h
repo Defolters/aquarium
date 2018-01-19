@@ -5,8 +5,6 @@
 #include <queue>
 #include "Creature.h"
 #include "LifeManager.h"
-#include "LifeType.h"
-#include "LifeEvent.h"
 
 /*!
 \brief Класс, реализующий аквариум
@@ -37,6 +35,7 @@ public:
     std::vector<Creature*>& getListOfCreatures(); //< возвращает список рыб
 
 	std::mutex eventQueueLocker; //!< для многопоточности?
+
 private:
 
     int capacity;  //!< максимальное количество рыб

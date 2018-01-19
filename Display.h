@@ -17,7 +17,6 @@ class Display
 public:
     Display();
     ~Display();
-	std::queue<Effect> effects;
 	void PullEvents();
 	void DrawAquarium() const;
 private:
