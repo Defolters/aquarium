@@ -10,10 +10,9 @@ class CarnivoreFish :
     public Fish
 {
 public:
-    CarnivoreFish();
+    CarnivoreFish(int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
     virtual ~CarnivoreFish();
 private:
-    LifeType type = LifeType::CARNIVOREFISH;
     LifeType target = LifeType::HERBIVOREFISH;
 };
 

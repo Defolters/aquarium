@@ -15,14 +15,14 @@
 class Aquarium
 {
 public:
-    Aquarium();
+    Aquarium(); //!< 
     Aquarium(int capacity, Coordinates borders);
     ~Aquarium();
     
     void startGame(); //!< даем сигнал менеджеру, чтобы запустить цикл работы
     void stopGame(); //!< даем синал менеджеру, чтобы остановил работу
 
-    bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу
+    bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
     bool removeCreature(int index);  //!< убрать создание по индексу в векторе
 
     void setCapacity(int capacity);  //!< устанавливает размер аквариума

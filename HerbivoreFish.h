@@ -11,10 +11,9 @@ class HerbivoreFish :
     public Fish
 {
 public:
-    HerbivoreFish();
+    HerbivoreFish(int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
     virtual ~HerbivoreFish();
 private:
-    LifeType type = LifeType::HERBIVOREFISH;
     LifeType target = LifeType::PLANKTON;
 };
 #endif //! CARNIVORE_FISH_H
