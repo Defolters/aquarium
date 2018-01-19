@@ -18,31 +18,32 @@ class Aquarium
 {
 public:
     Aquarium();
+    Aquarium(int capacity, Coordinates borders);
     ~Aquarium();
     
+    void startGame(); //!< даем сигнал менеджеру, чтобы запустить цикл работы
+    void stopGame(); //!< даем синал менеджеру, чтобы остановил работу
+
     bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу
     bool removeCreature(int index);  //!< убрать создание по индексу в векторе
+
     void setCapacity(int capacity);  //!< устанавливает размер аквариума
     int getCapacity() const;  //!< возвращает размер аквариума
-    //! getNumberOfCreatures используется в LifeManager для проверки, что 
-    //! живность не вымерла и пора выходить из игры, возвращает количество рыб
-    int getNumberOfCreatures() const;  
-    //! getListOfCreatures используется в LifeManager для вывода статистики 
-    //! на экран и может использоваться в Display, чтобы пройтись по вектору 
-    //! и получить координаты для отображения
-    std::vector<Creature*>& getListOfCreatures();  
+
+    void setBorders(Coordinates borders); //!< устанавливает границы аквариума
+    Coordinates getBorders() const; //!< возвращает границы аквариума
+
+    int getNumberOfCreatures() const; //< возвращает количество рыб в данный момент
+    std::vector<Creature*>& getListOfCreatures(); //< возвращает список рыб
+
 	std::mutex eventQueueLocker; //!< для многопоточности?
-	std::queue<LifeEvent> events;
 private:
 
     int capacity;  //!< максимальное количество рыб
     int numberOfCreatures;  //!< количество рыб в данный момент
     std::vector<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
-    //! При создании аквариума создается LifeManager, который
-    //! инициализирует жизнь (добавляет начальных рыб как-то) и затем управляет
-    //! жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
-    LifeManager manager; 
+    LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
 };
 
 #endif  //! AQUARIUM_H
