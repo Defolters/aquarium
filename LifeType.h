@@ -1,6 +1,6 @@
-#ifndef LIFE_TYPE_H
+п»ї#ifndef LIFE_TYPE_H
 #define LIFE_TYPE_H
-//! типы созданий
+//! С‚РёРїС‹ СЃРѕР·РґР°РЅРёР№
 enum class LifeType {
 	PLANKTON,
 	HERBIVOREFISH,
