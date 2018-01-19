@@ -1,14 +1,8 @@
 #include "Aquarium.h"
 #include <iostream>
 
-
-Aquarium::Aquarium() 
-    : capacity(0), borders(Coordinates()), numberOfCreatures(0)
-{
-}
-
 Aquarium::Aquarium(int capacity, Coordinates borders)
-    : capacity(capacity), borders(borders), numberOfCreatures(0)
+    : capacity(capacity), borders(borders), numberOfCreatures(0), manager(LifeManager(this))
 {
     // выделить размер для листа.
 }
@@ -19,7 +13,7 @@ Aquarium::~Aquarium()
 
 void Aquarium::startGame(bool isForever, int ticks)
 {
-    //manager.startGame();
+    manager.startGame(isForever, ticks);
 }
 
 bool Aquarium::addCreature(LifeType type)
@@ -55,15 +49,19 @@ bool Aquarium::removeCreature(int index)
         std::cout << "No such index in creatures" << std::endl  ;
         return false;
     }
+
     // определить с начала искать или с конца (зависит от того, к чему ближе индекс)
+    // ..
+
     // пройтись по листу
     auto iter = creatures.begin();
     for (int i = 0; i < index; i++)
     {
         iter++;
     }
-    creatures.erase(iter);
+
     //удалить 
+    creatures.erase(iter);
     return false;
 }
 
@@ -79,6 +77,7 @@ int Aquarium::getCapacity() const
 
 void Aquarium::setBorders(Coordinates borders)
 {
+    this->borders = borders;
 }
 
 Coordinates Aquarium::getBorders() const

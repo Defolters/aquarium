@@ -18,8 +18,7 @@
 class Aquarium
 {
 public:
-    Aquarium(); //!< 
-    Aquarium(int capacity, Coordinates borders);
+    Aquarium(int capacity, Coordinates borders); //!< 
     ~Aquarium();
     
     void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
