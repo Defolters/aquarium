@@ -54,6 +54,16 @@ void Object::SetSize(Vector2f size_)
 	Calculate();
 }
 
+Coordinates Object::getPositionAqua()
+{
+    return positionAqua;
+}
+
+void Object::setPositionAqua(Coordinates position)
+{
+    positionAqua = position;
+}
+
 //FIFNISHING FIELD CLASS
 void Field::HandleObjects()
 {

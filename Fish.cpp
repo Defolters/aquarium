@@ -11,20 +11,15 @@ Fish::~Fish()
 {
 }
 
-void Fish::thinkAboutIt(std::list<Creature*>& creatures)
+bool Fish::thinkAboutIt(std::list<Creature*>& creatures)
 {
 }
 
-void Fish::eat()
+bool Fish::eat()
 {
 }
 
 bool Fish::reproduce()
 {
     return false;
-}
-
-Coordinates Fish::move()
-{
-    return Coordinates();
 }

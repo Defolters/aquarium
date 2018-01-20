@@ -92,5 +92,5 @@ void LifeManager::onKilling() const
 
 void LifeManager::printState() const
 {
-    //print some state
+    //print some state (например, сколько рыб умерло)
 }

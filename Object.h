@@ -18,6 +18,8 @@ public:
     virtual Sprite GetSprite();
     void Resize();
     void SetSize(Vector2f);
+    Coordinates getPositionAqua();
+    void setPositionAqua(Coordinates position);
  
 
 protected:
@@ -26,7 +28,7 @@ protected:
 	Sprite sprite; //!<
 	Vector2f size; //!< размер чего?
 	Vector2f position; //!< позиция на экране 
-    Coordinates coordinates; //!< положение рыбы в аквариуме
+    Coordinates positionAqua; //!< положение рыбы в аквариуме
 	Vector2f rotation; //!<
 	virtual void Calculate(); //!<
 

@@ -12,21 +12,32 @@ Plankton::~Plankton()
 {
 }
 
-void Plankton::thinkAboutIt(std::list<Creature*>& creatures)
+bool Plankton::thinkAboutIt(std::list<Creature*>& creatures)
 {
-}
-
-void Plankton::eat()
-{
+    /*
+    если мы не достигли цели, то ничего не меняем
+    если достигли, то ставим новую цель*/
+    if (getPositionAqua() != direction)
+    {
+    }
+    else
+    {
+        // генерируем новое направление
+    }
+    
 }
 
 bool Plankton::reproduce()
 {
-    return false;
+    //если период прошел, то делимся, проверки на задание нет, ибо планктон
+    if (reproductionReady == reproductionPeriod)
+    {
+        // размножаемся 
+        reproductionReady = 0;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
-
-Coordinates Plankton::move()
-{
-    return Coordinates();
-}
-

@@ -8,5 +8,6 @@ struct Coordinates
     int x;
     int y;
     int z;
+    //переопределить сравнение
 };
 #endif //! COORDINATES_H
