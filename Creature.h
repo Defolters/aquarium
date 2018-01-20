@@ -2,7 +2,7 @@
 #define CREATURE_H
 #include "Object.h"
 #include "LifeType.h"
-#include "LifeEvent.h"
+#include "EventControll.h"
 #include <mutex>
 #include "Coordinates.h"
 /*!

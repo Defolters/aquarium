@@ -9,6 +9,10 @@ Creature::~Creature()
 {
 }
 
+void Creature::thinkAboutIt()
+{
+}
+
 Coordinates Creature::move()
 {
     return Coordinates();

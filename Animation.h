@@ -1,7 +1,7 @@
 ﻿#ifndef ANIMATION_H
 #define ANIMATION_H
 #include "SpriteList.h"
-
+#include "Headers.h"
 /*!
 \brief Класс, реализующий анимацию
 

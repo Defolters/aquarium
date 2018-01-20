@@ -43,7 +43,7 @@ public:
 
 private:
     unsigned int days;  //! количество прошедших дней
-    std::unique_ptr<Aquarium> aquarium;
+    //std::unique_ptr<Aquarium> aquarium;
 };
 
 #endif //! LIFE_MANAGER_H
