@@ -43,6 +43,7 @@ bool Aquarium::addCreature(LifeType type)
 bool Aquarium::removeCreature(int index)
 {
     //убрать рыбу из листа
+	return false;
 }
 
 void Aquarium::setCapacity(int capacity)
