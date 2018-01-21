@@ -20,6 +20,10 @@ struct Coordinates
 		res += std::to_string(z);
 		return res;
 	}
+    Vector2f toVector2f()
+    {
+        return Vector2f(x, y);
+    }
     bool operator==(const Coordinates& coord)
     {
         if (this == &coord)
@@ -44,6 +48,5 @@ struct Coordinates
     bool operator<=(const Ratio& ratio2);
     bool operator>=(const Ratio& ratio2);
     */
-    //переопределить сравнение
 };
 #endif //! COORDINATES_H

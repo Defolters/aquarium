@@ -40,11 +40,14 @@ public:
     void onReproducing() const; //!<  ход размножение
     void onMoving() const;  //!< ход движение
     void dayPassed();  //! ход день прошел
-    void onKilling() const;  //!< kill fishes, which died of old age or hunger
-    void printState() const; // напечатать статистику (кол-во рыб всяких) в консоль
+    void onKilling();  //!< kill fishes, which died of old age or hunger
+    void printState(); // напечатать статистику (кол-во рыб всяких) в консоль
+    void eventEveryWeek() const;
 
 private:
-    unsigned int days;  //! количество прошедших дней
+    unsigned int day; //! количество прошедших дней
+    int deadOfAge; //!< количество умерших от старости
+    int deadOfHunger; //!< количество умерших от голода
     //std::unique_ptr<Aquarium> aquarium;
     Aquarium* aquarium;
     std::list<Creature* >& creatures;

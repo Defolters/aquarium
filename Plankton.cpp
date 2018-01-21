@@ -15,27 +15,29 @@ Plankton::~Plankton()
 bool Plankton::thinkAboutIt(std::list<Creature*>& creatures)
 {
     /*
-    если мы не достигли цели, то ничего не меняем
-    если достигли, то ставим новую цель*/
-    if (getPositionAqua() == direction)
+    РµСЃР»Рё РјС‹ РЅРµ РґРѕСЃС‚РёРіР»Рё С†РµР»Рё, С‚Рѕ РЅРёС‡РµРіРѕ РЅРµ РјРµРЅСЏРµРј
+    РµСЃР»Рё РґРѕСЃС‚РёРіР»Рё, С‚Рѕ СЃС‚Р°РІРёРј РЅРѕРІСѓСЋ С†РµР»СЊ*/
+    if (getPosition() == direction)
     {
-        // достигли желаемого направления, ищем новое
-        direction.x = rand() % 10; //aquarium borders
+        // РґРѕСЃС‚РёРіР»Рё Р¶РµР»Р°РµРјРѕРіРѕ РЅР°РїСЂР°РІР»РµРЅРёСЏ, РёС‰РµРј РЅРѕРІРѕРµ
+        direction.x = rand() % 10; //aquarium borders should be here!!!
         direction.y = rand() % 10;
         direction.z = rand() % 10;
+        std::cout << "New direction: " <<direction.toString() << std::endl;
+        return true;
     }
     else
     {
+        return false;
     }
-    return true;
 }
 
 bool Plankton::reproduce()
 {
-    //если период прошел, то делимся, проверки на задание нет, ибо планктон
+    //РµСЃР»Рё РїРµСЂРёРѕРґ РїСЂРѕС€РµР», С‚Рѕ РґРµР»РёРјСЃСЏ, РїСЂРѕРІРµСЂРєРё РЅР° Р·Р°РґР°РЅРёРµ РЅРµС‚, РёР±Рѕ РїР»Р°РЅРєС‚РѕРЅ
     if (reproductionReady == reproductionPeriod)
     {
-        // добавляем нового планктона в аквариум
+        // Р·РґРµСЃСЊ РґРѕР±Р°РІР»СЏРµРј РЅРѕРІРѕРіРѕ РїР»Р°РЅРєС‚РѕРЅР° РІ Р°РєРІР°СЂРёСѓРј
         reproductionReady = 0;
         return true;
     }

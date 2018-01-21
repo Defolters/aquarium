@@ -2,9 +2,9 @@
 #include <iostream>
 
 Aquarium::Aquarium(int capacity, Coordinates borders)
-    : capacity(capacity), borders(borders), numberOfCreatures(0), manager(LifeManager(this, creatures))
+    : capacity(capacity), borders(borders), manager(LifeManager(this, creatures))
 {
-    // выделить размер для листа.
+    // РІС‹РґРµР»РёС‚СЊ СЂР°Р·РјРµСЂ РґР»СЏ Р»РёСЃС‚Р°.
 }
 
 Aquarium::~Aquarium()
@@ -18,7 +18,7 @@ void Aquarium::startGame(bool isForever, int ticks)
 
 bool Aquarium::addCreature(LifeType type)
 {
-    if (numberOfCreatures < capacity)
+    if (creatures.size() < capacity)
     {
         if (type == LifeType::PLANKTON) 
         {
@@ -50,17 +50,17 @@ bool Aquarium::removeCreature(int index)
         return false;
     }
 
-    // определить с начала искать или с конца (зависит от того, к чему ближе индекс)
+    // РѕРїСЂРµРґРµР»РёС‚СЊ СЃ РЅР°С‡Р°Р»Р° РёСЃРєР°С‚СЊ РёР»Рё СЃ РєРѕРЅС†Р° (Р·Р°РІРёСЃРёС‚ РѕС‚ С‚РѕРіРѕ, Рє С‡РµРјСѓ Р±Р»РёР¶Рµ РёРЅРґРµРєСЃ)
     // ..
 
-    // пройтись по листу
+    // РїСЂРѕР№С‚РёСЃСЊ РїРѕ Р»РёСЃС‚Сѓ
     auto iter = creatures.begin();
     for (int i = 0; i < index; i++)
     {
         iter++;
     }
 
-    //удалить 
+    //СѓРґР°Р»РёС‚СЊ 
     creatures.erase(iter);
     return false;
 }
@@ -87,7 +87,7 @@ Coordinates Aquarium::getBorders() const
 
 int Aquarium::getNumberOfCreatures() const
 {
-    return numberOfCreatures;
+    return creatures.size();
 }
 
 std::list<Creature*>& Aquarium::getListOfCreatures()

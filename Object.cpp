@@ -2,14 +2,14 @@
 #include <algorithm>
 
 Object::Object()
-    : position(0,0), positionAqua(0,0,0)
+    : position(0,0,0)
 {
 }
 
-void Object::Calculate()
+void Object::calculate()
 {
-	Resize();
-	sprite.setPosition(field->WorldToScreenPoint(position));
+	resize();
+	sprite.setPosition(field->WorldToScreenPoint(position.toVector2f()));
 }
 
 Object::Object(Field & origin, Vector2f size_)
@@ -28,42 +28,33 @@ Object::~Object()
 
 
 
-Vector2f Object::GetPosition()
+Coordinates Object::getPosition()
 {
 	return position;
 }
 
-Vector2f Object::GetRotation()
+Vector2f Object::getRotation()
 {
 	return rotation;
 }
 
-Sprite Object::GetSprite()
+Sprite Object::getSprite()
 {
     return Sprite();
 }
 
-void Object::Resize()
+void Object::resize()
 {
 	float scale = field->GetScale();
 	sprite.setScale((size.x / scale) / sprite.getLocalBounds().width, (size.y / scale) / sprite.getLocalBounds().height);
 }
 
-void Object::SetSize(Vector2f size_)
+void Object::setSize(Vector2f size_)
 {
 	size = size_;
-	Calculate();
+	calculate();
 }
 
-Coordinates Object::getPositionAqua()
-{
-    return positionAqua;
-}
-
-void Object::setPositionAqua(Coordinates position)
-{
-    positionAqua = position;
-}
 
 //FIFNISHING FIELD CLASS
 void Field::HandleObjects()
@@ -71,7 +62,7 @@ void Field::HandleObjects()
 	if (clearOutOfBounds)//TODO part of image visible
 	{
 		for (auto obj = objects.begin(); obj != objects.end();)
-			if (!displayedRect.contains((*obj)->GetPosition()))
+			if (!displayedRect.contains((*obj)->getPosition().toVector2f()))
 			{
 				delete(*obj);
 				obj = objects.erase(obj);
@@ -80,7 +71,7 @@ void Field::HandleObjects()
 	}
 	for (auto obj : objects)
 	{
-		Sprite toDisplay = obj->GetSprite();
+		Sprite toDisplay = obj->getSprite();
 		toDisplay.setPosition(toDisplay.getPosition() - WorldToScreenPoint(cameraPosition));
 		window->draw(toDisplay);
 	}

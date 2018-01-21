@@ -40,7 +40,6 @@ public:
 private:
 
     int capacity;  //!< максимальное количество рыб
-    int numberOfCreatures;  //!< количество рыб в данный момент
     std::list<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)

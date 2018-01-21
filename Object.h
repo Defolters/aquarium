@@ -3,7 +3,7 @@
 #include "Field.h"
 #include "Coordinates.h"
 /*!
-\brief Класс, реализующий анимацию
+\brief Класс, реализующий объект
 
 нужны комменты к полям и методам, чтобы я мог помочь и понять.
 */
@@ -13,13 +13,13 @@ public:
     Object();
     virtual ~Object();
 
-    Vector2f GetPosition();
-    Vector2f GetRotation();
-    virtual Sprite GetSprite();
-    void Resize();
-    void SetSize(Vector2f);
-    Coordinates getPositionAqua();
-    void setPositionAqua(Coordinates position);
+    Coordinates getPosition();
+    void setPosition(Coordinates coord);
+    Vector2f getRotation();
+    virtual Sprite getSprite();
+    void resize();
+    void setSize(Vector2f size);
+
  
 
 protected:
@@ -27,10 +27,10 @@ protected:
 	Field* field; //!<
 	Sprite sprite; //!<
 	Vector2f size; //!< размер чего?
-	Vector2f position; //!< позиция на экране 
-    Coordinates positionAqua; //!< положение рыбы в аквариуме
+	//Vector2f position; //!< позиция на экране 
+    Coordinates position; //!< положение рыбы в аквариуме
 	Vector2f rotation; //!<
-	virtual void Calculate(); //!<
+	virtual void calculate(); //!<
 
 	Object(Field&, Vector2f);
 };

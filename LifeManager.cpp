@@ -2,7 +2,8 @@
 #include <iostream>
 #include "Aquarium.h"
 
-LifeManager::LifeManager(Aquarium * aquarium, std::list<Creature*>& creatures) : aquarium(aquarium), days(0), creatures(creatures)
+LifeManager::LifeManager(Aquarium * aquarium, std::list<Creature*>& creatures) 
+    : aquarium(aquarium), day(1), creatures(creatures), deadOfAge(0), deadOfHunger(0)
 {
 }
 
@@ -16,6 +17,7 @@ void LifeManager::startGame(bool isForever, int ticks)
     {
         std::cout << ticks << " TICK!" << std::endl;
         ticks--;
+        if (day % 7 == 0)eventEveryWeek();
         onThinking(); // each fish think about plans on the future
         onEating(); // each fish eat, if can
         onReproducing(); //each fish reproducing if can
@@ -23,6 +25,7 @@ void LifeManager::startGame(bool isForever, int ticks)
         dayPassed(); // reduce life and increase hunger
         onKilling(); // kill fishes, which died of old age or hunger
         printState();
+        day++;
     }
 }
 
@@ -39,7 +42,7 @@ void LifeManager::onEating() const
 {
     //for each eat
     //auto creatures = aquarium->getListOfCreatures();
-    // ÈÑÏĞÀÂÈÒÜ ÏĞÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
+    // Ğ˜Ğ¡ĞŸĞ ĞĞ’Ğ˜Ğ¢Ğ¬ ĞŸĞ ĞĞ¥ĞĞ–Ğ”Ğ•ĞĞ˜Ğ• ĞŸĞ Ğ¦Ğ˜ĞšĞ›Ğ£ ĞĞ Ğ¡Ğ›Ğ£Ğ§ĞĞ™ Ğ£Ğ”ĞĞ›Ğ•ĞĞ˜Ğ¯
     /*auto end = creatures.end();
     for (auto iter = creatures.begin(); iter != end; iter++)
     {
@@ -54,7 +57,7 @@ void LifeManager::onReproducing() const
 {
     //for each reproduce
     //auto creatures = aquarium->getListOfCreatures();
-    // ÈÑÏĞÀÂÈÒÜ ÏĞÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
+    // Ğ˜Ğ¡ĞŸĞ ĞĞ’Ğ˜Ğ¢Ğ¬ ĞŸĞ ĞĞ¥ĞĞ–Ğ”Ğ•ĞĞ˜Ğ• ĞŸĞ Ğ¦Ğ˜ĞšĞ›Ğ£ ĞĞ Ğ¡Ğ›Ğ£Ğ§ĞĞ™ Ğ£Ğ”ĞĞ›Ğ•ĞĞ˜Ğ¯
     /*auto end = creatures.end();
     for (auto iter = creatures.begin(); iter != end; iter++)
     {
@@ -76,25 +79,45 @@ void LifeManager::onMoving() const
 void LifeManager::dayPassed()
 {
     //for each reduce life and increase hunger
-    //auto creatures = aquarium->getListOfCreatures();
+    for (auto creature : creatures)
+    {
+        creature->dayPassed();
+    }
 }
 
-void LifeManager::onKilling() const
+void LifeManager::onKilling()
 {
     //for each kill if it should die (of oldage or hunger)
-    // ÈÑÏĞÀÂÈÒÜ ÏĞÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
-    //auto end = 
-    /*for (auto iter = creatures.begin(); iter != creatures.end(); ++iter)
+
+    std::list<Creature*>::iterator i = creatures.begin();
+
+    while (i != creatures.end())
     {
-    aquarium->removeCreature(0);
-    std::cout << "removed!" << std::endl;
-    //iter = creatures.begin();
-    //end = creatures.end();
-    }*/
+        //bool isActive = (*i)->update();
+        if ((*i)->isDeadOfAge())
+        {
+            creatures.erase(i++);  // alternatively, i = items.erase(i);
+            deadOfAge++;
+        }
+        else if ((*i)->isDeadOfHunger())
+        {
+            creatures.erase(i++);  // alternatively, i = items.erase(i);
+            deadOfHunger++;
+        }
+        else ++i;
+    }
 }
 
-void LifeManager::printState() const
+void LifeManager::printState()
 {
-    //print some state (íàïğèìåğ, ñêîëüêî ğûá óìåğëî)
-    std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << std::endl;
+    //print some state (Ğ½Ğ°Ğ¿Ñ€Ğ¸Ğ¼ĞµÑ€, ÑĞºĞ¾Ğ»ÑŒĞºĞ¾ Ñ€Ñ‹Ğ± ÑƒĞ¼ĞµÑ€Ğ»Ğ¾)
+    std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
+        "\nToday dead of hunger: "<<deadOfHunger<<"\nToday dead of age: "<<deadOfAge<<std::endl;
+    deadOfAge = 0;
+    deadOfHunger = 0;
+}
+
+void LifeManager::eventEveryWeek() const
+{
+    std::cout << "Astrologers proclaim the week of References.\nThe number of references has doubled" << std::endl;
 }

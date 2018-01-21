@@ -2,7 +2,7 @@
 
 Creature::Creature(LifeType type, LifeType prey, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
     : type(type), prey(prey), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
-    hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), direction(Coordinates()), //случайное направление, конструтор object??
+    hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), direction(Coordinates()), //СЃР»СѓС‡Р°Р№РЅРѕРµ РЅР°РїСЂР°РІР»РµРЅРёРµ, РєРѕРЅСЃС‚СЂСѓС‚РѕСЂ object??
     task(TaskType::RUN)
 {
     
@@ -16,18 +16,18 @@ bool Creature::move()
 {
     if (task == TaskType::RUN)
     {
-        // двигаемся к цели = меняем координаты существа 
-        //(МЫ ЖЕ НЕ СМОЖЕМ ЗДЕСЬ ВЫПЛЫТЬ ЗА ПРЕДЕЛЫ АКВАРИУМА? ЕСЛИ МЫ ПОЯВИМСЯ В ПРЕДЕЛАХ И НАША ЦЕЛЬ ТОЖЕ БУДЕТ В ПРЕДЕЛАХ)
+        // РґРІРёРіР°РµРјСЃСЏ Рє С†РµР»Рё = РјРµРЅСЏРµРј РєРѕРѕСЂРґРёРЅР°С‚С‹ СЃСѓС‰РµСЃС‚РІР° 
+        //(РњР« Р–Р• РќР• РЎРњРћР–Р•Рњ Р—Р”Р•РЎР¬ Р’Р«РџР›Р«РўР¬ Р—Рђ РџР Р•Р”Р•Р›Р« РђРљР’РђР РРЈРњРђ? Р•РЎР›Р РњР« РџРћРЇР’РРњРЎРЇ Р’ РџР Р•Р”Р•Р›РђРҐ Р РќРђРЁРђ Р¦Р•Р›Р¬ РўРћР–Р• Р‘РЈР”Р•Рў Р’ РџР Р•Р”Р•Р›РђРҐ)
         //X
-        if (positionAqua.x < direction.x) positionAqua.x++;
-        else if (positionAqua.x > direction.x) positionAqua.x--;
+        if (position.x < direction.x) position.x++;
+        else if (position.x > direction.x) position.x--;
         //Y
-        if (positionAqua.y < direction.y) positionAqua.y++;
-        else if (positionAqua.y > direction.y) positionAqua.y--;
+        if (position.y < direction.y) position.y++;
+        else if (position.y > direction.y) position.y--;
         //Z
-        if (positionAqua.z < direction.z) positionAqua.z++;
-        else if (positionAqua.z > direction.z) positionAqua.z--;
-        std::cout << positionAqua.toString() << std::endl;
+        if (position.z < direction.z) position.z++;
+        else if (position.z > direction.z) position.z--;
+        std::cout << position.toString() << std::endl;
         return true;
     }
     else
@@ -38,8 +38,20 @@ bool Creature::move()
 
 bool Creature::dayPassed()
 {
-    hunger++; //увеличиваем голод
-    age++; //увеличиваем возраст
-    reproductionReady++; //увелич. кол-во дней от последнего размножения'
+    hunger++; //СѓРІРµР»РёС‡РёРІР°РµРј РіРѕР»РѕРґ
+    age++; //СѓРІРµР»РёС‡РёРІР°РµРј РІРѕР·СЂР°СЃС‚
+    reproductionReady++; //СѓРІРµР»РёС‡. РєРѕР»-РІРѕ РґРЅРµР№ РѕС‚ РїРѕСЃР»РµРґРЅРµРіРѕ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ'
     return true;
+}
+
+bool Creature::isDeadOfAge()
+{
+    if (age == lifeExpectancy) return true;
+    else return false;
+}
+
+bool Creature::isDeadOfHunger()
+{
+    if (hunger == lifeWitoutFood) return true;
+    else return false;
 }

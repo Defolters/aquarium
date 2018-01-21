@@ -1,6 +1,6 @@
 #ifndef TASK_TYPE_H
 #define TASK_TYPE_H
-//! типы заданий
+//! С‚РёРїС‹ Р·Р°РґР°РЅРёР№
 enum class TaskType {
     RUN,
     FUCK,
