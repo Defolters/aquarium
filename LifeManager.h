@@ -2,6 +2,7 @@
 #define LIFE_MANAGER_H
 #include <list>
 #include "Creature.h"
+
 /*!
 \brief Класс, реализующий управление аквариумом
 
@@ -29,21 +30,24 @@ class Aquarium;
 class LifeManager
 {
 public:
-    LifeManager();
+    LifeManager(Aquarium* aquarium, std::list<Creature* >& creatures);
     ~LifeManager();
 
 	//Везде видел что такие методы называют OnЧто-то. Хз почему но мы тоже не сирые.
-    void onPlanning() const;
-    void onKilling() const;  //! ход убийство
-    void onMoving() const;  //! ход движение
-    void onEating() const;  //! ход прием пищи
-    void onMating() const; //!  ход размножение
+    void startGame(bool isForever, int ticks);
+    void onThinking() const;
+    void onEating() const;  //!< ход прием пищи
+    void onReproducing() const; //!<  ход размножение
+    void onMoving() const;  //!< ход движение
     void dayPassed();  //! ход день прошел
+    void onKilling() const;  //!< kill fishes, which died of old age or hunger
     void printState() const; // напечатать статистику (кол-во рыб всяких) в консоль
 
 private:
     unsigned int days;  //! количество прошедших дней
     //std::unique_ptr<Aquarium> aquarium;
+    Aquarium* aquarium;
+    std::list<Creature* >& creatures;
 };
 
 #endif //! LIFE_MANAGER_H

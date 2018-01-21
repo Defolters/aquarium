@@ -188,6 +188,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Plankton.h" />
     <ClInclude Include="SpriteList.h" />
+    <ClInclude Include="TaskType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

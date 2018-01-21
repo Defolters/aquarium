@@ -3,9 +3,9 @@
 
 
 CarnivoreFish::CarnivoreFish()
+    : Fish(LifeType::CARNIVOREFISH, LifeType::HERBIVOREFISH)
 {
 }
-
 
 CarnivoreFish::~CarnivoreFish()
 {

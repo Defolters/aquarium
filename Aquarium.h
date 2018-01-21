@@ -1,9 +1,12 @@
 ﻿#ifndef AQUARIUM_H
 #define AQUARIUM_H
-#include <vector>
+#include <list>
 #include <mutex>
 #include <queue>
 #include "Creature.h"
+#include "CarnivoreFish.h"
+#include "HerbivoreFish.h"
+#include "Plankton.h"
 #include "LifeManager.h"
 
 /*!
@@ -15,15 +18,13 @@
 class Aquarium
 {
 public:
-    Aquarium();
-    Aquarium(int capacity, Coordinates borders);
+    Aquarium(int capacity, Coordinates borders); //!< 
     ~Aquarium();
     
-    void startGame(); //!< даем сигнал менеджеру, чтобы запустить цикл работы
-    void stopGame(); //!< даем синал менеджеру, чтобы остановил работу
+    void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
-    bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу
-    bool removeCreature(int index);  //!< убрать создание по индексу в векторе
+    bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
+    bool removeCreature(int index);  //!< убрать создание по индексу в векторе // or by id
 
     void setCapacity(int capacity);  //!< устанавливает размер аквариума
     int getCapacity() const;  //!< возвращает размер аквариума
@@ -32,7 +33,7 @@ public:
     Coordinates getBorders() const; //!< возвращает границы аквариума
 
     int getNumberOfCreatures() const; //< возвращает количество рыб в данный момент
-    std::vector<Creature*>& getListOfCreatures(); //< возвращает список рыб
+    std::list<Creature*>& getListOfCreatures(); //< возвращает список рыб
 
 	std::mutex eventQueueLocker; //!< для многопоточности?
 
@@ -40,7 +41,7 @@ private:
 
     int capacity;  //!< максимальное количество рыб
     int numberOfCreatures;  //!< количество рыб в данный момент
-    std::vector<Creature*> creatures;  //!< вектор со всей живностью
+    std::list<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
 };

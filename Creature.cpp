@@ -1,32 +1,32 @@
 #include "Creature.h"
 
-Creature::Creature()
+Creature::Creature(LifeType type, LifeType prey, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
+    : type(type), prey(prey), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
+    hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), purpose(Coordinates()),
+    task(TaskType::RUN)
 {
+    
 }
-
 
 Creature::~Creature()
 {
 }
 
-void Creature::thinkAboutIt()
+bool Creature::move()
 {
+    if (task == TaskType::RUN)
+    {
+        // двигаемся к цели = меняем координаты существа
+    }
+    else
+    {
+        return false;
+    }
 }
 
-Coordinates Creature::move()
+bool Creature::dayPassed()
 {
-    return Coordinates();
-}
-
-bool Creature::reproduce()
-{
-    return false;
-}
-
-void Creature::dayPassed()
-{
-}
-
-void Creature::eat()
-{
+    hunger++; //увеличиваем голод
+    age++; //увеличиваем возраст
+    reproductionReady++; //увелич. кол-во дней от последнего размножения
 }

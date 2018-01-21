@@ -2,9 +2,9 @@
 #define CARNIVORE_FISH_H
 #include "Fish.h"
 /*!
-\brief Класс, реализующий анимацию
+\brief Класс, реализующий плотоядную рыбу
 
-нужны комменты к полям и методам, чтобы я мог помочь и понять.
+сабж
 */
 class CarnivoreFish :
     public Fish
@@ -12,9 +12,6 @@ class CarnivoreFish :
 public:
     CarnivoreFish();
     virtual ~CarnivoreFish();
-private:
-    LifeType type = LifeType::CARNIVOREFISH;
-    LifeType target = LifeType::HERBIVOREFISH;
 };
 
 #endif //! CARNIVORE_FISH_H

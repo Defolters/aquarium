@@ -3,6 +3,9 @@
 #include <string>
 struct Coordinates
 {
+    Coordinates() : x(1), y(1), z(1) {}
+    Coordinates(int x, int y, int z) : x(x), y(y), z(z) {};
+
     int x;
     int y;
     int z;
@@ -18,5 +21,6 @@ struct Coordinates
 		res += std::to_string(z);
 		return res;
 	}
+    //переопределить сравнение
 };
 #endif //! COORDINATES_H

@@ -3,19 +3,19 @@
 #include "Creature.h"
 
 /*!
-\brief Класс, реализующий анимацию
+\brief Класс, реализующий рыбу
 
-нужны комменты к полям и методам, чтобы я мог помочь и понять.
+сабж
 */
 class Fish abstract :
     public Creature
 {
-protected:
-    Fish();
+public:
+    Fish(LifeType type, LifeType prey);
     virtual ~Fish();
-private:
-    LifeType target;
-	// я так понимаю что просто рыб все равно нет, это абстрактный родтиель так что тип лучше потом ставить
+    virtual bool thinkAboutIt(std::list<Creature*>& creatures) override;//!< каждое существо рефлексирует и строит планы на будущее (чем заняться и в какую координату плыть) (СВЯЗАТЬ С ENUM)
+    virtual bool eat() override;//!< восстанавливает голод, ест только кого-то рангом ниже, при этом создание рангом ниже должно умереть, или вообще не ест (планктон, например)
+    virtual bool reproduce() override;  //!< существо размножается каждые reproductionPeriod дней
 };
 
 #endif  //! FISH_H

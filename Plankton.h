@@ -2,9 +2,9 @@
 #define PLANKTON_H
 #include "Creature.h"
 /*!
-\brief Класс, реализующий анимацию
+\brief Класс, реализующий планктоны
 
-нужны комменты к полям и методам, чтобы я мог помочь и понять.
+сабж
 */
 class Plankton :
     public Creature
@@ -12,8 +12,9 @@ class Plankton :
 public:
     Plankton();
     virtual ~Plankton();
-private:
-    LifeType type = LifeType::PLANKTON;
-};
 
+    virtual bool thinkAboutIt(std::list<Creature*>& creatures) override;//!< каждое существо рефлексирует и строит планы на будущее (чем заняться и в какую координату плыть) (СВЯЗАТЬ С ENUM)
+    virtual bool eat() override {}; //!< планктон ничего не ест
+    virtual bool reproduce() override;  //!< существо размножается каждые reproductionPeriod дней
+};
 #endif  //! PLANKTON_H
