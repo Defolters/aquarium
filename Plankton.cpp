@@ -19,10 +19,13 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures)
     если достигли, то ставим новую цель*/
     if (getPositionAqua() == direction)
     {
+        // достигли желаемого направления, ищем новое
+        direction.x = rand() % 10; //aquarium borders
+        direction.y = rand() % 10;
+        direction.z = rand() % 10;
     }
     else
     {
-        // генерируем новое направление
     }
     return true;
 }
@@ -32,7 +35,7 @@ bool Plankton::reproduce()
     //если период прошел, то делимся, проверки на задание нет, ибо планктон
     if (reproductionReady == reproductionPeriod)
     {
-        // размножаемся 
+        // добавляем нового планктона в аквариум
         reproductionReady = 0;
         return true;
     }

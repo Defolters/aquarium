@@ -2,6 +2,7 @@
 #include <algorithm>
 
 Object::Object()
+    : position(0,0), positionAqua(0,0,0)
 {
 }
 

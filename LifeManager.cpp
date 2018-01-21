@@ -66,8 +66,11 @@ void LifeManager::onReproducing() const
 
 void LifeManager::onMoving() const
 {
-    //auto creatures = aquarium->getListOfCreatures();
     //for each move
+    for (auto creature : creatures)
+    {
+        creature->move();
+    }
 }
 
 void LifeManager::dayPassed()
@@ -78,7 +81,7 @@ void LifeManager::dayPassed()
 
 void LifeManager::onKilling() const
 {
-    //for each kill if it should die
+    //for each kill if it should die (of oldage or hunger)
     // ÈÑÏĞÀÂÈÒÜ ÏĞÎÕÎÆÄÅÍÈÅ ÏÎ ÖÈÊËÓ ÍÀ ÑËÓ×ÀÉ ÓÄÀËÅÍÈß
     //auto end = 
     /*for (auto iter = creatures.begin(); iter != creatures.end(); ++iter)
@@ -93,4 +96,5 @@ void LifeManager::onKilling() const
 void LifeManager::printState() const
 {
     //print some state (íàïğèìåğ, ñêîëüêî ğûá óìåğëî)
+    std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << std::endl;
 }
