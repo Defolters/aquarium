@@ -3,14 +3,13 @@
 #include <string>
 struct Coordinates
 {
-    Coordinates() : x(1), y(1), z(1) {}
+    Coordinates() : x(0), y(0), z(0) {};
     Coordinates(int x, int y, int z) : x(x), y(y), z(z) {};
 
     int x;
     int y;
     int z;
-	Coordinates() : x(0), y(0), z(0) {};
-	Coordinates(int x_, int y_, int z_) : x(x_), y(y_), z(z_) {};
+
 	std::string toString() 
 	{ 
 		std::string res;
@@ -21,6 +20,30 @@ struct Coordinates
 		res += std::to_string(z);
 		return res;
 	}
+    bool operator==(const Coordinates& coord)
+    {
+        if (this == &coord)
+        {
+            return true;
+        }
+        if ((this->x == coord.x) && (this->y == coord.y) && (this->z == coord.z))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+    /*
+    bool operator==(const Ratio& ratio2);
+    bool operator!=(const Ratio& ratio2);
+    bool operator<(const Ratio& ratio2);
+    bool operator>(const Ratio& ratio2);
+    bool operator<=(const Ratio& ratio2);
+    bool operator>=(const Ratio& ratio2);
+    */
     //переопределить сравнение
 };
 #endif //! COORDINATES_H

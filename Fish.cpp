@@ -13,10 +13,12 @@ Fish::~Fish()
 
 bool Fish::thinkAboutIt(std::list<Creature*>& creatures)
 {
+    return false;
 }
 
 bool Fish::eat()
 {
+    return false;
 }
 
 bool Fish::reproduce()

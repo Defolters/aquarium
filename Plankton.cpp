@@ -17,14 +17,14 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures)
     /*
     если мы не достигли цели, то ничего не меняем
     если достигли, то ставим новую цель*/
-    if (getPositionAqua() != direction)
+    if (getPositionAqua() == direction)
     {
     }
     else
     {
         // генерируем новое направление
     }
-    
+    return true;
 }
 
 bool Plankton::reproduce()
@@ -34,6 +34,7 @@ bool Plankton::reproduce()
     {
         // размножаемся 
         reproductionReady = 0;
+        return true;
     }
     else
     {
