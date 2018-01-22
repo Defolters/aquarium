@@ -20,15 +20,12 @@ void LifeManager::startGame(bool isForever, int ticks)
         if (day % 7 == 0)eventEveryWeek();
         onThinking(); // each fish think about plans on the future
         onEating(); // each fish eat, if can
-        //check events
         onReproducing(); //each fish reproducing if can
-        //check events
         onMoving(); // each fish moving if can
+        printState();
         dayPassed(); // reduce life and increase hunger
         onKilling(); // kill fishes, which died of old age or hunger
-        //check events
-        printState();
-        day++;
+
     }
 }
 
@@ -65,6 +62,7 @@ void LifeManager::onReproducing()
         std::shared_ptr<LifeEvent> evM = getManagerEvent();
         if (evM != nullptr)
         {
+            // здесь можно получать гены родителей и создать нового ребенка
             aquarium->addCreature(evM->holder->getType(), evM->holder->getPosition());
             newborns++;
         }
@@ -96,6 +94,7 @@ void LifeManager::dayPassed()
     {
         creature->dayPassed();
     }
+    day++;
 }
 
 void LifeManager::onKilling()

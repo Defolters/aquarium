@@ -2,7 +2,7 @@
 
 Creature::Creature(LifeType type, LifeType prey, Coordinates position, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
     : Object(position), type(type), prey(prey), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
-    hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), direction(Coordinates()), //случайное направление, конструтор object??
+    hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), direction(position), //случайное направление, конструтор object??
     task(TaskType::RUN) 
 {
     
