@@ -10,7 +10,7 @@
 class Object
 {
 public:
-    Object();
+    Object(Coordinates position);
     virtual ~Object();
 
     Coordinates getPosition();

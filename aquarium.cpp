@@ -16,21 +16,21 @@ void Aquarium::startGame(bool isForever, int ticks)
     manager.startGame(isForever, ticks);
 }
 
-bool Aquarium::addCreature(LifeType type)
+bool Aquarium::addCreature(LifeType type, Coordinates coord)
 {
     if (creatures.size() < capacity)
     {
         if (type == LifeType::PLANKTON) 
         {
-            creatures.push_back(new Plankton());
+            creatures.push_back(new Plankton(coord));
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            creatures.push_back(new CarnivoreFish());
+            creatures.push_back(new CarnivoreFish(coord));
         }
         else
         {
-            creatures.push_back(new HerbivoreFish());
+            creatures.push_back(new HerbivoreFish(coord));
         }
         return true;
     }

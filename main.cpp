@@ -41,7 +41,7 @@ int main()
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD
-    aquarium.addCreature(LifeType::PLANKTON);
+    aquarium.addCreature(LifeType::PLANKTON, Coordinates());
     //aquarium.addCreature(LifeType::HERBIVOREFISH);
     //aquarium.addCreature(LifeType::CARNIVOREFISH);
 #endif // TEST_ADD
@@ -54,7 +54,7 @@ int main()
 #endif // TEST_REMOVE
 
 #ifdef TEST_PLAY
-    aquarium.startGame(false, 50);
+    aquarium.startGame(false, 10);
 #endif // TEST_PLAY
 
     std::cin.get();

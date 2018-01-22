@@ -24,7 +24,7 @@ std::shared_ptr<LifeEvent> getDisplayEvent()
 
 void throwEvent(Coordinates coordinates_, EventType type_, Creature* holder_)
 {
-	std::shared_ptr<LifeEvent> evt = std::make_shared<LifeEvent>(coordinates_, holder_, type_);
+	std::shared_ptr<LifeEvent> evt = std::make_shared<LifeEvent>(coordinates_, type_, holder_);
 	display_event_queue.push(evt);
     manager_event_queue.push(evt);
 }

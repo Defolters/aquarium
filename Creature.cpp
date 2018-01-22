@@ -1,9 +1,9 @@
 #include "Creature.h"
 
-Creature::Creature(LifeType type, LifeType prey, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
-    : type(type), prey(prey), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
+Creature::Creature(LifeType type, LifeType prey, Coordinates position, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
+    : Object(position), type(type), prey(prey), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
     hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), direction(Coordinates()), //случайное направление, конструтор object??
-    task(TaskType::RUN)
+    task(TaskType::RUN) 
 {
     
 }
@@ -41,6 +41,11 @@ bool Creature::dayPassed()
     hunger++; //увеличиваем голод
     age++; //увеличиваем возраст
     reproductionReady++; //увелич. кол-во дней от последнего размножения'
+    //кидать события, если надо умереть от возраста или голода
+    if (age == lifeExpectancy || hunger == lifeWitoutFood)
+    {
+        //throwEvent(position, EventType::BIRTH, this);
+    }
     return true;
 }
 
@@ -54,4 +59,9 @@ bool Creature::isDeadOfHunger()
 {
     if (hunger == lifeWitoutFood) return true;
     else return false;
+}
+
+LifeType Creature::getType()
+{
+    return type;
 }

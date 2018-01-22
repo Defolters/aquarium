@@ -2,8 +2,8 @@
 
 
 
-CarnivoreFish::CarnivoreFish()
-    : Fish(LifeType::CARNIVOREFISH, LifeType::HERBIVOREFISH)
+CarnivoreFish::CarnivoreFish(Coordinates position)
+    : Fish(LifeType::CARNIVOREFISH, LifeType::HERBIVOREFISH, position)
 {
 }
 

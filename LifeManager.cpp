@@ -3,7 +3,7 @@
 #include "Aquarium.h"
 
 LifeManager::LifeManager(Aquarium * aquarium, std::list<Creature*>& creatures) 
-    : aquarium(aquarium), day(1), creatures(creatures), deadOfAge(0), deadOfHunger(0)
+    : aquarium(aquarium), day(1), creatures(creatures), deadOfAge(0), deadOfHunger(0), newborns(0), eaten(0)
 {
 }
 
@@ -20,10 +20,13 @@ void LifeManager::startGame(bool isForever, int ticks)
         if (day % 7 == 0)eventEveryWeek();
         onThinking(); // each fish think about plans on the future
         onEating(); // each fish eat, if can
+        //check events
         onReproducing(); //each fish reproducing if can
+        //check events
         onMoving(); // each fish moving if can
         dayPassed(); // reduce life and increase hunger
         onKilling(); // kill fishes, which died of old age or hunger
+        //check events
         printState();
         day++;
     }
@@ -53,9 +56,19 @@ void LifeManager::onEating() const
     }*/
 }
 
-void LifeManager::onReproducing() const
+void LifeManager::onReproducing()
 {
     //for each reproduce
+    for (auto creature : creatures)
+    {
+        creature->reproduce(creatures);
+        std::shared_ptr<LifeEvent> evM = getManagerEvent();
+        if (evM != nullptr)
+        {
+            aquarium->addCreature(evM->holder->getType(), evM->holder->getPosition());
+            newborns++;
+        }
+    }
     //auto creatures = aquarium->getListOfCreatures();
     // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ
     /*auto end = creatures.end();
@@ -88,7 +101,7 @@ void LifeManager::dayPassed()
 void LifeManager::onKilling()
 {
     //for each kill if it should die (of oldage or hunger)
-
+    // check list and kill
     std::list<Creature*>::iterator i = creatures.begin();
 
     while (i != creatures.end())
@@ -111,10 +124,17 @@ void LifeManager::onKilling()
 void LifeManager::printState()
 {
     //print some state (например, сколько рыб умерло)
+    //system("CLS");
     std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
-        "\nToday dead of hunger: "<<deadOfHunger<<"\nToday dead of age: "<<deadOfAge<<std::endl;
+        "\nToday dead of hunger: "<<deadOfHunger<<
+        "\nToday dead of age: "<<deadOfAge <<
+        "\nToday newborns: " << newborns <<
+        "\nToday eaten: " << eaten <<
+        std::endl;
     deadOfAge = 0;
     deadOfHunger = 0;
+    newborns = 0;
+    eaten = 0;
 }
 
 void LifeManager::eventEveryWeek() const

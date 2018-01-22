@@ -1,8 +1,8 @@
 #include "Object.h"
 #include <algorithm>
 
-Object::Object()
-    : position(0,0,0)
+Object::Object(Coordinates position)
+    : position(position)
 {
 }
 
