@@ -59,10 +59,10 @@ int main()
 #endif // TEST_REMOVE
 
 #ifdef TEST_PLAY
-	int count = 500;
+	int count = 50;
 	while (count)
 	{
-		aquarium.startGame(false, 500);
+		aquarium.startGame(false, 50);
 		display.DrawAquarium();
 		count--;
 	}
