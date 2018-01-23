@@ -9,6 +9,8 @@
 #include "LifeEvent.h"
 #include "EventControll.h"
 #include "Coordinates.h"
+#include "Animation.h"
+#include <list>
 
 /*!
 \brief Класс, реализующий живое создание
@@ -22,12 +24,13 @@ move()
 Добавить наследование признаков + мутации
 */
 
-class Creature //abstract?
+class Creature abstract
 	: public Object
 {
 public:
     Creature(LifeType type, LifeType prey, Coordinates position, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed);
     virtual ~Creature();
+	void initGraphics(Texture* tex);
     //!планктон: если не находится в желаемой точке, то выбирает случайную точку(цель), до которой будет плыть.
     //!рыба: если голод ниже границы и период прошел, то смотрим вокруг и плывем к ближайшей рыбе размножаться
     //!рыба: если голод выше границы, то смотрим вокруг и плывем к жертве
@@ -41,7 +44,7 @@ public:
     bool isDeadOfHunger(); //!< true, если должны умереть от голода
     LifeType getType();
     
-    std::mutex spriteLocker; //!< ВТФ?
+    std::mutex spriteLocker; //!< ВТФ? ето для потоков, потом понадобится
 protected:
     LifeType type; //!< тип создания
     LifeType prey; //!< кого мы едим (как быть с этим для планктона? или там eat не реализован, поэтому все ок?) ДОБАВИТЬ В КОНСТРУКТОР

@@ -5,6 +5,7 @@
 Plankton::Plankton(Coordinates position)
     : Creature(LifeType::PLANKTON, LifeType::PLANKTON, position, 5, 5, 2, 5, 0, 1)
 {
+	that = this;
 }
 
 

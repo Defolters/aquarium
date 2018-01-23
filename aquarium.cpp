@@ -11,6 +11,12 @@ Aquarium::~Aquarium()
 {
 }
 
+void Aquarium::bind()
+{
+	//TODO
+	binded = true;
+}
+
 void Aquarium::startGame(bool isForever, int ticks)
 {
     manager.startGame(isForever, ticks);
@@ -20,18 +26,25 @@ bool Aquarium::addCreature(LifeType type, Coordinates coord)
 {
     if (creatures.size() < capacity)
     {
+		Creature* newCreature;
         if (type == LifeType::PLANKTON) 
         {
-            creatures.push_back(new Plankton(coord));
+			newCreature = new Plankton();
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            creatures.push_back(new CarnivoreFish(coord));
+			newCreature = new CarnivoreFish();
         }
         else
         {
-            creatures.push_back(new HerbivoreFish(coord));
+			newCreature = new HerbivoreFish();
         }
+		creatures.push_back(newCreature);
+		if (binded)
+		{
+			MAIN_FIELD.AddObject(newCreature);
+			throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
+		}
         return true;
     }
     else
@@ -62,6 +75,8 @@ bool Aquarium::removeCreature(int index)
 
     //удалить 
     creatures.erase(iter);
+	if (binded)
+		MAIN_FIELD.RemoveObject(*iter);
     return false;
 }
 

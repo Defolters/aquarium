@@ -33,5 +33,5 @@ public:
 	const RenderWindow* GetWindow();
 	~Field();
 };
-
+extern Field MAIN_FIELD;
 #endif //! FIELD_H

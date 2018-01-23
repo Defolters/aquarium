@@ -11,13 +11,16 @@ LifeManager::~LifeManager()
 {
 }
 
-void LifeManager::startGame(bool isForever, int ticks)
+void LifeManager::startGame(bool isForever_, int ticks_)
 {
-    while (isForever || ticks)
+	isForever = isForever_;
+	ticks = ticks_;
+    if (isForever || ticks)
     {
         std::cout << ticks << " TICK!" << std::endl;
         ticks--;
-        if (day % 7 == 0)eventEveryWeek();
+        if (day % 7 == 0)
+			eventEveryWeek();
         onThinking(); // each fish think about plans on the future
         onEating(); // each fish eat, if can
         onReproducing(); //each fish reproducing if can
@@ -108,11 +111,13 @@ void LifeManager::onKilling()
         //bool isActive = (*i)->update();
         if ((*i)->isDeadOfAge())
         {
+			throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             creatures.erase(i++);  // alternatively, i = items.erase(i);
             deadOfAge++;
         }
         else if ((*i)->isDeadOfHunger())
         {
+			throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             creatures.erase(i++);  // alternatively, i = items.erase(i);
             deadOfHunger++;
         }

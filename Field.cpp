@@ -17,17 +17,6 @@ void Field::CalculateDisplayedRect()
 	//DEBUG std::cout << "x " << displayedRect.left << "y " << displayedRect.top << "w " << displayedRect.width << "h " << displayedRect.height << std::endl;
 }
 
-bool Field::AddObject(Object * object)
-{
-	if (std::find(objects.begin(), objects.end(), object) == objects.end())
-	{
-		objects.push_back(object);
-		return true;
-	}
-	else
-		return false;
-}
-
 float Field::GetScale() const
 {
 	return scale;
@@ -62,3 +51,5 @@ const RenderWindow * Field::GetWindow()
 Field::~Field()
 {
 }
+
+Field MAIN_FIELD = Field(0.05, MAIN_WINDOW);
