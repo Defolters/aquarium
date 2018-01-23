@@ -16,7 +16,7 @@ public:
     virtual ~Object();
 
     Coordinates getPosition();
-    void setPosition(Vector2f coord);
+    void setPosition(Coordinates coord);
     Vector2f getRotation();
 	Vector2f getSize();
     virtual Sprite getSprite();
@@ -30,7 +30,6 @@ protected:
 	Field* field = nullptr; //!<
 	Sprite sprite; //!<
 	Vector2f size; //!< размер чего? - спрайта
-	//Vector2f position; //!< позиция на экране 
     Coordinates position; //!< положение рыбы в аквариуме
 	Vector2f rotation; //!<
 	virtual void calculate(); //!<

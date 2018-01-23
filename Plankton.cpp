@@ -2,8 +2,8 @@
 
 
 
-Plankton::Plankton(Coordinates position)
-    : Creature(LifeType::PLANKTON, LifeType::PLANKTON, position, 5, 5, 2, 5, 0, 1)
+Plankton::Plankton(Gene gene, Coordinates position, unsigned int id)
+    : Creature(LifeType::PLANKTON, gene, LifeType::PLANKTON, position, id)
 {
 	that = this;
 }
@@ -13,18 +13,16 @@ Plankton::~Plankton()
 {
 }
 
-bool Plankton::thinkAboutIt(std::list<Creature*>& creatures)
+bool Plankton::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
 {
-    /*
-    если мы не достигли цели, то ничего не меняем
+    /*если мы не достигли цели, то ничего не меняем
     если достигли, то ставим новую цель*/
     if (getPosition() == direction)
     {
-        // достигли желаемого направления, ищем новое
-        direction.x = rand() % 10; //aquarium borders should be here!!!
-        direction.y = rand() % 10;
-        direction.z = rand() % 10;
-        std::cout << "New direction: " <<direction.toString() << std::endl;
+        direction.x = rand() % borders.x;
+        direction.y = rand() % borders.y;
+        direction.z = rand() % borders.z;
+        std::cout << "New direction: " << direction.toString() << std::endl;
         return true;
     }
     else
@@ -36,7 +34,7 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures)
 bool Plankton::reproduce(std::list<Creature*>& creatures)
 {
     //если период прошел, то делимся, проверки на задание нет, ибо планктон
-    if (reproductionReady == reproductionPeriod)
+    if (reproductionReady == gene.reproductionPeriod)
     {
         // здесь добавляем нового планктона в аквариум
         throwEvent(position, EventType::BIRTH, this);
@@ -47,5 +45,5 @@ bool Plankton::reproduce(std::list<Creature*>& creatures)
     {
         return false;
     }
-    
+
 }

@@ -23,8 +23,8 @@ public:
 	void bind();
     void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
-    bool addCreature(LifeType type, Coordinates coord);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
-    bool removeCreature(int index);  //!< убрать создание по индексу в векторе // or by id
+    bool addCreature(LifeType type, Gene gene, Coordinates coord);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
+    bool removeCreature(unsigned int id);  //!< убрать создание по индексу в векторе // or by id
 
     void setCapacity(int capacity);  //!< устанавливает размер аквариума
     int getCapacity() const;  //!< возвращает размер аквариума
@@ -39,7 +39,8 @@ public:
 
 private:
 	bool binded = false;
-    int capacity;  //!< максимальное количество рыб
+    unsigned int capacity;  //!< максимальное количество рыб
+    unsigned int lastId; //!< последний выданный ID
     std::list<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)

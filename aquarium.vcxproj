@@ -181,6 +181,7 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="Fish.h" />
     <ClInclude Include="Coordinates.h" />
+    <ClInclude Include="Gene.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="HerbivoreFish.h" />
     <ClInclude Include="LifeEvent.h" />

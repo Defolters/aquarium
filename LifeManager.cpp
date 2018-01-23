@@ -15,6 +15,7 @@ void LifeManager::startGame(bool isForever_, int ticks_)
 {
 	isForever = isForever_;
 	ticks = ticks_;
+    //    while (isForever || ticks)
     if (isForever || ticks)
     {
         std::cout << ticks << " TICK!" << std::endl;
@@ -25,7 +26,7 @@ void LifeManager::startGame(bool isForever_, int ticks_)
         onEating(); // each fish eat, if can
         onReproducing(); //each fish reproducing if can
         onMoving(); // each fish moving if can
-        printState();
+        printState(); // print state of the day
         dayPassed(); // reduce life and increase hunger
         onKilling(); // kill fishes, which died of old age or hunger
 
@@ -37,13 +38,25 @@ void LifeManager::onThinking() const
     //for each think about it
     for (auto creature : creatures)
     {
-        creature->thinkAboutIt(creatures);
+        creature->thinkAboutIt(creatures, aquarium->getBorders());
     }
 }
 
 void LifeManager::onEating() const
 {
+    // учитывать то, что кого-то могут съесть
     //for each eat
+    /*for (auto creature : creatures)
+    {
+    creature->eat(creatures, aquarium->getBorders());
+    std::shared_ptr<LifeEvent> evM = getManagerEvent();
+    if (evM != nullptr)
+    {
+    // здесь можно получать гены родителей и создать нового ребенка
+    aquarium->addCreature(evM->holder->getType(), evM->holder->getPosition());
+    newborns++;
+    }
+    }*/
     //auto creatures = aquarium->getListOfCreatures();
     // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ
     /*auto end = creatures.end();
@@ -66,7 +79,7 @@ void LifeManager::onReproducing()
         if (evM != nullptr)
         {
             // здесь можно получать гены родителей и создать нового ребенка
-            aquarium->addCreature(evM->holder->getType(), evM->holder->getPosition());
+            aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
             newborns++;
         }
     }
@@ -111,12 +124,18 @@ void LifeManager::onKilling()
         //bool isActive = (*i)->update();
         if ((*i)->isDeadOfAge())
         {
+            //aquarium->removeCreature((*i++)->getId());
+            //creatures.erase(i++);  // alternatively, i = items.erase(i);
+
 			throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             creatures.erase(i++);  // alternatively, i = items.erase(i);
             deadOfAge++;
         }
         else if ((*i)->isDeadOfHunger())
         {
+            //aquarium->removeCreature((*i++)->getId());
+            //creatures.erase(i++);  // alternatively, i = items.erase(i);
+
 			throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             creatures.erase(i++);  // alternatively, i = items.erase(i);
             deadOfHunger++;
@@ -133,7 +152,7 @@ void LifeManager::printState()
         "\nToday dead of hunger: "<<deadOfHunger<<
         "\nToday dead of age: "<<deadOfAge <<
         "\nToday newborns: " << newborns <<
-        "\nToday eaten: " << eaten <<
+        "\nToday eaten: " << eaten << "\n" <<
         std::endl;
     deadOfAge = 0;
     deadOfHunger = 0;

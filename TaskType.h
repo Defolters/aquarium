@@ -3,8 +3,7 @@
 //! типы заданий
 enum class TaskType {
     RUN,
-    FUCK,
-    EAT,
-    SHIT
+    REPRODUCE,
+    EAT
 };
 #endif  //! TASK_TYPE_H

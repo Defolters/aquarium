@@ -11,8 +11,7 @@ class HerbivoreFish :
     public Fish
 {
 public:
-    HerbivoreFish(Coordinates position);
+    HerbivoreFish(Gene gene, Coordinates position, unsigned int id);
     virtual ~HerbivoreFish();
 };
 #endif //! HERBIVORE_FISH_H
-

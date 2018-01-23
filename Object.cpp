@@ -41,9 +41,9 @@ Coordinates Object::getPosition()
 	return position;
 }
 
-void Object::setPosition(Vector2f coord)
+void Object::setPosition(Coordinates coord)
 {
-	sprite.setPosition(coord);
+	sprite.setPosition(coord.toVector2f());
 }
 
 Vector2f Object::getRotation()

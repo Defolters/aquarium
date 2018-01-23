@@ -2,9 +2,9 @@
 #include <iostream>
 
 Aquarium::Aquarium(int capacity, Coordinates borders)
-    : capacity(capacity), borders(borders), manager(LifeManager(this, creatures))
+    : capacity(capacity), lastId(0), borders(borders), manager(LifeManager(this, creatures))
 {
-    // выделить размер для листа.
+    //creatures.resize(capacity); выдает ошибку
 }
 
 Aquarium::~Aquarium()
@@ -22,24 +22,26 @@ void Aquarium::startGame(bool isForever, int ticks)
     manager.startGame(isForever, ticks);
 }
 
-bool Aquarium::addCreature(LifeType type, Coordinates coord)
+bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 {
     if (creatures.size() < capacity)
     {
 		Creature* newCreature;
         if (type == LifeType::PLANKTON) 
         {
-			newCreature = new Plankton(coord);
+			newCreature = new Plankton(gene, coord, lastId);
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-			newCreature = new CarnivoreFish(coord);
+			newCreature = new CarnivoreFish(gene, coord, lastId);
         }
         else
         {
-			newCreature = new HerbivoreFish(coord);
+			newCreature = new HerbivoreFish(gene, coord, lastId);
         }
 		creatures.push_back(newCreature);
+        std::cout << "ID: " << lastId << std::endl;
+        lastId++;
 		if (binded)
 		{
 			MAIN_FIELD.AddObject(newCreature);
@@ -55,28 +57,21 @@ bool Aquarium::addCreature(LifeType type, Coordinates coord)
     
 }
 
-bool Aquarium::removeCreature(int index)
+bool Aquarium::removeCreature(unsigned int id)
 {
-    if (index > creatures.size()-1)
+    //перебрать лист, пока не найдем нужную рыбу с id, затем очистить ее 
+
+    for (auto iter = creatures.begin(); iter != creatures.end(); iter++)
     {
-        std::cout << "No such index in creatures" << std::endl  ;
-        return false;
+        if (id == (*iter)->getId())
+        {
+            creatures.erase(iter);
+            if (binded)
+                MAIN_FIELD.RemoveObject(*iter);
+            std::cout << "remove ID: " << id << std::endl;
+            return true;
+        }
     }
-
-    // определить с начала искать или с конца (зависит от того, к чему ближе индекс)
-    // ..
-
-    // пройтись по листу
-    auto iter = creatures.begin();
-    for (int i = 0; i < index; i++)
-    {
-        iter++;
-    }
-
-    //удалить 
-    creatures.erase(iter);
-	if (binded)
-		MAIN_FIELD.RemoveObject(*iter);
     return false;
 }
 

@@ -1,11 +1,12 @@
 #include "Creature.h"
 
-Creature::Creature(LifeType type, LifeType prey, Coordinates position, int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
-    : Object(position), type(type), prey(prey), lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
-    hungerLimit(hungerLimit), speed(speed), age(0), hunger(0), reproductionReady(0), direction(position), //случайное направление, конструтор object??
-    task(TaskType::RUN) 
+Creature::Creature(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)//int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed, unsigned int id)
+    : Object(position), gene(gene), type(type), prey(prey), //lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
+                                                            //hungerLimit(hungerLimit), speed(speed), 
+    age(0), hunger(0), reproductionReady(0), direction(position), //случайное направление, конструтор object??
+    task(TaskType::RUN), id(id)
 {
-    
+
 }
 
 Creature::~Creature()
@@ -22,33 +23,30 @@ bool Creature::move()
 {
     if (task == TaskType::RUN)
     {
-        // двигаемся к цели = меняем координаты существа 
         //(МЫ ЖЕ НЕ СМОЖЕМ ЗДЕСЬ ВЫПЛЫТЬ ЗА ПРЕДЕЛЫ АКВАРИУМА? ЕСЛИ МЫ ПОЯВИМСЯ В ПРЕДЕЛАХ И НАША ЦЕЛЬ ТОЖЕ БУДЕТ В ПРЕДЕЛАХ)
         //Добавить скорость существу
+        //X
         if (position.x < direction.x)
 			position.x++;
-        else
-			if (position.x > direction.x) 
+        else if (position.x > direction.x) 
 				position.x--;
         //Y
         if (position.y < direction.y)
 			position.y++;
-        else 
-			if (position.y > direction.y)
+        else if (position.y > direction.y)
 				position.y--;
         //Z
         if (position.z < direction.z)
 			position.z++;
-        else
-			if (position.z > direction.z)
+        else if (position.z > direction.z)
 				position.z--;
         std::cout << position.toString() << std::endl;
         return true;
-		setPosition(position.toVector2f());
+		setPosition(position);
     }
     else
     {
-		setPosition(position.toVector2f());
+		setPosition(position);
         return false;
     }
 }
@@ -59,7 +57,7 @@ bool Creature::dayPassed()
     age++; //увеличиваем возраст
     reproductionReady++; //увелич. кол-во дней от последнего размножения'
     //кидать события, если надо умереть от возраста или голода
-    if (age == lifeExpectancy || hunger == lifeWitoutFood)
+    if (age == gene.lifeExpectancy || hunger == gene.lifeWitoutFood)
     {
         //throwEvent(position, EventType::BIRTH, this);
     }
@@ -68,17 +66,27 @@ bool Creature::dayPassed()
 
 bool Creature::isDeadOfAge()
 {
-    if (age == lifeExpectancy) return true;
+    if (age == gene.lifeExpectancy) return true;
     else return false;
 }
 
 bool Creature::isDeadOfHunger()
 {
-    if (hunger == lifeWitoutFood) return true;
+    if (hunger == gene.lifeWitoutFood) return true;
     else return false;
 }
 
 LifeType Creature::getType()
 {
     return type;
+}
+
+Gene Creature::getGene()
+{
+    return gene;
+}
+
+unsigned int Creature::getId()
+{
+    return id;
 }

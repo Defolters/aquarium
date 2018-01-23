@@ -1,4 +1,3 @@
-
 // main.cpp : Defines the entry point for the console application.
 //
 #include <iostream>
@@ -14,7 +13,7 @@
 //#define TEST_EVENT
 int main()
 {
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
 #ifdef TEST_EVENT
 	auto cret = new Plankton();
 	Coordinates coord(1, 1, 3);
@@ -47,9 +46,12 @@ int main()
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD
-	aquarium.addCreature(LifeType::PLANKTON, Coordinates());
-    aquarium.addCreature(LifeType::PLANKTON, Coordinates());
-	aquarium.addCreature(LifeType::PLANKTON, Coordinates());
+    //aquarium.addCreature(LifeType::PLANKTON, Coordinates());
+    //Gene gen = Gene(LifeType::PLANKTON);
+    //aquarium.addCreature(LifeType::PLANKTON, Coordinates());
+    aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates());
+    //aquarium.addCreature(LifeType::HERBIVOREFISH);
+    //aquarium.addCreature(LifeType::CARNIVOREFISH);
 #endif // TEST_ADD
 
 #ifdef TEST_REMOVE
@@ -60,7 +62,7 @@ int main()
 #endif // TEST_REMOVE
 
 #ifdef TEST_PLAY
-	int count = 50;
+	int count = 10000;
 	while (count)
 	{
 		aquarium.startGame(false, 100000);

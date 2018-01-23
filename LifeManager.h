@@ -40,7 +40,7 @@ public:
     void onReproducing(); //!<  ход размножение
     void onMoving() const;  //!< ход движение
     void dayPassed();  //! ход день прошел
-    void onKilling();  //!< kill fishes, which died of old age or hunger
+    void onKilling();  //!< kill fishes, which died of old age or hunger (теоретически, функционал этого метода можно перенести в dayPassed)
     void printState(); // напечатать статистику (кол-во рыб всяких) в консоль
     void eventEveryWeek() const;
 

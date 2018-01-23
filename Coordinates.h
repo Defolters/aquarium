@@ -2,6 +2,7 @@
 #define COORDINATES_H
 #include <string>
 #include "Headers.h"
+//! Координаты в трехмерной плоскости
 struct Coordinates
 {
     Coordinates() : x(0), y(0), z(0) {};
@@ -22,7 +23,7 @@ struct Coordinates
 		return res;
 	}
     Vector2f toVector2f(){
-        return Vector2f(x, y);
+        return Vector2f((float)x, (float)y);
     }
     bool operator==(const Coordinates& coord)
     {

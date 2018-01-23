@@ -10,7 +10,7 @@ class CarnivoreFish :
     public Fish
 {
 public:
-    CarnivoreFish(Coordinates position);
+    CarnivoreFish(Gene gene, Coordinates position, unsigned int id);
     virtual ~CarnivoreFish();
 };
 

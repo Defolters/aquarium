@@ -4,6 +4,6 @@
 enum class LifeType {
 	PLANKTON,
 	HERBIVOREFISH,
-	CARNIVOREFISH //??
+	CARNIVOREFISH
 };
 #endif  //! LIFE_TYPE_H

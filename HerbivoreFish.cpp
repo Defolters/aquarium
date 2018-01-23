@@ -2,8 +2,8 @@
 
 
 
-HerbivoreFish::HerbivoreFish(Coordinates position)
-    : Fish(LifeType::HERBIVOREFISH, LifeType::PLANKTON, position)
+HerbivoreFish::HerbivoreFish(Gene gene, Coordinates position, unsigned int id)
+    : Fish(LifeType::HERBIVOREFISH, gene, LifeType::PLANKTON, position, id)
 {
 	that = this;
 }
