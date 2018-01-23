@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Aquarium.h"
 #include "Plankton.h"
+#include "Display.h"
 #include <time.h>       /* time */
 
 #define TEST_CREATE
@@ -38,12 +39,16 @@ int main()
 
 #ifdef TEST_CREATE
     Aquarium aquarium(10, Coordinates(10, 10, 10));
+	
+	Texture plankton = Texture();
+	plankton.loadFromFile("plankton.png");
+	Display display = Display(&aquarium, &plankton);
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD
+	aquarium.addCreature(LifeType::PLANKTON);
     aquarium.addCreature(LifeType::PLANKTON);
-    //aquarium.addCreature(LifeType::HERBIVOREFISH);
-    //aquarium.addCreature(LifeType::CARNIVOREFISH);
+	aquarium.addCreature(LifeType::PLANKTON);
 #endif // TEST_ADD
 
 #ifdef TEST_REMOVE
@@ -54,24 +59,16 @@ int main()
 #endif // TEST_REMOVE
 
 #ifdef TEST_PLAY
-    aquarium.startGame(false, 50);
+	int count = 500;
+	while (count)
+	{
+		aquarium.startGame(false, 500);
+		display.DrawAquarium();
+		count--;
+	}
+
 #endif // TEST_PLAY
 
     std::cin.get();
     return 0;
 }
-
-/*
-// main.cpp : Defines the entry point for the console application.
-//
-
-
-int main()
-{
-
-
-return 0;
-}
-
-
-*/

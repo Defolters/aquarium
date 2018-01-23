@@ -5,5 +5,5 @@ using namespace sf;
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 extern Clock CLOCK; // should be started in main IMMEDIATELY
-//Field* MAIN_FIELD;
+extern RenderWindow MAIN_WINDOW;
 #endif //! HEADERS_H

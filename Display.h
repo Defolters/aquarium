@@ -15,11 +15,12 @@
 class Display
 {
 public:
-    Display();
+    Display(Aquarium* target, Texture*);
     ~Display();
-	void PullEvents();
+	void PullEvents() const;
 	void DrawAquarium() const;
 private:
+	Texture* plankton;
 	//const Aquarium& aquarium;
     Aquarium* aquarium;
 };

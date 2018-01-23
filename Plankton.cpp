@@ -5,6 +5,7 @@
 Plankton::Plankton()
     : Creature(LifeType::PLANKTON, LifeType::PLANKTON, 10, 10, 2, 5, 0, 1)
 {
+	that = this;
 }
 
 

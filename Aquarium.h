@@ -20,7 +20,7 @@ class Aquarium
 public:
     Aquarium(int capacity, Coordinates borders); //!< 
     ~Aquarium();
-    
+	void bind();
     void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
     bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
@@ -38,7 +38,7 @@ public:
 	std::mutex eventQueueLocker; //!< для многопоточности?
 
 private:
-
+	bool binded = false;
     int capacity;  //!< максимальное количество рыб
     std::list<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума

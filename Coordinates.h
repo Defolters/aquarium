@@ -1,6 +1,7 @@
 ﻿#ifndef COORDINATES_H
 #define COORDINATES_H
 #include <string>
+#include "Headers.h"
 struct Coordinates
 {
     Coordinates() : x(0), y(0), z(0) {};

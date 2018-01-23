@@ -51,6 +51,9 @@ private:
     //std::unique_ptr<Aquarium> aquarium;
     Aquarium* aquarium;
     std::list<Creature* >& creatures;
+
+	bool isForever;
+	int ticks;
 };
 
 #endif //! LIFE_MANAGER_H

@@ -1,9 +1,18 @@
 #include "Object.h"
 #include <algorithm>
-
+#include <iostream>
 Object::Object()
     : position(0,0,0)
 {
+	that = this;
+}
+
+void Object::bind(Field* origin, Vector2f size_)
+{
+	that = this;
+	size = size_;
+	field = origin;
+	calculate();
 }
 
 void Object::calculate()
@@ -15,7 +24,6 @@ void Object::calculate()
 Object::Object(Field & origin, Vector2f size_)
 {
 	that = this;
-	size = size_;
 	field = &origin;
 	field->AddObject(this);
 	float scale = field->GetScale();
@@ -27,10 +35,14 @@ Object::~Object()
 }
 
 
-
 Coordinates Object::getPosition()
 {
 	return position;
+}
+
+void Object::setPosition(Vector2f coord)
+{
+	sprite.setPosition(coord);
 }
 
 Vector2f Object::getRotation()
@@ -38,9 +50,19 @@ Vector2f Object::getRotation()
 	return rotation;
 }
 
+Vector2f Object::getSize()
+{
+	return size;
+}
+
 Sprite Object::getSprite()
 {
-    return Sprite();
+    return sprite;
+}
+
+Field* Object::getField()
+{
+	return field;
 }
 
 void Object::resize()
@@ -57,6 +79,20 @@ void Object::setSize(Vector2f size_)
 
 
 //FIFNISHING FIELD CLASS
+
+bool Field::AddObject(Object * object)
+{
+	if (std::find(objects.begin(), objects.end(), object) == objects.end())
+	{
+		objects.push_back(object);
+		if (object->getField() == nullptr)
+			object->bind(this, object->getSize());//TODO sizes
+		return true;
+	}
+	else
+		return false;
+}
+
 void Field::HandleObjects()
 {
 	if (clearOutOfBounds)//TODO part of image visible
@@ -72,7 +108,8 @@ void Field::HandleObjects()
 	for (auto obj : objects)
 	{
 		Sprite toDisplay = obj->getSprite();
-		toDisplay.setPosition(toDisplay.getPosition() - WorldToScreenPoint(cameraPosition));
+		toDisplay.setPosition(obj->getPosition().toVector2f() - WorldToScreenPoint(cameraPosition));
+		//TODO size
 		window->draw(toDisplay);
 	}
 }
