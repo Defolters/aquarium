@@ -27,6 +27,7 @@
 //Порядок 6 или 7 выбрать
 */
 class Aquarium;
+class Display;
 class LifeManager
 {
 public:
@@ -34,7 +35,7 @@ public:
     ~LifeManager();
 
 	//Везде видел что такие методы называют OnЧто-то. Хз почему но мы тоже не сирые.
-    void startGame(bool isForever, int ticks);
+    void startGame(bool isForever, int ticks, Display* display);
     void onThinking() const;
     void onEating() const;  //!< ход прием пищи
     void onReproducing(); //!<  ход размножение

@@ -62,11 +62,11 @@ int main()
 #endif // TEST_REMOVE
 
 #ifdef TEST_PLAY
-	int count = 10000;
+	int count = 1;
 	while (count)
 	{
-		aquarium.startGame(false, 100000);
-		display.DrawAquarium();
+		aquarium.startGame(false, 50, &display);
+		//display.DrawAquarium();
 		count--;
 	}
 

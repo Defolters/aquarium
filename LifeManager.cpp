@@ -1,7 +1,7 @@
 #include "LifeManager.h"
 #include <iostream>
 #include "Aquarium.h"
-
+#include "Display.h"
 LifeManager::LifeManager(Aquarium * aquarium, std::list<Creature*>& creatures) 
     : aquarium(aquarium), day(1), creatures(creatures), deadOfAge(0), deadOfHunger(0), newborns(0), eaten(0)
 {
@@ -11,7 +11,7 @@ LifeManager::~LifeManager()
 {
 }
 
-void LifeManager::startGame(bool isForever_, int ticks_)
+void LifeManager::startGame(bool isForever_, int ticks_, Display* display)
 {
 	isForever = isForever_;
 	ticks = ticks_;
@@ -29,6 +29,7 @@ void LifeManager::startGame(bool isForever_, int ticks_)
         printState(); // print state of the day
         dayPassed(); // reduce life and increase hunger
         onKilling(); // kill fishes, which died of old age or hunger
+        display->DrawAquarium();
 
     }
 }

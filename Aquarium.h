@@ -9,19 +9,21 @@
 #include "Plankton.h"
 #include "LifeManager.h"
 
+
 /*!
 \brief Класс, реализующий аквариум
 
 Класс содержит лишь список рыб, характеристику аквариума и возможность 
 добавить/убрать рыбу (на случай рождения или смерти).
 */
+class Display;
 class Aquarium
 {
 public:
     Aquarium(int capacity, Coordinates borders); //!< 
     ~Aquarium();
 	void bind();
-    void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
+    void startGame(bool isForever, int ticks, Display* display); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
     bool addCreature(LifeType type, Gene gene, Coordinates coord);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
     bool removeCreature(unsigned int id);  //!< убрать создание по индексу в векторе // or by id

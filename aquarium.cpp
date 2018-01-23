@@ -1,6 +1,6 @@
 #include "Aquarium.h"
 #include <iostream>
-
+#include "Display.h"
 Aquarium::Aquarium(int capacity, Coordinates borders)
     : capacity(capacity), lastId(0), borders(borders), manager(LifeManager(this, creatures))
 {
@@ -17,9 +17,9 @@ void Aquarium::bind()
 	binded = true;
 }
 
-void Aquarium::startGame(bool isForever, int ticks)
+void Aquarium::startGame(bool isForever, int ticks, Display* display)
 {
-    manager.startGame(isForever, ticks);
+    manager.startGame(isForever, ticks, display);
 }
 
 bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
