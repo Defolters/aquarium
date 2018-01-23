@@ -10,8 +10,9 @@
 class Object
 {
 public:
-    Object();
-	Object(Field&, Vector2f);
+    //Object();
+	//Object(Field&, Vector2f);
+    Object(Coordinates position);
     virtual ~Object();
 
     Coordinates getPosition();

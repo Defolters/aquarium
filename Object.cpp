@@ -1,8 +1,9 @@
 #include "Object.h"
 #include <algorithm>
 #include <iostream>
-Object::Object()
-    : position(0,0,0)
+
+Object::Object(Coordinates position)
+    : position(position)
 {
 	that = this;
 }

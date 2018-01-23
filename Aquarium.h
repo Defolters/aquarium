@@ -23,7 +23,7 @@ public:
 	void bind();
     void startGame(bool isForever, int ticks); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
-    bool addCreature(LifeType type);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
+    bool addCreature(LifeType type, Coordinates coord);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
     bool removeCreature(int index);  //!< убрать создание по индексу в векторе // or by id
 
     void setCapacity(int capacity);  //!< устанавливает размер аквариума

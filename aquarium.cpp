@@ -22,7 +22,7 @@ void Aquarium::startGame(bool isForever, int ticks)
     manager.startGame(isForever, ticks);
 }
 
-bool Aquarium::addCreature(LifeType type)
+bool Aquarium::addCreature(LifeType type, Coordinates coord)
 {
     if (creatures.size() < capacity)
     {

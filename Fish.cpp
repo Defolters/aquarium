@@ -2,8 +2,8 @@
 
 
 
-Fish::Fish(LifeType type, LifeType prey)
-    : Creature(type, prey, 20, 10, 5, 5, 5, 1)
+Fish::Fish(LifeType type, LifeType prey, Coordinates position)
+    : Creature(type, prey, position, 20, 10, 5, 5, 5, 1)
 {
 }
 
@@ -21,7 +21,7 @@ bool Fish::eat()
     return false;
 }
 
-bool Fish::reproduce()
+bool Fish::reproduce(std::list<Creature*>& creatures)
 {
     return false;
 }

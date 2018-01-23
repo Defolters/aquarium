@@ -21,8 +21,7 @@ struct Coordinates
 		res += std::to_string(z);
 		return res;
 	}
-    Vector2f toVector2f()
-    {
+    Vector2f toVector2f(){
         return Vector2f(x, y);
     }
     bool operator==(const Coordinates& coord)

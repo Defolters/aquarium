@@ -37,7 +37,7 @@ public:
     void startGame(bool isForever, int ticks);
     void onThinking() const;
     void onEating() const;  //!< ход прием пищи
-    void onReproducing() const; //!<  ход размножение
+    void onReproducing(); //!<  ход размножение
     void onMoving() const;  //!< ход движение
     void dayPassed();  //! ход день прошел
     void onKilling();  //!< kill fishes, which died of old age or hunger
@@ -48,6 +48,8 @@ private:
     unsigned int day; //! количество прошедших дней
     int deadOfAge; //!< количество умерших от старости
     int deadOfHunger; //!< количество умерших от голода
+    int newborns; //!< количество новорожденных
+    int eaten;
     //std::unique_ptr<Aquarium> aquarium;
     Aquarium* aquarium;
     std::list<Creature* >& creatures;

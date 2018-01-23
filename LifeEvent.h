@@ -16,13 +16,13 @@ class Creature;
 struct LifeEvent
 {
 	Coordinates place;
-	Creature* holder;
 	EventType type;
-	LifeEvent(Coordinates place_, Creature* holder_, EventType type_)
+    Creature* holder;
+	LifeEvent(Coordinates place_, EventType type_, Creature* holder_)
 	{
 		place = place_;
-		holder = holder_;
 		type = type_;
+        holder = holder_;
 	};
 	~LifeEvent() { std::cout << "blet_event" << std::endl; }
 };

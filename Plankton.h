@@ -12,11 +12,11 @@ class Plankton :
     public Creature
 {
 public:
-    Plankton();
+    Plankton(Coordinates position);
     virtual ~Plankton();
 
     virtual bool thinkAboutIt(std::list<Creature*>& creatures) override;//!< каждое существо рефлексирует и строит планы на будущее (чем заняться и в какую координату плыть) (СВЯЗАТЬ С ENUM)
     virtual bool eat() override { return true; }; //!< планктон ничего не ест
-    virtual bool reproduce() override;  //!< существо размножается каждые reproductionPeriod дней
+    virtual bool reproduce(std::list<Creature*>& creatures) override;  //!< существо размножается каждые reproductionPeriod дней
 };
 #endif  //! PLANKTON_H
