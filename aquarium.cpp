@@ -29,15 +29,15 @@ bool Aquarium::addCreature(LifeType type, Coordinates coord)
 		Creature* newCreature;
         if (type == LifeType::PLANKTON) 
         {
-			newCreature = new Plankton();
+			newCreature = new Plankton(coord);
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-			newCreature = new CarnivoreFish();
+			newCreature = new CarnivoreFish(coord);
         }
         else
         {
-			newCreature = new HerbivoreFish();
+			newCreature = new HerbivoreFish(coord);
         }
 		creatures.push_back(newCreature);
 		if (binded)

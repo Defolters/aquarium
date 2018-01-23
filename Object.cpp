@@ -21,7 +21,7 @@ void Object::calculate()
 	resize();
 	sprite.setPosition(field->WorldToScreenPoint(position.toVector2f()));
 }
-
+/*
 Object::Object(Field & origin, Vector2f size_)
 {
 	that = this;
@@ -29,7 +29,7 @@ Object::Object(Field & origin, Vector2f size_)
 	field->AddObject(this);
 	float scale = field->GetScale();
 	sprite.setScale((size.x / scale)/sprite.getLocalBounds().width, (size.y / scale) / sprite.getLocalBounds().height);
-}
+}*/
 
 Object::~Object()
 {

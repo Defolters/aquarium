@@ -39,7 +39,7 @@ int main()
 #endif // TEST_EVENT
 
 #ifdef TEST_CREATE
-    Aquarium aquarium(10, Coordinates(10, 10, 10));
+    Aquarium aquarium(10, Coordinates(100, 100, 1));
 	
 	Texture plankton = Texture();
 	plankton.loadFromFile("plankton.png");
@@ -47,9 +47,9 @@ int main()
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD
-	aquarium.addCreature(LifeType::PLANKTON);
-    aquarium.addCreature(LifeType::PLANKTON);
-	aquarium.addCreature(LifeType::PLANKTON);
+	aquarium.addCreature(LifeType::PLANKTON, Coordinates());
+    aquarium.addCreature(LifeType::PLANKTON, Coordinates());
+	aquarium.addCreature(LifeType::PLANKTON, Coordinates());
 #endif // TEST_ADD
 
 #ifdef TEST_REMOVE
@@ -63,7 +63,7 @@ int main()
 	int count = 50;
 	while (count)
 	{
-		aquarium.startGame(false, 50);
+		aquarium.startGame(false, 100000);
 		display.DrawAquarium();
 		count--;
 	}
