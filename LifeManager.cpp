@@ -18,6 +18,8 @@ void LifeManager::startGame(bool isForever_, int ticks_, Display* display)
     //    while (isForever || ticks)
     if (isForever || ticks)
     {
+		std::cin.get();
+		display->DrawAquarium();
         std::cout << ticks << " TICK!" << std::endl;
         ticks--;
         if (day % 7 == 0)
@@ -29,8 +31,6 @@ void LifeManager::startGame(bool isForever_, int ticks_, Display* display)
         printState(); // print state of the day
         dayPassed(); // reduce life and increase hunger
         onKilling(); // kill fishes, which died of old age or hunger
-        display->DrawAquarium();
-
     }
 }
 
@@ -75,14 +75,12 @@ void LifeManager::onReproducing()
     //for each reproduce
     for (auto creature : creatures)
     {
-        creature->reproduce(creatures);
-        std::shared_ptr<LifeEvent> evM = getManagerEvent();
-        if (evM != nullptr)
-        {
-            // здесь можно получать гены родителей и создать нового ребенка
-            aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
-            newborns++;
-        }
+		if (creature->reproduce(creatures))
+		{
+			// здесь добавляем нового планктона в аквариум
+			aquarium->addCreature(creature->getType(), Gene(creature->getType()), creature->getPosition());
+			newborns++;
+		}
     }
     //auto creatures = aquarium->getListOfCreatures();
     // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ

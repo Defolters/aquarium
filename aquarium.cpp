@@ -40,13 +40,9 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 			newCreature = new HerbivoreFish(gene, coord, lastId);
         }
 		creatures.push_back(newCreature);
+		throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
         std::cout << "ID: " << lastId << std::endl;
         lastId++;
-		if (binded)
-		{
-			MAIN_FIELD.AddObject(newCreature);
-			throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
-		}
         return true;
     }
     else

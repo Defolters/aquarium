@@ -36,8 +36,6 @@ bool Plankton::reproduce(std::list<Creature*>& creatures)
     //если период прошел, то делимся, проверки на задание нет, ибо планктон
     if (reproductionReady == gene.reproductionPeriod)
     {
-        // здесь добавляем нового планктона в аквариум
-        throwEvent(position, EventType::BIRTH, this);
         reproductionReady = 0;
         return true;
     }

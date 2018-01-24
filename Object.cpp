@@ -115,6 +115,11 @@ void Field::HandleObjects()
 	}
 }
 
+int Field::GetObjectCount()
+{
+	return objects.size();
+}
+
 
 void Field::RemoveObject(Object * ptr)
 {

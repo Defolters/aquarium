@@ -15,6 +15,7 @@ std::shared_ptr<LifeEvent> getManagerEvent()
 
 std::shared_ptr<LifeEvent> getDisplayEvent()
 {
+	std::cout << "disp event queue size " << display_event_queue.size() << std::endl;
 	if (display_event_queue.size() == 0)
 		return std::shared_ptr<LifeEvent>(nullptr);
 	std::shared_ptr<LifeEvent> res = display_event_queue.front();
@@ -24,6 +25,7 @@ std::shared_ptr<LifeEvent> getDisplayEvent()
 
 void throwEvent(Coordinates coordinates_, EventType type_, Creature* holder_)
 {
+	std::cout << "event thrown " << (int)type_ << std::endl;
 	std::shared_ptr<LifeEvent> evt = std::make_shared<LifeEvent>(coordinates_, type_, holder_);
 	display_event_queue.push(evt);
     manager_event_queue.push(evt);

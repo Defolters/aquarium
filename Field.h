@@ -23,6 +23,7 @@ public:
 	Field(float, RenderWindow&, Vector2f = Vector2f(0, 0), bool = false,Texture* = nullptr, Vector2f = Vector2f(0, 0));
 	void CalculateDisplayedRect();
 	void HandleObjects();
+	int GetObjectCount();
 	bool AddObject(Object*);
 	float GetScale() const;
 	void RemoveObject(Object*);
