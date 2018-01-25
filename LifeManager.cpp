@@ -13,10 +13,8 @@ LifeManager::~LifeManager()
 
 void LifeManager::startGame(bool isForever_, int ticks_, Display* display)
 {
-    
 	isForever = isForever_;
 	ticks = ticks_;
-    //    while (isForever || ticks)
     if (isForever || ticks)
     {
 		//std::cin.get();
@@ -48,27 +46,26 @@ void LifeManager::onEating() const
 {
     // учитывать то, что кого-то могут съесть
     //for each eat
-    /*for (auto creature : creatures)
+    for (auto creature : creatures) 
     {
-    creature->eat(creatures, aquarium->getBorders());
-    std::shared_ptr<LifeEvent> evM = getManagerEvent();
-    if (evM != nullptr)
-    {
-    // здесь можно получать гены родителей и создать нового ребенка
-    aquarium->addCreature(evM->holder->getType(), evM->holder->getPosition());
-    newborns++;
+        if (creature->eat(creatures)) 
+        {
+            
+            aquarium->removeCreature(creature->getPreyId());
+            //throwEvent((*i)->getPosition(), EventType::DEATH, *i);
+            //creatures.erase(i++);  // alternatively, i = items.erase(i);
+        }
     }
-    }*/
     //auto creatures = aquarium->getListOfCreatures();
     // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ
-    /*auto end = creatures.end();
-    for (auto iter = creatures.begin(); iter != end; iter++)
+    /* auto end = creatures.end();
+    for (auto iter = creatures.begin(); iter != creatures.end(); iter++)
     {
-    aquarium->removeCreature(0);
-    std::cout << "removed!" << std::endl;
-    iter = creatures.begin();
-    end = creatures.end();
-    }*/
+    //aquarium->removeCreature(0);
+    //std::cout << "removed!" << std::endl;
+    //iter = creatures.begin();
+    end = creatures.end();*/
+    
 }
 
 void LifeManager::onReproducing()
@@ -118,26 +115,25 @@ void LifeManager::onKilling()
     //for each kill if it should die (of oldage or hunger)
     // check list and kill
     std::list<Creature*>::iterator i = creatures.begin();
+    // бросать ивенты
 
     while (i != creatures.end())
     {
         //bool isActive = (*i)->update();
         if ((*i)->isDeadOfAge())
         {
-            //aquarium->removeCreature((*i++)->getId());
+            aquarium->removeCreature((*i++)->getId());
+			//throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             //creatures.erase(i++);  // alternatively, i = items.erase(i);
-
-			throwEvent((*i)->getPosition(), EventType::DEATH, *i);
-            creatures.erase(i++);  // alternatively, i = items.erase(i);
+            
             deadOfAge++;
         }
         else if ((*i)->isDeadOfHunger())
         {
-            //aquarium->removeCreature((*i++)->getId());
+            aquarium->removeCreature((*i++)->getId());
+			//throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             //creatures.erase(i++);  // alternatively, i = items.erase(i);
 
-			throwEvent((*i)->getPosition(), EventType::DEATH, *i);
-            creatures.erase(i++);  // alternatively, i = items.erase(i);
             deadOfHunger++;
         }
         else ++i;
@@ -162,5 +158,5 @@ void LifeManager::printState()
 
 void LifeManager::eventEveryWeek() const
 {
-    std::cout << "Astrologers proclaim the week of References.\nThe number of references has doubled" << std::endl;
+    //std::cout << "Astrologers proclaim the week of References.\nThe number of references has doubled" << std::endl;
 }

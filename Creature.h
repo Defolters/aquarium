@@ -42,10 +42,12 @@ public:
     bool dayPassed(); //!< функция, которая уменьшает значения жизни, периода и голода и которую вызывает dayPassed() у LifeManager, 
     bool isDeadOfAge(); //!< true, если должны умереть от старости
     bool isDeadOfHunger(); //!< true, если должны умереть от голода
-    LifeType getType();
-    Gene getGene();
-    unsigned int getId();
-    //bool isReadyToReproduce();
+    LifeType getType(); //!< 
+    Gene getGene(); //!< 
+    unsigned int getId(); //!< 
+    bool isReadyToReproduce(); //!< 
+    void iSleptWithYou(); //!< 
+    virtual unsigned int getPreyId() = 0;
 
     std::mutex spriteLocker; //!< ВТФ? ето для потоков, потом понадобится
 protected:

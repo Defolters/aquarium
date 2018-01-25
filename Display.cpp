@@ -41,7 +41,7 @@ void Display::PullEvents() const
 void Display::DrawAquarium() const
 {
 	PullEvents();
-	std::cout << "Objects: " << MAIN_FIELD.GetObjectCount() << std::endl;
+	//std::cout << "Objects: " << MAIN_FIELD.GetObjectCount() << std::endl;
 	MAIN_WINDOW.clear();
 	MAIN_FIELD.HandleObjects();
 	MAIN_WINDOW.display();

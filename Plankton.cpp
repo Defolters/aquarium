@@ -1,11 +1,12 @@
 #include "Plankton.h"
-
+#include <random>
 
 
 Plankton::Plankton(Gene gene, Coordinates position, unsigned int id)
-    : Creature(LifeType::PLANKTON, gene, LifeType::PLANKTON, position, id)
+    : Creature(LifeType::PLANKTON, gene, LifeType::PLANKTON, position, id), mt(rd())
 {
 	that = this;
+    
 }
 
 
@@ -19,10 +20,16 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders
     если достигли, то ставим новую цель*/
     if (getPosition() == direction)
     {
-        direction.x = rand() % borders.x;
-        direction.y = rand() % borders.y;
-        direction.z = rand() % borders.z;
-        std::cout << "New direction: " << direction.toString() << std::endl;
+        std::uniform_int_distribution<int> distx(1, borders.x);
+        //direction.x = rand() % borders.x;
+        direction.x = distx(mt);
+        std::uniform_int_distribution<int> disty(1, borders.y);
+        //direction.y = rand() % borders.y;
+        direction.y = disty(mt);
+        std::uniform_int_distribution<int> distz(1, borders.z);
+        //direction.z = rand() % borders.z;
+        direction.z = distz(mt);
+        //std::cout << "New direction: " << direction.toString() << std::endl;
         return true;
     }
     else

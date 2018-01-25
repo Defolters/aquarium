@@ -52,4 +52,4 @@ Field::~Field()
 {
 }
 
-Field MAIN_FIELD = Field(0.025, MAIN_WINDOW);
+Field MAIN_FIELD = Field(0.0125, MAIN_WINDOW);

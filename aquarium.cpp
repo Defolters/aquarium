@@ -30,6 +30,7 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
         if (type == LifeType::PLANKTON) 
         {
 			newCreature = new Plankton(gene, coord, lastId);
+            //newCreature = make
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
@@ -41,7 +42,8 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
         }
 		creatures.push_back(newCreature);
 		throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
-        std::cout << "ID: " << lastId << std::endl;
+        getManagerEvent();
+        //std::cout << "ID: " << lastId << std::endl;
         lastId++;
         return true;
     }
@@ -61,10 +63,15 @@ bool Aquarium::removeCreature(unsigned int id)
     {
         if (id == (*iter)->getId())
         {
-            creatures.erase(iter);
-            if (binded)
+            
+            //throwEvent((*i)->getPosition(), EventType::DEATH, *i);
+            /*if (binded)
                 MAIN_FIELD.RemoveObject(*iter);
-            std::cout << "remove ID: " << id << std::endl;
+            else delete *iter;*/
+            throwEvent((*iter)->getPosition(), EventType::DEATH, *iter);
+            getManagerEvent();
+            creatures.erase(iter);
+            //std::cout << "remove ID: " << id << std::endl;
             return true;
         }
     }

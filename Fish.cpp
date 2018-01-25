@@ -45,3 +45,8 @@ bool Fish::reproduce(std::list<Creature*>& creatures)
     }
     return false;
 }
+
+unsigned int Fish::getPreyId()
+{
+    return idOfPrey;
+}

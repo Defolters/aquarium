@@ -124,6 +124,10 @@ int Field::GetObjectCount()
 void Field::RemoveObject(Object * ptr)
 {
 	auto itr = std::find(objects.begin(), objects.end(), ptr);
-	if (itr != objects.end())
-		objects.erase(itr);
+    if (itr != objects.end())
+    {
+        delete(*itr);
+        objects.erase(itr);
+        
+    }
 }

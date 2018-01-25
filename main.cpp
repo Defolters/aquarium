@@ -5,7 +5,11 @@
 #include "Plankton.h"
 #include "Display.h"
 #include <time.h>       /* time */
-
+#include <random>
+#include <chrono>
+#include <thread>
+//ловить ивенты для аквариума
+//вынести проверку в аквариум
 #define TEST_CREATE
 #define TEST_ADD
 //#define TEST_REMOVE
@@ -13,7 +17,6 @@
 //#define TEST_EVENT
 int main()
 {
-    srand((unsigned int)time(NULL));
 #ifdef TEST_EVENT
 	auto cret = new Plankton();
 	Coordinates coord(1, 1, 3);
@@ -38,7 +41,7 @@ int main()
 #endif // TEST_EVENT
 
 #ifdef TEST_CREATE
-    Aquarium aquarium(10, Coordinates(250, 250, 1));
+    Aquarium aquarium(25, Coordinates(500, 500, 1));
 	
 	Texture plankton = Texture();
 	plankton.loadFromFile("plankton.png");
@@ -46,7 +49,7 @@ int main()
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD
-    aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates(100,100,0));
+    aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates(250,250,0));
 #endif // TEST_ADD
 
 #ifdef TEST_REMOVE
@@ -57,14 +60,14 @@ int main()
 #endif // TEST_REMOVE
 
 #ifdef TEST_PLAY
-	int count = 500;
-	while (count)
+	//int count = 500;
+	while (true)
 	{
-        //std::cin.get();
+        std::cin.get();
 		aquarium.startGame(false, 500, &display);
 		//display.DrawAquarium();
-        std::cout << count << " TICK!" << std::endl;
-		count--;
+        //std::cout << count << " TICK!" << std::endl;
+		//count--;
 	}
 
 #endif // TEST_PLAY

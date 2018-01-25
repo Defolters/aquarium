@@ -38,9 +38,9 @@ bool Creature::move()
 			position.z++;
         else if (position.z > direction.z)
 				position.z--;
-        std::cout << position.toString() << std::endl;
+        //std::cout << position.toString() << std::endl;
         return true;
-		setPosition(position);
+		//setPosition(position);
     }
     else
     {
@@ -64,14 +64,18 @@ bool Creature::dayPassed()
 
 bool Creature::isDeadOfAge()
 {
-    if (age == gene.lifeExpectancy) return true;
-    else return false;
+    if (age == gene.lifeExpectancy) 
+        return true;
+    else 
+        return false;
 }
 
 bool Creature::isDeadOfHunger()
 {
-    if (hunger == gene.lifeWitoutFood) return true;
-    else return false;
+    if (hunger == gene.lifeWitoutFood) 
+        return true;
+    else 
+        return false;
 }
 
 LifeType Creature::getType()
@@ -87,4 +91,17 @@ Gene Creature::getGene()
 unsigned int Creature::getId()
 {
     return id;
+}
+
+bool Creature::isReadyToReproduce()
+{
+    if (reproductionReady == gene.reproductionPeriod)
+        return true;
+    else
+        return false;
+}
+
+void Creature::iSleptWithYou()
+{
+    reproductionReady = 0;
 }

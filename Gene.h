@@ -14,9 +14,9 @@ struct Gene
     {
         if (type == LifeType::PLANKTON)
         {
-            lifeExpectancy = 20;
-            lifeWitoutFood = 21;
-            reproductionPeriod = 5;
+            lifeExpectancy = 200;
+            lifeWitoutFood = 201;
+            reproductionPeriod = 10;//53;
             rangeOfVision = 5;
             hungerLimit = 0;
             speed = 1;
