@@ -38,13 +38,10 @@ bool Creature::move()
 			position.z++;
         else if (position.z > direction.z)
 				position.z--;
-        //std::cout << position.toString() << std::endl;
         return true;
-		//setPosition(position);
     }
     else
     {
-		setPosition(position);
         return false;
     }
 }
@@ -60,22 +57,6 @@ bool Creature::dayPassed()
         //throwEvent(position, EventType::BIRTH, this);
     }
     return true;
-}
-
-bool Creature::isDeadOfAge()
-{
-    if (age == gene.lifeExpectancy) 
-        return true;
-    else 
-        return false;
-}
-
-bool Creature::isDeadOfHunger()
-{
-    if (hunger == gene.lifeWitoutFood) 
-        return true;
-    else 
-        return false;
 }
 
 LifeType Creature::getType()

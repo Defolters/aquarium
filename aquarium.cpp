@@ -37,7 +37,6 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
         if (type == LifeType::PLANKTON) 
         {
 			newCreature = new Plankton(gene, coord, lastId);
-            //newCreature = make
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
@@ -65,7 +64,6 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 bool Aquarium::removeCreature(unsigned int id)
 {
     //перебрать лист, пока не найдем нужную рыбу с id, затем очистить ее 
-
     for (auto iter = creatures.begin(); iter != creatures.end(); iter++)
     {
         if (id == (*iter)->getId())
@@ -83,6 +81,15 @@ bool Aquarium::removeCreature(unsigned int id)
         }
     }
     return false;
+}
+
+bool Aquarium::removeCreature(std::list<Creature*>::iterator iterator)
+{
+    if (!binded)
+        delete *iterator;
+    
+    creatures.erase(iterator);
+    return true;
 }
 
 void Aquarium::setCapacity(int capacity)

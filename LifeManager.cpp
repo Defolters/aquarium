@@ -19,9 +19,10 @@ void LifeManager::makeTurn()
     onEating(); // each fish eat, if can
     onReproducing(); //each fish reproducing if can
     onMoving(); // each fish moving if can
-    printState(); // print state of the day
+    
     dayPassed(); // reduce life and increase hunger
     onKilling(); // kill fishes, which died of old age or hunger
+    printState(); // print state of the day
 }
 
 void LifeManager::onThinking() const
@@ -116,23 +117,21 @@ void LifeManager::dayPassed()
 
 void LifeManager::onKilling()
 {
-    //for each kill if it should die (of oldage or hunger)
-    // check list and kill
-    //std::list<Creature*>::iterator i = creatures.begin();
-    // бросать ивенты
-    //for (auto creature : creatures)
     auto i = creatures.begin();
     while (i != creatures.end())
     {
-        (*i++)->isShouldDead();
+        (*i)->isShouldDead();
         std::shared_ptr<LifeEvent> evM = getManagerEvent();
         if (evM != nullptr)
         {
             // здесь можно получать гены родителей и создать нового ребенка
-            aquarium->removeCreature(evM->holder->getId());
+            //aquarium->removeCreature(evM->holder->getId());
+            aquarium->removeCreature(i++);
             //aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
             //newborns++;
         }
+        else i++;
+        //else  i++;
     }
     /*while (i != creatures.end())
     {

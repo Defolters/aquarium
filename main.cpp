@@ -7,8 +7,7 @@
 #include <random>
 #include <chrono>
 #include <thread>
-//ловить ивенты для аквариума
-//вынести проверку в аквариум
+
 #define TEST_CREATE
 #define TEST_ADD
 #define TEST_PLAY
@@ -30,12 +29,10 @@ int main()
         MAIN_FIELD.AddObject(creature);
         creature->initGraphics(display.getTexture(creature->getType()));
     }
-    
 #endif // TEST_ADD
 
 #ifdef TEST_PLAY
     aquarium.startGame(false, 500, &display);
-
 #endif // TEST_PLAY
 
     std::cin.get();

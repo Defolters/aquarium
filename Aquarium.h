@@ -27,6 +27,7 @@ public:
 
     bool addCreature(LifeType type, Gene gene, Coordinates coord);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
     bool removeCreature(unsigned int id);  //!< убрать создание по индексу в векторе // or by id
+    bool removeCreature(std::list<Creature*>::iterator iterator);  //!< убрать создание по индексу в векторе // or by id
 
     void setCapacity(int capacity);  //!< устанавливает размер аквариума
     int getCapacity() const;  //!< возвращает размер аквариума

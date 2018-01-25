@@ -19,6 +19,7 @@ public:
     virtual unsigned int getPreyId() override;
 private:
     unsigned int idOfPrey;
+    std::list<Creature*>::iterator preyIter;
 };
 
 #endif  //! FISH_H#endif  //! FISH_H

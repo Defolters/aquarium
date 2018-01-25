@@ -27,6 +27,7 @@ bool Fish::eat(std::list<Creature*>& creatures)
     {
         //восстановить голод и бросить ивент, что рыба под таким id съедена
         // В throwEvent ДОБАВИТЬ ВЕКТОР С НЕОБХОДИМЫМИ ЗНАЧЕНИЯМИ: съел(who id), умер(who id), родился(gen of parent/s)
+        //throwEvent(getPosition(), EventType::DEATH, preyIter)
         hunger = 0;
         //throwEvent(getPosition(), EventType::DEATH, this);
 

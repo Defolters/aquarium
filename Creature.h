@@ -40,14 +40,13 @@ public:
     virtual bool reproduce(std::list<Creature*>& creatures) = 0;  //!< существо размножается каждые reproductionPeriod дней
     bool move(); //!< передвигает существо к цели, если в этом ходу мы будем двигаться
     bool dayPassed(); //!< функция, которая уменьшает значения жизни, периода и голода и которую вызывает dayPassed() у LifeManager, 
-    bool isDeadOfAge(); //!< true, если должны умереть от старости
-    bool isDeadOfHunger(); //!< true, если должны умереть от голода
     LifeType getType(); //!< 
     Gene getGene(); //!< 
     unsigned int getId(); //!< 
     bool isReadyToReproduce(); //!< 
     void iSleptWithYou(); //!< 
-    virtual unsigned int getPreyId() = 0;
+    virtual unsigned int getPreyId() {return idOfPrey;};
+    //virtual std::list<Creature*>::iterator getPreyIter() {return preyIter};
     void isShouldDead();
 
     std::mutex spriteLocker; //!< ВТФ? ето для потоков, потом понадобится
@@ -62,5 +61,7 @@ protected:
     int reproductionReady;  //!< количество дней, сколько прошло после последнего размножения
     Coordinates direction;//!< координаты куда плыть
     TaskType task; //!< задание, которое за этот ход будет делать (default = TaskType::RUN)
+    //std::list<Creature*>::iterator preyIter;
+    unsigned int idOfPrey;
 };
 #endif  //! CREATURE_H
