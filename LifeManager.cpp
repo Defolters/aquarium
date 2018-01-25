@@ -13,14 +13,15 @@ LifeManager::~LifeManager()
 
 void LifeManager::startGame(bool isForever_, int ticks_, Display* display)
 {
+    
 	isForever = isForever_;
 	ticks = ticks_;
     //    while (isForever || ticks)
     if (isForever || ticks)
     {
-		std::cin.get();
+		//std::cin.get();
 		display->DrawAquarium();
-        std::cout << ticks << " TICK!" << std::endl;
+        //std::cout << ticks << " TICK!" << std::endl;
         ticks--;
         if (day % 7 == 0)
 			eventEveryWeek();

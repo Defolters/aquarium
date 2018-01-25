@@ -1,5 +1,5 @@
 // main.cpp : Defines the entry point for the console application.
-//
+// 
 #include <iostream>
 #include "Aquarium.h"
 #include "Plankton.h"
@@ -38,7 +38,7 @@ int main()
 #endif // TEST_EVENT
 
 #ifdef TEST_CREATE
-    Aquarium aquarium(10, Coordinates(100, 100, 1));
+    Aquarium aquarium(10, Coordinates(250, 250, 1));
 	
 	Texture plankton = Texture();
 	plankton.loadFromFile("plankton.png");
@@ -46,12 +46,7 @@ int main()
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD
-    //aquarium.addCreature(LifeType::PLANKTON, Coordinates());
-    //Gene gen = Gene(LifeType::PLANKTON);
-    //aquarium.addCreature(LifeType::PLANKTON, Coordinates());
-    aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates());
-    //aquarium.addCreature(LifeType::HERBIVOREFISH);
-    //aquarium.addCreature(LifeType::CARNIVOREFISH);
+    aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates(100,100,0));
 #endif // TEST_ADD
 
 #ifdef TEST_REMOVE
@@ -65,8 +60,10 @@ int main()
 	int count = 500;
 	while (count)
 	{
+        //std::cin.get();
 		aquarium.startGame(false, 500, &display);
 		//display.DrawAquarium();
+        std::cout << count << " TICK!" << std::endl;
 		count--;
 	}
 

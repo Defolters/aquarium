@@ -47,7 +47,7 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
     }
     else
     {
-        std::cout << "I can't add fish, because aquarium is full" << std::endl;
+        //std::cout << "I can't add fish, because aquarium is full" << std::endl;
         return false;
     }
     

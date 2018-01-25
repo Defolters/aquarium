@@ -1,10 +1,8 @@
 #include "Creature.h"
 
-Creature::Creature(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)//int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed, unsigned int id)
-    : Object(position), gene(gene), type(type), prey(prey), //lifeExpectancy(lifeExpectancy), lifeWitoutFood(lifeWitoutFood), reproductionPeriod(reproductionPeriod), rangeOfVision(rangeOfVision),
-                                                            //hungerLimit(hungerLimit), speed(speed), 
-    age(0), hunger(0), reproductionReady(0), direction(position), //случайное направление, конструтор object??
-    task(TaskType::RUN), id(id)
+Creature::Creature(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)
+    : Object(position), gene(gene), type(type), prey(prey), age(0), hunger(0), 
+    reproductionReady(0), direction(position), task(TaskType::RUN), id(id)
 {
 
 }
@@ -23,7 +21,7 @@ bool Creature::move()
 {
     if (task == TaskType::RUN)
     {
-        //(МЫ ЖЕ НЕ СМОЖЕМ ЗДЕСЬ ВЫПЛЫТЬ ЗА ПРЕДЕЛЫ АКВАРИУМА? ЕСЛИ МЫ ПОЯВИМСЯ В ПРЕДЕЛАХ И НАША ЦЕЛЬ ТОЖЕ БУДЕТ В ПРЕДЕЛАХ)
+        
         //Добавить скорость существу
         //X
         if (position.x < direction.x)
