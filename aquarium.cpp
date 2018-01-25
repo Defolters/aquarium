@@ -4,7 +4,6 @@
 Aquarium::Aquarium(int capacity, Coordinates borders)
     : capacity(capacity), lastId(0), borders(borders), manager(LifeManager(this, creatures))
 {
-    //creatures.resize(capacity); выдает ошибку
 }
 
 Aquarium::~Aquarium()
@@ -17,9 +16,17 @@ void Aquarium::bind()
 	binded = true;
 }
 
-void Aquarium::startGame(bool isForever, int ticks, Display* display)
+void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 {
-    manager.startGame(isForever, ticks, display);
+    display = display_;
+    while (isForever || ticks)
+    {
+        std::cin.get();
+        display->DrawAquarium();
+        manager.makeTurn();
+        ticks--;
+    }
+    
 }
 
 bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
@@ -41,8 +48,8 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 			newCreature = new HerbivoreFish(gene, coord, lastId);
         }
 		creatures.push_back(newCreature);
-		throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
-        getManagerEvent();
+		//throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
+        //getManagerEvent();
         //std::cout << "ID: " << lastId << std::endl;
         lastId++;
         return true;
@@ -65,11 +72,11 @@ bool Aquarium::removeCreature(unsigned int id)
         {
             
             //throwEvent((*i)->getPosition(), EventType::DEATH, *i);
-            /*if (binded)
-                MAIN_FIELD.RemoveObject(*iter);
-            else delete *iter;*/
-            throwEvent((*iter)->getPosition(), EventType::DEATH, *iter);
-            getManagerEvent();
+            if (!binded)
+                delete *iter;
+                //MAIN_FIELD.RemoveObject(*iter);
+            //throwEvent((*iter)->getPosition(), EventType::DEATH, *iter);
+            //getManagerEvent();
             creatures.erase(iter);
             //std::cout << "remove ID: " << id << std::endl;
             return true;

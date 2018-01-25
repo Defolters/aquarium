@@ -7,7 +7,6 @@
 enum class EventType
 {
 	DEATH,
-	KILL,
 	BIRTH
 };
 

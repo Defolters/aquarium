@@ -46,3 +46,13 @@ void Display::DrawAquarium() const
 	MAIN_FIELD.HandleObjects();
 	MAIN_WINDOW.display();
 }
+
+Texture * Display::getTexture(LifeType type)
+{
+    if (type == LifeType::PLANKTON)
+        return plankton;
+    else if (type == LifeType::HERBIVOREFISH)
+        return herbivore;
+    else
+        return carnivore;
+}

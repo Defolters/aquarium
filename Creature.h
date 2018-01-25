@@ -48,6 +48,7 @@ public:
     bool isReadyToReproduce(); //!< 
     void iSleptWithYou(); //!< 
     virtual unsigned int getPreyId() = 0;
+    void isShouldDead();
 
     std::mutex spriteLocker; //!< ВТФ? ето для потоков, потом понадобится
 protected:

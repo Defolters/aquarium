@@ -4,7 +4,6 @@
 #include "Aquarium.h"
 #include "Plankton.h"
 #include "Display.h"
-#include <time.h>       /* time */
 #include <random>
 #include <chrono>
 #include <thread>
@@ -12,34 +11,10 @@
 //вынести проверку в аквариум
 #define TEST_CREATE
 #define TEST_ADD
-//#define TEST_REMOVE
 #define TEST_PLAY
-//#define TEST_EVENT
+
 int main()
 {
-#ifdef TEST_EVENT
-	auto cret = new Plankton();
-	Coordinates coord(1, 1, 3);
-	throwEvent(coord, EventType::BIRTH, cret);
-	throwEvent(Coordinates(1,2,1), EventType::KILL, cret);
-	
-	std::cout << "Manager event's coordinates: " << std::endl;
-	std::shared_ptr<LifeEvent> evM = getManagerEvent();
-	std::cout << evM->place.toString() << std::endl;
-
-	evM = getManagerEvent();
-	std::cout << evM->place.toString() << std::endl;
-
-	std::cout << "Display event's coordinates: " << std::endl;
-	evM = getDisplayEvent();
-	std::cout << evM->place.toString() << std::endl;
-
-	evM = getDisplayEvent();
-	std::cout << evM->place.toString() << std::endl;
-
-	std::cout << "done" << std::endl;
-#endif // TEST_EVENT
-
 #ifdef TEST_CREATE
     Aquarium aquarium(25, Coordinates(500, 500, 1));
 	
@@ -50,25 +25,16 @@ int main()
 
 #ifdef TEST_ADD
     aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates(250,250,0));
+    for (auto creature : aquarium.getListOfCreatures())
+    {
+        MAIN_FIELD.AddObject(creature);
+        creature->initGraphics(display.getTexture(creature->getType()));
+    }
+    
 #endif // TEST_ADD
 
-#ifdef TEST_REMOVE
-    aquarium.removeCreature(2);
-    aquarium.removeCreature(2);
-    aquarium.removeCreature(1);
-    aquarium.removeCreature(0);
-#endif // TEST_REMOVE
-
 #ifdef TEST_PLAY
-	//int count = 500;
-	while (true)
-	{
-        std::cin.get();
-		aquarium.startGame(false, 500, &display);
-		//display.DrawAquarium();
-        //std::cout << count << " TICK!" << std::endl;
-		//count--;
-	}
+    aquarium.startGame(false, 500, &display);
 
 #endif // TEST_PLAY
 

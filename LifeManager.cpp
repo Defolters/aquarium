@@ -11,26 +11,17 @@ LifeManager::~LifeManager()
 {
 }
 
-void LifeManager::startGame(bool isForever_, int ticks_, Display* display)
+void LifeManager::makeTurn()
 {
-	isForever = isForever_;
-	ticks = ticks_;
-    if (isForever || ticks)
-    {
-		//std::cin.get();
-		display->DrawAquarium();
-        //std::cout << ticks << " TICK!" << std::endl;
-        ticks--;
-        if (day % 7 == 0)
-			eventEveryWeek();
-        onThinking(); // each fish think about plans on the future
-        onEating(); // each fish eat, if can
-        onReproducing(); //each fish reproducing if can
-        onMoving(); // each fish moving if can
-        printState(); // print state of the day
-        dayPassed(); // reduce life and increase hunger
-        onKilling(); // kill fishes, which died of old age or hunger
-    }
+    if (day % 7 == 0)
+        eventEveryWeek();
+    onThinking(); // each fish think about plans on the future
+    onEating(); // each fish eat, if can
+    onReproducing(); //each fish reproducing if can
+    onMoving(); // each fish moving if can
+    printState(); // print state of the day
+    dayPassed(); // reduce life and increase hunger
+    onKilling(); // kill fishes, which died of old age or hunger
 }
 
 void LifeManager::onThinking() const
@@ -73,12 +64,25 @@ void LifeManager::onReproducing()
     //for each reproduce
     for (auto creature : creatures)
     {
-		if (creature->reproduce(creatures))
+        creature->reproduce(creatures);
+        //auto event = getManagerEvent();
+        std::shared_ptr<LifeEvent> evM = getManagerEvent();
+        if (evM != nullptr)
+        {
+            // здесь можно получать гены родителей и создать нового ребенка
+            aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
+            newborns++;
+        }
+		/*if (creature->reproduce(creatures))
 		{
 			// здесь добавляем нового планктона в аквариум
+            //throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
+            //getManagerEvent();
+            auto event = getManagerEvent();
+
 			aquarium->addCreature(creature->getType(), Gene(creature->getType()), creature->getPosition());
 			newborns++;
-		}
+		}*/
     }
     //auto creatures = aquarium->getListOfCreatures();
     // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ
@@ -114,10 +118,23 @@ void LifeManager::onKilling()
 {
     //for each kill if it should die (of oldage or hunger)
     // check list and kill
-    std::list<Creature*>::iterator i = creatures.begin();
+    //std::list<Creature*>::iterator i = creatures.begin();
     // бросать ивенты
-
+    //for (auto creature : creatures)
+    auto i = creatures.begin();
     while (i != creatures.end())
+    {
+        (*i++)->isShouldDead();
+        std::shared_ptr<LifeEvent> evM = getManagerEvent();
+        if (evM != nullptr)
+        {
+            // здесь можно получать гены родителей и создать нового ребенка
+            aquarium->removeCreature(evM->holder->getId());
+            //aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
+            //newborns++;
+        }
+    }
+    /*while (i != creatures.end())
     {
         //bool isActive = (*i)->update();
         if ((*i)->isDeadOfAge())
@@ -137,7 +154,7 @@ void LifeManager::onKilling()
             deadOfHunger++;
         }
         else ++i;
-    }
+    }*/
 }
 
 void LifeManager::printState()

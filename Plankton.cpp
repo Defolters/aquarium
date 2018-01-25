@@ -44,6 +44,7 @@ bool Plankton::reproduce(std::list<Creature*>& creatures)
     if (reproductionReady == gene.reproductionPeriod)
     {
         reproductionReady = 0;
+        throwEvent(position, EventType::BIRTH, this);
         return true;
     }
     else

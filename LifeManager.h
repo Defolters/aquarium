@@ -16,7 +16,7 @@ public:
     LifeManager(Aquarium* aquarium, std::list<Creature* >& creatures);
     ~LifeManager();
 
-    void startGame(bool isForever, int ticks, Display* display);
+    void makeTurn();
     void onThinking() const;
     void onEating() const;  //!< ход прием пищи
     void onReproducing(); //!<  ход размножение

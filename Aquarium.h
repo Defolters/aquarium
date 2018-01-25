@@ -46,6 +46,7 @@ private:
     std::list<Creature*> creatures;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
+    Display* display;
 };
 
 #endif  //! AQUARIUM_H

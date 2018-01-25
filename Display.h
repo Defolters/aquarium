@@ -16,8 +16,11 @@ public:
     ~Display();
 	void PullEvents() const;
 	void DrawAquarium() const;
+    Texture* getTexture(LifeType type);
 private:
 	Texture* plankton;
+    Texture* herbivore;
+    Texture* carnivore;
 	//const Aquarium& aquarium;
     Aquarium* aquarium;
 };

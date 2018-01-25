@@ -105,3 +105,9 @@ void Creature::iSleptWithYou()
 {
     reproductionReady = 0;
 }
+
+void Creature::isShouldDead()
+{
+    if (age == gene.lifeExpectancy || hunger == gene.lifeWitoutFood)
+        throwEvent(getPosition(), EventType::DEATH, this);
+}
