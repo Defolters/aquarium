@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Coordinates.h"
 #include <memory>
-
+using std::shared_ptr;
 enum class EventType
 {
 	DEATH,

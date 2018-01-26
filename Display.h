@@ -12,7 +12,7 @@
 class Display
 {
 public:
-    Display(Aquarium* target, Texture*);
+    Display(Aquarium* target, Texture* plankton, Texture* herbivore, Texture* carnivore);
     ~Display();
 	void PullEvents() const;
 	void DrawAquarium() const;

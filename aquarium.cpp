@@ -34,19 +34,32 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
     if (creatures.size() < capacity)
     {
 		Creature* newCreature;
+        std::shared_ptr<Creature> newCreature1;
         if (type == LifeType::PLANKTON) 
         {
 			newCreature = new Plankton(gene, coord, lastId);
+            newCreature1 = std::make_shared<Plankton>(gene, coord, lastId);
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
+            
 			newCreature = new CarnivoreFish(gene, coord, lastId);
+            newCreature1 = std::make_shared<CarnivoreFish>(gene, coord, lastId);
         }
         else
         {
 			newCreature = new HerbivoreFish(gene, coord, lastId);
+            newCreature1 = std::make_shared<HerbivoreFish>(gene, coord, lastId);
         }
+        /*std::shared_ptr<Creature> add = new Plankton(gene, coord, lastId);; //= std::make_shared<Creature>(newCreature);
+        add.reset(new );
+        delete newCreature;
+        if (add == nullptr)
+            std::cout << "ITWORKS";
+        */
 		creatures.push_back(newCreature);
+        creatures1.push_back(newCreature1);
+        //delete
 		//throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
         //getManagerEvent();
         //std::cout << "ID: " << lastId << std::endl;

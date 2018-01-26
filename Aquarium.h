@@ -16,6 +16,7 @@
 Класс содержит лишь список рыб, характеристику аквариума и возможность 
 добавить/убрать рыбу (на случай рождения или смерти).
 */
+//using std::shared_ptr;
 class Display;
 class Aquarium
 {
@@ -45,6 +46,7 @@ private:
     unsigned int capacity;  //!< максимальное количество рыб
     unsigned int lastId; //!< последний выданный ID
     std::list<Creature*> creatures;  //!< вектор со всей живностью
+    std::list<std::shared_ptr<Creature>> creatures1;  //!< вектор со всей живностью
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
     Display* display;

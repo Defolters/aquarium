@@ -19,7 +19,6 @@ void LifeManager::makeTurn()
     onEating(); // each fish eat, if can
     onReproducing(); //each fish reproducing if can
     onMoving(); // each fish moving if can
-    
     dayPassed(); // reduce life and increase hunger
     onKilling(); // kill fishes, which died of old age or hunger
     printState(); // print state of the day

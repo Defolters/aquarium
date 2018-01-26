@@ -23,7 +23,7 @@ reproduce()
 move()
 Добавить наследование признаков + мутации
 */
-
+//using std::shared_ptr;
 class Creature abstract
 	: public Object
 {

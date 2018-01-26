@@ -22,9 +22,14 @@ struct Coordinates
 		res += std::to_string(z);
 		return res;
 	}
-    Vector2f toVector2f(){
-        return Vector2f((float)x, (float)y);
+    Vector2f toVector2f() { return Vector2f((float)x, (float)y); }
+    
+    double getDistance(Coordinates coord) 
+    {
+        double distance = sqrt(pow(this->x - coord.x, 2) + pow(this->y - coord.y, 2) + pow(this->z - coord.z, 2));
+        return distance;
     }
+
     bool operator==(const Coordinates& coord)
     {
         if (this == &coord)

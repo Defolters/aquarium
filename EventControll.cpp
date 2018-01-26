@@ -1,6 +1,6 @@
 #include "EventControll.h"
 #include <exception>
-
+//using std::shared_ptr;
 std::queue<std::shared_ptr<LifeEvent>> manager_event_queue;
 std::queue<std::shared_ptr<LifeEvent>> display_event_queue;
 

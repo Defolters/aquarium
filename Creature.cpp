@@ -19,7 +19,7 @@ void Creature::initGraphics(Texture* tex)
 
 bool Creature::move()
 {
-    if (task == TaskType::RUN)
+    if (task == TaskType::RUN)// && type)// != LifeType::PLANKTON)
     {
         
         //Добавить скорость существу

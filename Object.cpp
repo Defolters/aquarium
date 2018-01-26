@@ -81,7 +81,7 @@ void Object::setSize(Vector2f size_)
 
 //FIFNISHING FIELD CLASS
 
-bool Field::AddObject(Object * object)
+bool Field::AddObject(Object* object)
 {
 	if (std::find(objects.begin(), objects.end(), object) == objects.end())
 	{

@@ -2,15 +2,28 @@
 #include <iostream>
 
 //TODO more textures and animatios
-Display::Display(Aquarium* target, Texture* plankton_)
+Display::Display(Aquarium* target, Texture* plankton_, Texture* herbivore_, Texture* carnivore_)
 { 
 	plankton = plankton_;
+    herbivore = herbivore_;
+    carnivore = carnivore_;
 	aquarium = target;
 	auto creatures = aquarium->getListOfCreatures();
 	for (Creature* creature : creatures)
 	{
 		creature->bind(&MAIN_FIELD, creature->getSize());
-		creature->initGraphics(plankton);
+        if (creature->getType() == LifeType::PLANKTON)
+        {
+            creature->initGraphics(plankton);
+        }
+        else if (creature->getType() == LifeType::HERBIVOREFISH)
+        {
+            creature->initGraphics(herbivore);
+        }
+        else
+        {
+            creature->initGraphics(carnivore);
+        }
 		MAIN_FIELD.AddObject(creature);
 	}
 	target->bind();
@@ -30,7 +43,19 @@ void Display::PullEvents() const
 		if (ev->type == EventType::BIRTH)
 		{
 			MAIN_FIELD.AddObject(ev->holder);
-			ev->holder->initGraphics(plankton);
+            if (ev->holder->getType() == LifeType::PLANKTON)
+            {
+                ev->holder->initGraphics(plankton);
+            }
+            else if (ev->holder->getType() == LifeType::HERBIVOREFISH)
+            {
+                ev->holder->initGraphics(herbivore);
+            }
+            else
+            {
+                ev->holder->initGraphics(carnivore);
+            }
+			//ev->holder->initGraphics(plankton);
 		}
 		else if (ev->type == EventType::DEATH)
 			MAIN_FIELD.RemoveObject(ev->holder);
