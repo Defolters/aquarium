@@ -19,7 +19,7 @@ void Creature::initGraphics(Texture* tex)
 
 bool Creature::move()
 {
-    if (task == TaskType::RUN)// && type)// != LifeType::PLANKTON)
+    if (task == TaskType::RUN)
     {
         
         //Добавить скорость существу
@@ -64,10 +64,10 @@ bool Creature::dayPassed()
     age++; //увеличиваем возраст
     reproductionReady++; //увелич. кол-во дней от последнего размножения'
     //кидать события, если надо умереть от возраста или голода
-    if (age == gene.lifeExpectancy || hunger == gene.lifeWitoutFood)
+    /*if (age == gene.lifeExpectancy || hunger == gene.lifeWitoutFood)
     {
-        //throwEvent(position, EventType::BIRTH, this);
-    }
+        throwEvent(position, EventType::DEATH, this);
+    }*/
     return true;
 }
 

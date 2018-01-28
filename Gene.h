@@ -31,13 +31,7 @@ struct Gene
             speed = 3;
         }
         else // herbivore fish
-        {/*
-            lifeExpectancy = 700;
-            lifeWitoutFood = 400;
-            reproductionPeriod = 40;
-            rangeOfVision = 100;
-            hungerLimit = 300;
-            speed = 4;*/
+        {
             lifeExpectancy = 800;
             lifeWitoutFood = 500;
             reproductionPeriod = 40;

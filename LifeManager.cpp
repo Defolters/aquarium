@@ -35,8 +35,6 @@ void LifeManager::onThinking() const
 
 void LifeManager::onEating()
 {
-    // учитывать то, что кого-то могут съесть
-    //for each eat
     for (auto creature : creatures) 
     {
         if (creature->eat(creatures)) 
@@ -45,20 +43,8 @@ void LifeManager::onEating()
             aquarium->removeCreature(creature->getPreyId());
             getManagerEvent();
             eaten++;
-            //throwEvent((*i)->getPosition(), EventType::DEATH, *i);
-            //creatures.erase(i++);  // alternatively, i = items.erase(i);
         }
-    }
-    //auto creatures = aquarium->getListOfCreatures();
-    // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ
-    /* auto end = creatures.end();
-    for (auto iter = creatures.begin(); iter != creatures.end(); iter++)
-    {
-    //aquarium->removeCreature(0);
-    //std::cout << "removed!" << std::endl;
-    //iter = creatures.begin();
-    end = creatures.end();*/
-    
+    }    
 }
 
 void LifeManager::onReproducing()
@@ -79,28 +65,6 @@ void LifeManager::onReproducing()
                 newborns++;
             }*/
         }
-        //auto event = getManagerEvent();
-        
-		/*if (creature->reproduce(creatures))
-		{
-			// здесь добавляем нового планктона в аквариум
-            //throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
-            //getManagerEvent();
-            auto event = getManagerEvent();
-
-			aquarium->addCreature(creature->getType(), Gene(creature->getType()), creature->getPosition());
-			newborns++;
-		}*/
-    }
-    //auto creatures = aquarium->getListOfCreatures();
-    // ИСПРАВИТЬ ПРОХОЖДЕНИЕ ПО ЦИКЛУ НА СЛУЧАЙ УДАЛЕНИЯ
-    /*auto end = creatures.end();
-    for (auto iter = creatures.begin(); iter != end; iter++)
-    {
-    aquarium->removeCreature(0);
-    std::cout << "removed!" << std::endl;
-    end = creatures.end();
-    }*/
 }
 
 void LifeManager::onMoving() const
@@ -131,37 +95,11 @@ void LifeManager::onKilling()
         std::shared_ptr<LifeEvent> evM = getManagerEvent();
         if (evM != nullptr)
         {
-            // здесь можно получать гены родителей и создать нового ребенка
-            //aquarium->removeCreature(evM->holder->getId());
             aquarium->removeCreature(i++);
-            //aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
-            //newborns++;
             deadOfAge++;
         }
         else i++;
-        //else  i++;
     }
-    /*while (i != creatures.end())
-    {
-        //bool isActive = (*i)->update();
-        if ((*i)->isDeadOfAge())
-        {
-            aquarium->removeCreature((*i++)->getId());
-			//throwEvent((*i)->getPosition(), EventType::DEATH, *i);
-            //creatures.erase(i++);  // alternatively, i = items.erase(i);
-            
-            deadOfAge++;
-        }
-        else if ((*i)->isDeadOfHunger())
-        {
-            aquarium->removeCreature((*i++)->getId());
-			//throwEvent((*i)->getPosition(), EventType::DEATH, *i);
-            //creatures.erase(i++);  // alternatively, i = items.erase(i);
-
-            deadOfHunger++;
-        }
-        else ++i;
-    }*/
 }
 
 void LifeManager::printState()
@@ -169,11 +107,6 @@ void LifeManager::printState()
     //print some state (например, сколько рыб умерло)
     //system("CLS");
     std::cout << "Day: ";
-    /*std::cout << "_";
-    std::cout << "_";
-    std::cout << "_";
-    std::cout << "_";
-    std::cout << "_";*/
     std::cout << day << std::endl;
     std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
         //"\nToday dead of hunger: "<<deadOfHunger<<

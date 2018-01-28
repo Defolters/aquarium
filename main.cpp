@@ -44,7 +44,6 @@ int main()
     for (auto creature : aquarium.getListOfCreatures())
     {
         MAIN_FIELD.AddObject(creature);
-        //MAIN_FIELD.AddObject(creature.get());
         creature->initGraphics(display.getTexture(creature->getType()));
     }
 #endif // TEST_ADD

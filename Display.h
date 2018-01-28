@@ -21,7 +21,6 @@ private:
 	Texture* plankton;
     Texture* herbivore;
     Texture* carnivore;
-	//const Aquarium& aquarium;
     Aquarium* aquarium;
 };
 #endif  //! DISPLAY_H

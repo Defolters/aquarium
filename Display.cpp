@@ -55,7 +55,6 @@ void Display::PullEvents() const
             {
                 ev->holder->initGraphics(carnivore);
             }
-			//ev->holder->initGraphics(plankton);
 		}
 		else if (ev->type == EventType::DEATH)
 			MAIN_FIELD.RemoveObject(ev->holder);
@@ -66,7 +65,6 @@ void Display::PullEvents() const
 void Display::DrawAquarium() const
 {
 	PullEvents();
-	//std::cout << "Objects: " << MAIN_FIELD.GetObjectCount() << std::endl;
     Event ev;
     MAIN_WINDOW.pollEvent(ev);
 	MAIN_WINDOW.clear();
