@@ -14,9 +14,9 @@ struct Gene
     {
         if (type == LifeType::PLANKTON)
         {
-            lifeExpectancy = 500;//200;
+            lifeExpectancy = 400;//200;
             lifeWitoutFood = 600;
-            reproductionPeriod = 50;//53;
+            reproductionPeriod = 40;//53;
             rangeOfVision = 5;
             hungerLimit = 0;
             speed = 2;
@@ -24,7 +24,7 @@ struct Gene
         else if (type == LifeType::CARNIVOREFISH)
         {
             lifeExpectancy = 600;
-            lifeWitoutFood = 500;
+            lifeWitoutFood = 300;
             reproductionPeriod = 60;
             rangeOfVision = 100;
             hungerLimit = 300;
@@ -33,7 +33,7 @@ struct Gene
         else // herbivore fish
         {
             lifeExpectancy = 800;
-            lifeWitoutFood = 500;
+            lifeWitoutFood = 400;
             reproductionPeriod = 40;
             rangeOfVision = 100;
             hungerLimit = 200;

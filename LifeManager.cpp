@@ -65,6 +65,7 @@ void LifeManager::onReproducing()
                 newborns++;
             }*/
         }
+    }
 }
 
 void LifeManager::onMoving() const
