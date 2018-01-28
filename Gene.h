@@ -16,7 +16,7 @@ struct Gene
         {
             lifeExpectancy = 100;//200;
             lifeWitoutFood = 201;
-            reproductionPeriod = 80;//53;
+            reproductionPeriod = 20;//53;
             rangeOfVision = 5;
             hungerLimit = 0;
             speed = 1;
@@ -33,11 +33,11 @@ struct Gene
         else // herbivore fish
         {
             lifeExpectancy = 500;
-            lifeWitoutFood = 500;
-            reproductionPeriod = 5;
-            rangeOfVision = 40;
+            lifeWitoutFood = 600;
+            reproductionPeriod = 50;
+            rangeOfVision = 70;
             hungerLimit = 10;
-            speed = 1;
+            speed = 5;
         }
     }; //!< стандартные для разных типов
 

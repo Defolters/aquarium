@@ -67,6 +67,8 @@ void Display::DrawAquarium() const
 {
 	PullEvents();
 	//std::cout << "Objects: " << MAIN_FIELD.GetObjectCount() << std::endl;
+    Event ev;
+    MAIN_WINDOW.pollEvent(ev);
 	MAIN_WINDOW.clear();
 	MAIN_FIELD.HandleObjects();
 	MAIN_WINDOW.display();

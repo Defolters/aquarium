@@ -14,35 +14,46 @@ Fish::~Fish()
 
 bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
 {
-    if ((aim == nullptr) && (std::find(creatures.begin(), creatures.end(), aim) == creatures.end()))
+    if (std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
     {
         aim = nullptr;
-        distance = gene.rangeOfVision + 5;
-        //return false;
     }
-    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= 5))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
+    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+1)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
     {
         if (aim->getType() == prey)
         {
+            std::cout << "Om-nom-nom\n";
             task = TaskType::EAT;
         }
         else if (aim->getType() == type)
         {
+            std::cout << "Ah\n";
             task = TaskType::REPRODUCE;
         }
         return true;
     }
     else
     {
-        if ((hunger >= gene.hungerLimit) & (nearFood(creatures))) // хочу есть и рядом есть еда (если есть еда, то функция nearFood() поставиt цель)
+        // если очень хочу есть И рядом есть еда, то плыву скорее есть
+        if ((hunger >= gene.hungerLimit) && (nearFood(creatures))) 
         {
         }
-        else if (nearBreeding(creatures))//если есть с кем спать, то функция вернет тру и поставит ближайшую цель
+        //если хочу размножаться и рядом есть пара, то плыву размножаться
+        else if (isReadyToReproduce() && nearBreeding(creatures))
         {
         }
+        //если размножаться не хочу, то просто искать еду
+        else if (nearFood(creatures))
+        {
+        }
+        //если еды нет, то плыву к паре
+        /*else if (nearBreeding(creatures))
+        {
+        }*/
+        //если никого нет, то плыву просто случайно
         else if (aim == nullptr)// если никого не нашли, то выбрать случайное направление
         {
-            if (getPosition() == direction)
+            if (getPosition().getDistance(direction) < 10+gene.speed)
             {
                 std::uniform_int_distribution<int> distx(1, borders.x);
                 //direction.x = rand() % borders.x;
@@ -60,7 +71,7 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
             }
             task = TaskType::RUN;
         }
-        else {}// если мы все же нашли еду.
+        else { std::cout << "AAAAAAAAAAAAAAAAAA ERROR\n"; }// иначе.. это не должно достигаться
 
         //еды нет, есть для размножения
         //нет ни того, ни другого
@@ -95,10 +106,9 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
 
 bool Fish::eat(std::list<Creature*>& creatures)
 {
-    if (aim == nullptr && std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
+    if (std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
     {
         aim = nullptr;
-        distance = gene.rangeOfVision + 5;
         return false;
     }
     if (task == TaskType::EAT) // проверить, что эту рыбу другие не съели
@@ -109,7 +119,7 @@ bool Fish::eat(std::list<Creature*>& creatures)
         idOfPrey = aim->getId();
         aim = nullptr;
         hunger = 0;
-
+        task = TaskType::RUN;
         return true;
     }
     return false;
@@ -117,19 +127,24 @@ bool Fish::eat(std::list<Creature*>& creatures)
 
 bool Fish::reproduce(std::list<Creature*>& creatures)
 {
-    if (aim == nullptr && std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
+    if (std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
     {
         aim = nullptr;
-        distance = gene.rangeOfVision + 5;
         return false;
     }
-    if (task == TaskType::REPRODUCE && (reproductionReady > gene.reproductionPeriod) && aim->isReadyToReproduce())
+    if ((task == TaskType::REPRODUCE) && isReadyToReproduce() && aim->isReadyToReproduce())
     {
         aim->iSleptWithYou();
         throwEvent(getPosition(), EventType::BIRTH, this);
         reproductionReady = 0;
         aim = nullptr;
+        task = TaskType::RUN;
         return true;
+    }
+    else if (!isReadyToReproduce())// мы хотели переспать, но с нами уже поспали
+    {
+        aim = nullptr;
+        task = TaskType::RUN;
     }
     return false;
 }

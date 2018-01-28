@@ -18,7 +18,7 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders
 {
     /*если мы не достигли цели, то ничего не меняем
     если достигли, то ставим новую цель*/
-    if (getPosition() == direction)
+    if (getPosition().getDistance(direction) < 10+gene.speed)
     {
         std::uniform_int_distribution<int> distx(1, borders.x);
         //direction.x = rand() % borders.x;

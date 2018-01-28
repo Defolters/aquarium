@@ -19,7 +19,7 @@ public:
 
     void makeTurn();
     void onThinking() const;
-    void onEating() const;  //!< ход прием пищи
+    void onEating();  //!< ход прием пищи
     void onReproducing(); //!<  ход размножение
     void onMoving() const;  //!< ход движение
     void dayPassed();  //! ход день прошел

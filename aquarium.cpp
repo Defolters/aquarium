@@ -21,7 +21,7 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
     display = display_;
     while (isForever || ticks)
     {
-        std::cin.get();
+        //std::cin.get();
         display->DrawAquarium();
         manager.makeTurn();
         ticks--;
@@ -60,8 +60,8 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 		creatures.push_back(newCreature);
         creatures1.push_back(newCreature1);
         //delete
-		//throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
-        //getManagerEvent();
+		throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
+        getManagerEvent();
         //std::cout << "ID: " << lastId << std::endl;
         lastId++;
         return true;

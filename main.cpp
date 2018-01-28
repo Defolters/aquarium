@@ -27,8 +27,8 @@ int main()
 
 #ifdef TEST_ADD
     //aquarium.addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates(250,250,0));
-    aquarium.addCreature(LifeType::HERBIVOREFISH, Gene(LifeType::HERBIVOREFISH), Coordinates(250,250,0));
-    aquarium.addCreature(LifeType::HERBIVOREFISH, Gene(LifeType::HERBIVOREFISH), Coordinates(250,250,0));
+    aquarium.addCreature(LifeType::HERBIVOREFISH, Gene(LifeType::HERBIVOREFISH), Coordinates(250,200,0));
+    aquarium.addCreature(LifeType::HERBIVOREFISH, Gene(LifeType::HERBIVOREFISH), Coordinates(220,250,0));
     for (auto creature : aquarium.getListOfCreatures())
     {
         MAIN_FIELD.AddObject(creature);
