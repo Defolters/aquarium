@@ -28,7 +28,7 @@ bool Creature::move()
         {
             position.x += gene.speed;
         }
-        else if ((position.x > direction.x) && (position.x >= (direction.x + gene.speed)))
+        else if ((position.x > direction.x) && (position.x >= (direction.x + gene.speed+2)))
         {
             position.x-= gene.speed;
         }
@@ -37,7 +37,7 @@ bool Creature::move()
         {
             position.y += gene.speed;
         }
-        else if ((position.y > direction.y) && (position.y >= (direction.y + gene.speed)))
+        else if ((position.y > direction.y) && (position.y >= (direction.y + gene.speed+2)))
         {
             position.y-= gene.speed;
         }
@@ -46,7 +46,7 @@ bool Creature::move()
         {
             position.z += gene.speed;
         }
-        else if ((position.z > direction.z) && (position.z >= (direction.z + gene.speed)))
+        else if ((position.z > direction.z) && (position.z >= (direction.z + gene.speed+2)))
         {
             position.z-= gene.speed;
         }

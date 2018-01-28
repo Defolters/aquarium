@@ -68,14 +68,16 @@ void LifeManager::onReproducing()
     {
         if (creature->reproduce(creatures))
         {
+            aquarium->addCreature(creature->getType(), Gene(creature->getType()), creature->getPosition());
+            newborns++;
 
             std::shared_ptr<LifeEvent> evM = getManagerEvent();
-            if (evM != nullptr)
+            /*if (evM != nullptr)
             {
                 // здесь можно получать гены родителей и создать нового ребенка
                 aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
                 newborns++;
-            }
+            }*/
         }
         //auto event = getManagerEvent();
         
@@ -167,11 +169,11 @@ void LifeManager::printState()
     //print some state (например, сколько рыб умерло)
     //system("CLS");
     std::cout << "Day: ";
+    /*std::cout << "_";
     std::cout << "_";
     std::cout << "_";
     std::cout << "_";
-    std::cout << "_";
-    std::cout << "_";
+    std::cout << "_";*/
     std::cout << day << std::endl;
     std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
         //"\nToday dead of hunger: "<<deadOfHunger<<

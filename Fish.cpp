@@ -5,7 +5,6 @@
 Fish::Fish(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)
     : Creature(type, gene, prey, position, id), aim(nullptr), mt(rd())
 {
-    distance = gene.rangeOfVision + 5;
 }
 
 Fish::~Fish()
@@ -18,7 +17,7 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
     {
         aim = nullptr;
     }
-    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+1)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
+    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+40)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
     {
         if (aim->getType() == prey)
         {
@@ -51,17 +50,17 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
         {
         }*/
         //если никого нет, то плыву просто случайно
-        else if (aim == nullptr)// если никого не нашли, то выбрать случайное направление
+        else// если никого не нашли, то выбрать случайное направление
         {
             if (getPosition().getDistance(direction) < 10+gene.speed)
             {
-                std::uniform_int_distribution<int> distx(1, borders.x);
+                std::uniform_int_distribution<int> distx(0, borders.x);
                 //direction.x = rand() % borders.x;
                 direction.x = distx(mt);
-                std::uniform_int_distribution<int> disty(1, borders.y);
+                std::uniform_int_distribution<int> disty(0, borders.y);
                 //direction.y = rand() % borders.y;
                 direction.y = disty(mt);
-                std::uniform_int_distribution<int> distz(1, borders.z);
+                std::uniform_int_distribution<int> distz(0, borders.z);
                 //direction.z = rand() % borders.z;
                 direction.z = distz(mt);
                 //std::cout << "New direction: " << direction.toString() << std::endl;
@@ -71,7 +70,7 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
             }
             task = TaskType::RUN;
         }
-        else { std::cout << "AAAAAAAAAAAAAAAAAA ERROR\n"; }// иначе.. это не должно достигаться
+        //else { std::cout << "AAAAAAAAAAAAAAAAAA ERROR\n"; }// иначе.. это не должно достигаться
 
         //еды нет, есть для размножения
         //нет ни того, ни другого
@@ -136,6 +135,7 @@ bool Fish::reproduce(std::list<Creature*>& creatures)
     {
         aim->iSleptWithYou();
         throwEvent(getPosition(), EventType::BIRTH, this);
+        
         reproductionReady = 0;
         aim = nullptr;
         task = TaskType::RUN;
@@ -187,7 +187,7 @@ bool Fish::nearBreeding(std::list<Creature*>& creatures)
 Creature * Fish::nearCreature(std::list<Creature*>& creatures, LifeType type)
 {
     Creature* nearCreature = nullptr;
-    double nearestDistance = gene.rangeOfVision + 5;
+    double nearestDistance = gene.rangeOfVision + 10;
     for (auto creature : creatures)
     {
         if (creature == this) continue;

@@ -14,32 +14,38 @@ struct Gene
     {
         if (type == LifeType::PLANKTON)
         {
-            lifeExpectancy = 100;//200;
-            lifeWitoutFood = 201;
-            reproductionPeriod = 20;//53;
+            lifeExpectancy = 500;//200;
+            lifeWitoutFood = 600;
+            reproductionPeriod = 50;//53;
             rangeOfVision = 5;
             hungerLimit = 0;
-            speed = 1;
+            speed = 2;
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            lifeExpectancy = 20;
-            lifeWitoutFood = 10;
-            reproductionPeriod = 5;
-            rangeOfVision = 15;
-            hungerLimit = 5;
-            speed = 1;
+            lifeExpectancy = 600;
+            lifeWitoutFood = 500;
+            reproductionPeriod = 60;
+            rangeOfVision = 100;
+            hungerLimit = 300;
+            speed = 3;
         }
         else // herbivore fish
-        {
-            lifeExpectancy = 500;
-            lifeWitoutFood = 600;
-            reproductionPeriod = 50;
-            rangeOfVision = 70;
-            hungerLimit = 10;
-            speed = 5;
+        {/*
+            lifeExpectancy = 700;
+            lifeWitoutFood = 400;
+            reproductionPeriod = 40;
+            rangeOfVision = 100;
+            hungerLimit = 300;
+            speed = 4;*/
+            lifeExpectancy = 800;
+            lifeWitoutFood = 500;
+            reproductionPeriod = 40;
+            rangeOfVision = 100;
+            hungerLimit = 200;
+            speed = 4;
         }
-    }; //!< стандартные для разных типов
+    };
 
     int lifeExpectancy;  //!< продолжительность жизни
     int lifeWitoutFood; //!< сколько может жить без еды

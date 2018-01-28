@@ -21,7 +21,7 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
     display = display_;
     while (isForever || ticks)
     {
-        //std::cin.get();
+        std::cin.get();
         display->DrawAquarium();
         manager.makeTurn();
         ticks--;
