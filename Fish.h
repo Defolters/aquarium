@@ -28,7 +28,6 @@ private:
     //std::shared_ptr<Creature> aim;
     Creature* aim;
     //Creature* aim;
-    double distance;
     std::random_device rd;
     std::mt19937 mt;
 };

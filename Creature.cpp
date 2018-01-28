@@ -25,19 +25,31 @@ bool Creature::move()
         //Добавить скорость существу
         //X
         if (position.x < direction.x)
-			position.x++;
-        else if (position.x > direction.x) 
-				position.x--;
+        {
+            position.x += gene.speed;
+        }
+        else if ((position.x > direction.x) && (position.x >= (direction.x + gene.speed+2)))
+        {
+            position.x-= gene.speed;
+        }
         //Y
         if (position.y < direction.y)
-			position.y++;
-        else if (position.y > direction.y)
-				position.y--;
+        {
+            position.y += gene.speed;
+        }
+        else if ((position.y > direction.y) && (position.y >= (direction.y + gene.speed+2)))
+        {
+            position.y-= gene.speed;
+        }
         //Z
         if (position.z < direction.z)
-			position.z++;
-        else if (position.z > direction.z)
-				position.z--;
+        {
+            position.z += gene.speed;
+        }
+        else if ((position.z > direction.z) && (position.z >= (direction.z + gene.speed+2)))
+        {
+            position.z-= gene.speed;
+        }
         return true;
     }
     else
@@ -76,7 +88,7 @@ unsigned int Creature::getId()
 
 bool Creature::isReadyToReproduce()
 {
-    if (reproductionReady == gene.reproductionPeriod)
+    if (reproductionReady >= gene.reproductionPeriod)
         return true;
     else
         return false;

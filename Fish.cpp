@@ -5,7 +5,6 @@
 Fish::Fish(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)
     : Creature(type, gene, prey, position, id), aim(nullptr), mt(rd())
 {
-    distance = gene.rangeOfVision + 5;
 }
 
 Fish::~Fish()
@@ -14,43 +13,54 @@ Fish::~Fish()
 
 bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
 {
-    if ((aim == nullptr) && (std::find(creatures.begin(), creatures.end(), aim) == creatures.end()))
+    if (std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
     {
         aim = nullptr;
-        distance = gene.rangeOfVision + 5;
-        //return false;
     }
-    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= 5))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
+    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+40)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
     {
         if (aim->getType() == prey)
         {
+            std::cout << "Om-nom-nom\n";
             task = TaskType::EAT;
         }
         else if (aim->getType() == type)
         {
+            std::cout << "Ah\n";
             task = TaskType::REPRODUCE;
         }
         return true;
     }
     else
     {
-        if ((hunger >= gene.hungerLimit) & (nearFood(creatures))) // хочу есть и рядом есть еда (если есть еда, то функция nearFood() поставиt цель)
+        // если очень хочу есть И рядом есть еда, то плыву скорее есть
+        if ((hunger >= gene.hungerLimit) && (nearFood(creatures))) 
         {
         }
-        else if (nearBreeding(creatures))//если есть с кем спать, то функция вернет тру и поставит ближайшую цель
+        //если хочу размножаться и рядом есть пара, то плыву размножаться
+        else if (isReadyToReproduce() && nearBreeding(creatures))
         {
         }
-        else if (aim == nullptr)// если никого не нашли, то выбрать случайное направление
+        //если размножаться не хочу, то просто искать еду
+        else if (nearFood(creatures))
         {
-            if (getPosition() == direction)
+        }
+        //если еды нет, то плыву к паре
+        /*else if (nearBreeding(creatures))
+        {
+        }*/
+        //если никого нет, то плыву просто случайно
+        else// если никого не нашли, то выбрать случайное направление
+        {
+            if (getPosition().getDistance(direction) < 10+gene.speed)
             {
-                std::uniform_int_distribution<int> distx(1, borders.x);
+                std::uniform_int_distribution<int> distx(0, borders.x);
                 //direction.x = rand() % borders.x;
                 direction.x = distx(mt);
-                std::uniform_int_distribution<int> disty(1, borders.y);
+                std::uniform_int_distribution<int> disty(0, borders.y);
                 //direction.y = rand() % borders.y;
                 direction.y = disty(mt);
-                std::uniform_int_distribution<int> distz(1, borders.z);
+                std::uniform_int_distribution<int> distz(0, borders.z);
                 //direction.z = rand() % borders.z;
                 direction.z = distz(mt);
                 //std::cout << "New direction: " << direction.toString() << std::endl;
@@ -60,7 +70,7 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
             }
             task = TaskType::RUN;
         }
-        else {}// если мы все же нашли еду.
+        //else { std::cout << "AAAAAAAAAAAAAAAAAA ERROR\n"; }// иначе.. это не должно достигаться
 
         //еды нет, есть для размножения
         //нет ни того, ни другого
@@ -95,10 +105,9 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
 
 bool Fish::eat(std::list<Creature*>& creatures)
 {
-    if (aim == nullptr && std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
+    if (std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
     {
         aim = nullptr;
-        distance = gene.rangeOfVision + 5;
         return false;
     }
     if (task == TaskType::EAT) // проверить, что эту рыбу другие не съели
@@ -109,7 +118,7 @@ bool Fish::eat(std::list<Creature*>& creatures)
         idOfPrey = aim->getId();
         aim = nullptr;
         hunger = 0;
-
+        task = TaskType::RUN;
         return true;
     }
     return false;
@@ -117,19 +126,25 @@ bool Fish::eat(std::list<Creature*>& creatures)
 
 bool Fish::reproduce(std::list<Creature*>& creatures)
 {
-    if (aim == nullptr && std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
+    if (std::find(creatures.begin(), creatures.end(), aim) == creatures.end())
     {
         aim = nullptr;
-        distance = gene.rangeOfVision + 5;
         return false;
     }
-    if (task == TaskType::REPRODUCE && (reproductionReady > gene.reproductionPeriod) && aim->isReadyToReproduce())
+    if ((task == TaskType::REPRODUCE) && isReadyToReproduce() && aim->isReadyToReproduce())
     {
         aim->iSleptWithYou();
         throwEvent(getPosition(), EventType::BIRTH, this);
+        
         reproductionReady = 0;
         aim = nullptr;
+        task = TaskType::RUN;
         return true;
+    }
+    else if (!isReadyToReproduce())// мы хотели переспать, но с нами уже поспали
+    {
+        aim = nullptr;
+        task = TaskType::RUN;
     }
     return false;
 }
@@ -172,7 +187,7 @@ bool Fish::nearBreeding(std::list<Creature*>& creatures)
 Creature * Fish::nearCreature(std::list<Creature*>& creatures, LifeType type)
 {
     Creature* nearCreature = nullptr;
-    double nearestDistance = gene.rangeOfVision + 5;
+    double nearestDistance = gene.rangeOfVision + 10;
     for (auto creature : creatures)
     {
         if (creature == this) continue;

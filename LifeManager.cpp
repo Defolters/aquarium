@@ -33,7 +33,7 @@ void LifeManager::onThinking() const
     }
 }
 
-void LifeManager::onEating() const
+void LifeManager::onEating()
 {
     // учитывать то, что кого-то могут съесть
     //for each eat
@@ -43,6 +43,8 @@ void LifeManager::onEating() const
         {
             
             aquarium->removeCreature(creature->getPreyId());
+            getManagerEvent();
+            eaten++;
             //throwEvent((*i)->getPosition(), EventType::DEATH, *i);
             //creatures.erase(i++);  // alternatively, i = items.erase(i);
         }
@@ -64,15 +66,21 @@ void LifeManager::onReproducing()
     //for each reproduce
     for (auto creature : creatures)
     {
-        creature->reproduce(creatures);
-        //auto event = getManagerEvent();
-        std::shared_ptr<LifeEvent> evM = getManagerEvent();
-        if (evM != nullptr)
+        if (creature->reproduce(creatures))
         {
-            // здесь можно получать гены родителей и создать нового ребенка
-            aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
+            aquarium->addCreature(creature->getType(), Gene(creature->getType()), creature->getPosition());
             newborns++;
+
+            std::shared_ptr<LifeEvent> evM = getManagerEvent();
+            /*if (evM != nullptr)
+            {
+                // здесь можно получать гены родителей и создать нового ребенка
+                aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
+                newborns++;
+            }*/
         }
+        //auto event = getManagerEvent();
+        
 		/*if (creature->reproduce(creatures))
 		{
 			// здесь добавляем нового планктона в аквариум
@@ -128,6 +136,7 @@ void LifeManager::onKilling()
             aquarium->removeCreature(i++);
             //aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
             //newborns++;
+            deadOfAge++;
         }
         else i++;
         //else  i++;
@@ -159,8 +168,15 @@ void LifeManager::printState()
 {
     //print some state (например, сколько рыб умерло)
     //system("CLS");
+    std::cout << "Day: ";
+    /*std::cout << "_";
+    std::cout << "_";
+    std::cout << "_";
+    std::cout << "_";
+    std::cout << "_";*/
+    std::cout << day << std::endl;
     std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
-        "\nToday dead of hunger: "<<deadOfHunger<<
+        //"\nToday dead of hunger: "<<deadOfHunger<<
         "\nToday dead of age: "<<deadOfAge <<
         "\nToday newborns: " << newborns <<
         "\nToday eaten: " << eaten << "\n" <<
