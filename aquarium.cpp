@@ -20,10 +20,13 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 {
     display = display_;
     int a = 0;
+    //SYSTEMTIME st;
+	//GetSystemTime(&st);
+
     while (isForever || ticks)
     {
         //std::cin.get();
-        if (a == 5000000)
+        if (a == 8000000)
         {
             display->DrawAquarium();
             manager.makeTurn();

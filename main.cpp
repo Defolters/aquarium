@@ -16,7 +16,7 @@ int main()
 {
     
 #ifdef TEST_CREATE
-    Aquarium aquarium(70, Coordinates(700, 500, 0));
+    Aquarium aquarium(100, Coordinates(700, 500, 0));
 
     Texture background = Texture();
 	background.loadFromFile("background.png");
