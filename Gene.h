@@ -19,7 +19,7 @@ struct Gene
             reproductionPeriod = 60;//58
             rangeOfVision = 5;
             hungerLimit = 0;
-            speed = 1.4;//1.5
+            speed = 1;//1.5
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
@@ -28,7 +28,7 @@ struct Gene
             reproductionPeriod = 125;
             rangeOfVision = 70;
             hungerLimit = 550;
-            speed = 1.2;
+            speed = 0.8;
         }
         else // herbivore fish
         {
@@ -37,7 +37,7 @@ struct Gene
             reproductionPeriod = 55;
             rangeOfVision = 100;
             hungerLimit = 400;
-            speed = 1.6;
+            speed = 1.2;
         }
     };
 

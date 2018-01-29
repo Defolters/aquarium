@@ -53,7 +53,7 @@ int main()
 #endif // TEST_ADD
 
 #ifdef TEST_PLAY
-    std::cin.get();
+    //std::cin.get();
     aquarium.startGame(true, 500, &display);
 #endif // TEST_PLAY
 
