@@ -201,12 +201,12 @@ bool Fish::myAimIsVeryNear()
     {
         if (aim->getType() == prey)
         {
-            std::cout << "Om-nom-nom\n";
+            //std::cout << "Om-nom-nom\n";
             task = TaskType::EAT;
         }
         else if (aim->getType() == type)
         {
-            std::cout << "Ah\n";
+            //std::cout << "Ah\n";
             task = TaskType::REPRODUCE;
         }
         return true;

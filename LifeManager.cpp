@@ -107,14 +107,13 @@ void LifeManager::printState()
 {
     //print some state (например, сколько рыб умерло)
     //system("CLS");
-    std::cout << "Day: ";
-    std::cout << day << std::endl;
-    std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
+    std::cout << "Day: " << day << std::endl;
+    /*std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
         //"\nToday dead of hunger: "<<deadOfHunger<<
         "\nToday dead of age: "<<deadOfAge <<
         "\nToday newborns: " << newborns <<
         "\nToday eaten: " << eaten << "\n" <<
-        std::endl;
+        std::endl;*/
     deadOfAge = 0;
     deadOfHunger = 0;
     newborns = 0;

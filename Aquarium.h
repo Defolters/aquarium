@@ -52,6 +52,9 @@ private:
     Coordinates borders;  //!< границы 3д аквариума
     LifeManager manager; //!< управляет жизнью в акваруиме (считает дни, двигает рыб, размножает, кормит и убивает)
     Display* display;
+    int numberOfPlankton;
+    int numberOfHarbivore;
+    int numberOfCarnivore;
 };
 
 #endif  //! AQUARIUM_H

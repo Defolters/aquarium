@@ -21,15 +21,11 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders
     if (getPosition().getDistance(direction) < 10+gene.speed)
     {
         std::uniform_int_distribution<int> distx(0, borders.x);
-        //direction.x = rand() % borders.x;
         direction.x = distx(mt);
         std::uniform_int_distribution<int> disty(0, borders.y);
-        //direction.y = rand() % borders.y;
         direction.y = disty(mt);
         std::uniform_int_distribution<int> distz(0, borders.z);
-        //direction.z = rand() % borders.z;
         direction.z = distz(mt);
-        //std::cout << "New direction: " << direction.toString() << std::endl;
         return true;
     }
     else
