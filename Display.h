@@ -12,12 +12,14 @@
 class Display
 {
 public:
-    Display(Aquarium* target, Texture* plankton, Texture* herbivore, Texture* carnivore);
+    Display(Aquarium* target, Texture* plankton, Texture* herbivore, Texture* carnivore, Texture* background);
     ~Display();
 	void PullEvents() const;
 	void DrawAquarium() const;
     Texture* getTexture(LifeType type);
 private:
+    Texture* background;
+    Sprite backgroundSp;
 	Texture* plankton;
     Texture* herbivore;
     Texture* carnivore;

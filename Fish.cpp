@@ -17,7 +17,11 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
     {
         aim = nullptr;
     }
-    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+40)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
+    if (myAimIsVeryNear())
+    {
+        return true;
+    }
+    /*if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+magicNumber)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
     {
         if (aim->getType() == prey)
         {
@@ -30,20 +34,35 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
             task = TaskType::REPRODUCE;
         }
         return true;
-    }
+    }*/
     else
     {
         // если очень хочу есть И рядом есть еда, то плыву скорее есть
         if ((hunger >= gene.hungerLimit) && (nearFood(creatures))) 
         {
+            //если рядом, то поставить цель
+            if (myAimIsVeryNear())
+            {
+                return true;
+            }
         }
         //если хочу размножаться и рядом есть пара, то плыву размножаться
         else if (isReadyToReproduce() && nearBreeding(creatures))
         {
+            //если рядом поставить цель
+            if (myAimIsVeryNear())
+            {
+                return true;
+            }
         }
         //если размножаться не хочу, то просто искать еду
         else if (nearFood(creatures))
         {
+            //если рядом поставить цель
+            if (myAimIsVeryNear())
+            {
+                return true;
+            }
         }
         //если еды нет, то плыву к паре
         /*else if (nearBreeding(creatures))
@@ -174,4 +193,26 @@ Creature * Fish::nearCreature(std::list<Creature*>& creatures, LifeType type)
     }
 
     return nearCreature;
+}
+
+bool Fish::myAimIsVeryNear()
+{
+    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+magicNumber)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
+    {
+        if (aim->getType() == prey)
+        {
+            std::cout << "Om-nom-nom\n";
+            task = TaskType::EAT;
+        }
+        else if (aim->getType() == type)
+        {
+            std::cout << "Ah\n";
+            task = TaskType::REPRODUCE;
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }

@@ -19,12 +19,20 @@ void Aquarium::bind()
 void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 {
     display = display_;
+    int a = 0;
     while (isForever || ticks)
     {
-        std::cin.get();
-        display->DrawAquarium();
-        manager.makeTurn();
+        //std::cin.get();
+        if (a == 5000000)
+        {
+            display->DrawAquarium();
+            manager.makeTurn();
+            a = 0;
+        }
+        //display->DrawAquarium();
+        //manager.makeTurn();
         ticks--;
+        a++;
     }
     
 }

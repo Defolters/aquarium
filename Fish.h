@@ -20,6 +20,7 @@ public:
     bool nearFood(std::list<Creature*>& creatures);
     bool nearBreeding(std::list<Creature*>& creatures);
     Creature* nearCreature(std::list<Creature*>& creatures, LifeType type);
+    bool myAimIsVeryNear();
 
 private:
     unsigned int idOfPrey;
@@ -27,6 +28,7 @@ private:
     Creature* aim;
     std::random_device rd;
     std::mt19937 mt;
+    int magicNumber = 10;
 };
 
 #endif  //! FISH_H#endif  //! FISH_H

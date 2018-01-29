@@ -2,12 +2,16 @@
 #include <iostream>
 
 //TODO more textures and animatios
-Display::Display(Aquarium* target, Texture* plankton_, Texture* herbivore_, Texture* carnivore_)
+Display::Display(Aquarium* target, Texture* plankton_, Texture* herbivore_, Texture* carnivore_, Texture* background_)
 { 
 	plankton = plankton_;
     herbivore = herbivore_;
     carnivore = carnivore_;
 	aquarium = target;
+    background = background_;
+    backgroundSp.setTexture(*background);
+    backgroundSp.setPosition(0, 0);
+    backgroundSp.setScale(0.65, 0.65);
 	auto creatures = aquarium->getListOfCreatures();
 	for (Creature* creature : creatures)
 	{
@@ -68,6 +72,7 @@ void Display::DrawAquarium() const
     Event ev;
     MAIN_WINDOW.pollEvent(ev);
 	MAIN_WINDOW.clear();
+    MAIN_WINDOW.draw(backgroundSp);
 	MAIN_FIELD.HandleObjects();
 	MAIN_WINDOW.display();
 }

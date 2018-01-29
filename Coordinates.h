@@ -8,9 +8,9 @@ struct Coordinates
     Coordinates() : x(0), y(0), z(0) {};
     Coordinates(int x, int y, int z) : x(x), y(y), z(z) {};
 
-    int x;
-    int y;
-    int z;
+    double x;
+    double y;
+    double z;
 
 	std::string toString() 
 	{ 

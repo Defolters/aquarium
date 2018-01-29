@@ -14,30 +14,30 @@ struct Gene
     {
         if (type == LifeType::PLANKTON)
         {
-            lifeExpectancy = 400;//200;
+            lifeExpectancy = 300;//200;
             lifeWitoutFood = 600;
-            reproductionPeriod = 40;//53;
+            reproductionPeriod = 25;//53;
             rangeOfVision = 5;
             hungerLimit = 0;
             speed = 2;
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            lifeExpectancy = 600;
+            lifeExpectancy = 500;
             lifeWitoutFood = 300;
             reproductionPeriod = 60;
-            rangeOfVision = 100;
-            hungerLimit = 300;
-            speed = 3;
+            rangeOfVision = 55;
+            hungerLimit = 250;
+            speed = 1.8;
         }
         else // herbivore fish
         {
-            lifeExpectancy = 800;
-            lifeWitoutFood = 400;
-            reproductionPeriod = 40;
+            lifeExpectancy = 600;
+            lifeWitoutFood = 300;
+            reproductionPeriod = 30;
             rangeOfVision = 100;
             hungerLimit = 200;
-            speed = 4;
+            speed = 2.8;
         }
     };
 
@@ -46,6 +46,6 @@ struct Gene
     int reproductionPeriod; //!< период размножения (кажд 2 дня планктон делится, а рыба плывет к другой, чтобы размножиться)
     int rangeOfVision;  //!< дальность зрения рыбы (как далеко видит вокруг)
     int hungerLimit;  //!< граница голода (выше - очень плохо!!)
-    int speed; //!< скорость перемещения (влияет на то, сколько шагов движения мы можем сделать?)
+    double speed; //!< скорость перемещения (влияет на то, сколько шагов движения мы можем сделать?)
 };
 #endif //! GENE_H
