@@ -26,7 +26,7 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
     while (isForever || ticks)
     {
         //std::cin.get();
-        if (a == 10)//6000000)
+        if (a == 6000000)
         {
             display->DrawAquarium();
             manager.makeTurn();

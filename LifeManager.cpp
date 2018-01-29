@@ -106,7 +106,7 @@ void LifeManager::onKilling()
 void LifeManager::printState()
 {
     //print some state (например, сколько рыб умерло)
-    //system("CLS");
+    system("CLS");
     std::cout << "Day: " << day << std::endl;
     /*std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
         //"\nToday dead of hunger: "<<deadOfHunger<<
