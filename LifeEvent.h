@@ -7,7 +7,8 @@ using std::shared_ptr;
 enum class EventType
 {
 	DEATH,
-	BIRTH
+	BIRTH,
+	KILL
 };
 
 //forward-declare creature

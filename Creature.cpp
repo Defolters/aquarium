@@ -11,10 +11,17 @@ Creature::~Creature()
 {
 }
 
-void Creature::initGraphics(Texture* tex)
+void Creature::initGraphicsAnim(Animation anim)
+{
+	animation = new Animation(anim);
+	sprite.setTexture(animation->GetSpriteList()->atlas);
+	setSize(Vector2f(1,1));//TODO different sizes
+}
+
+void Creature::initGraphicsTex(Texture * tex)
 {
 	sprite.setTexture(*tex);
-	setSize(Vector2f(1,1));//TODO different sizes
+	setSize(Vector2f(1, 1));//TODO different sizes
 }
 
 bool Creature::move()
@@ -103,4 +110,12 @@ void Creature::isShouldDead()
 {
     if (age == gene.lifeExpectancy || hunger == gene.lifeWitoutFood)
         throwEvent(getPosition(), EventType::DEATH, this);
+}
+
+Sprite Creature::getSprite()
+{
+	Sprite res = Object::getSprite();
+	Vector2f scale = Vector2f(res.getScale().x/100*(100 - position.z*downByUnit), res.getScale().y/100*(100 - position.z*downByUnit));
+	res.setScale(scale);
+	return res;
 }

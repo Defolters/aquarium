@@ -30,7 +30,8 @@ class Creature abstract
 public:
     Creature(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id);//int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed, unsigned int id);
     virtual ~Creature();
-	void initGraphics(Texture* tex);
+	void initGraphicsAnim(Animation anim);
+	void initGraphicsTex(Texture* tex);
     //!планктон: если не находится в желаемой точке, то выбирает случайную точку(цель), до которой будет плыть.
     //!рыба: если голод ниже границы и период прошел, то смотрим вокруг и плывем к ближайшей рыбе размножаться
     //!рыба: если голод выше границы, то смотрим вокруг и плывем к жертве
@@ -48,7 +49,7 @@ public:
     virtual unsigned int getPreyId() {return idOfPrey;};
     //virtual std::list<Creature*>::iterator getPreyIter() {return preyIter};
     void isShouldDead();
-
+	Sprite getSprite() override;
     std::mutex spriteLocker; //!< ВТФ? ето для потоков, потом понадобится
 protected:
     unsigned int id; //!< уникальный номер для каждого создания

@@ -2,6 +2,7 @@
 #define OBJECT_h
 #include "Field.h"
 #include "Coordinates.h"
+#include "Animation.h"
 /*!
 \brief Класс, реализующий объект
 
@@ -23,15 +24,16 @@ public:
     void resize();
     void setSize(Vector2f size);
 	void bind(Field*, Vector2f);
-
+	virtual void calculate(); //!<
 protected:
+	Animation* animation = nullptr;
 	Object* that; //!<
 	Field* field = nullptr; //!<
 	Sprite sprite; //!<
 	Vector2f size; //!< размер чего? - спрайта
     Coordinates position; //!< положение рыбы в аквариуме
 	Vector2f rotation; //!<
-	virtual void calculate(); //!<
+	
 };
 
 #endif //! OBJECT_h

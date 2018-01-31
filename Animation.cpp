@@ -11,7 +11,7 @@ Animation::Animation(SpriteList* list_, int row_, float speed_)
 	list = list_;
 	row = row_;
 	framesPerSecond = speed_;
-	//lastTime = CLOCK.getElapsedTime().asSeconds();
+	lastTime = CLOCK.getElapsedTime().asSeconds();
 	rect.top = list->frameHeight*row;
 	rect.height = list->frameHeight;
 	rect.width = list->frameWidth;
@@ -27,14 +27,13 @@ void Animation::Stop()
 	cycle = false;
 }
 
-// Maybe rewrite as deltaTime;
 IntRect Animation::GetRect()//TODO
 {
 	if (cycle)
 	{
-//		int tempFrame = (CLOCK.getElapsedTime().asSeconds() - lastTime) / (1 / framesPerSecond);
-//		tempFrame = tempFrame % (list->framesPerRow[row]);
-//		rect.left = tempFrame*list->frameWidth;
+		int tempFrame = (CLOCK.getElapsedTime().asSeconds() - lastTime) / (1 / framesPerSecond);
+		tempFrame = tempFrame % (list->framesPerRow[row]);
+		rect.left = tempFrame*list->frameWidth;
 	}
 	return rect;
 }

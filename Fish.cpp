@@ -105,7 +105,7 @@ bool Fish::eat(std::list<Creature*>& creatures)
     {
         // Â throwEvent ÄÎÁÀÂÈÒÜ ÂÅÊÒÎÐ Ñ ÍÅÎÁÕÎÄÈÌÛÌÈ ÇÍÀ×ÅÍÈßÌÈ: ñúåë(who id), óìåð(who id), ðîäèëñÿ(gen of parent/s)
         //throwEvent(getPosition(), EventType::DEATH, preyIter)
-        throwEvent(aim->getPosition(), EventType::DEATH, aim);
+        throwEvent(aim->getPosition(), EventType::KILL, aim);
         idOfPrey = aim->getId();
         aim = nullptr;
         hunger = 0;

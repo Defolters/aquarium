@@ -33,6 +33,7 @@ Object::Object(Field & origin, Vector2f size_)
 
 Object::~Object()
 {
+	//field->RemoveObject(this);
 }
 
 
@@ -58,6 +59,8 @@ Vector2f Object::getSize()
 
 Sprite Object::getSprite()
 {
+	if (animation != nullptr)
+		sprite.setTextureRect(animation->GetRect());
     return sprite;
 }
 
@@ -106,6 +109,10 @@ void Field::HandleObjects()
 			}
 			else obj++;
 	}
+	auto objects_copy = new std::vector<Object*>(objects);
+	for (auto obj : *objects_copy)
+		obj->calculate();
+	delete objects_copy;
 	for (auto obj : objects)
 	{
 		Sprite toDisplay = obj->getSprite();
@@ -128,6 +135,5 @@ void Field::RemoveObject(Object * ptr)
     {
         delete(*itr);
         objects.erase(itr);
-        
     }
 }
