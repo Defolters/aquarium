@@ -1,4 +1,5 @@
 #include "Creature.h"
+#include "VectorOperations.h"
 
 Creature::Creature(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)
     : Object(position), gene(gene), type(type), prey(prey), age(0), hunger(0), 
@@ -117,5 +118,7 @@ Sprite Creature::getSprite()
 	Sprite res = Object::getSprite();
 	Vector2f scale = Vector2f(res.getScale().x/100*(100 - position.z*downByUnit), res.getScale().y/100*(100 - position.z*downByUnit));
 	res.setScale(scale);
+	auto dir = Vector2f(direction.x, direction.y) - Vector2f(position.x, position.y);
+	res.setRotation(VectorOperations::VectorToRotation(dir));
 	return res;
 }

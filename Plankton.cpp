@@ -1,7 +1,6 @@
 #include "Plankton.h"
 #include <random>
 
-
 Plankton::Plankton(Gene gene, Coordinates position, unsigned int id)
     : Creature(LifeType::PLANKTON, gene, LifeType::PLANKTON, position, id), mt(rd())
 {

@@ -1,7 +1,6 @@
 #include "Fish.h"
 #include <random>
 
-
 Fish::Fish(LifeType type, Gene gene, LifeType prey, Coordinates position, unsigned int id)
     : Creature(type, gene, prey, position, id), aim(nullptr), mt(rd())
 {
@@ -89,7 +88,6 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
             }
             task = TaskType::RUN;
         }
-        
         return false;
     }
 }
