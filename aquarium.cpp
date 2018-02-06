@@ -1,4 +1,5 @@
 #include "Aquarium.h"
+#include <random>
 #include <iostream>
 #include "Display.h"
 Aquarium::Aquarium(int capacity, Coordinates borders)
@@ -16,23 +17,53 @@ void Aquarium::bind()
 	binded = true;
 }
 
+void Aquarium::initialize(unsigned int numbP, unsigned int numbHF, unsigned int numbCF)
+{
+    std::random_device rd;
+    std::mt19937 mt(rd());
+
+    std::uniform_int_distribution<int> distx(0, borders.x);
+    std::uniform_int_distribution<int> disty(0, borders.y);
+    
+    
+    for (unsigned int i = 0; i < numbCF; i++)
+    {
+        addCreature(LifeType::CARNIVOREFISH, Gene(LifeType::CARNIVOREFISH), Coordinates(distx(mt), disty(mt), 0));
+    };
+    for (unsigned int i = 0; i < numbHF; i++)
+    {
+        addCreature(LifeType::HERBIVOREFISH, Gene(LifeType::HERBIVOREFISH), Coordinates(distx(mt), disty(mt), 0));
+    };
+    for (unsigned int i = 0; i < numbP; i++)
+    {
+        addCreature(LifeType::PLANKTON, Gene(LifeType::PLANKTON), Coordinates(distx(mt), disty(mt), 0));
+    };
+}
+
 void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 {
     display = display_;
     int a = 0;
     //SYSTEMTIME st;
 	//GetSystemTime(&st);
-
+    std::chrono::time_point<std::chrono::system_clock> start, start2, end1, end2;
+    start = std::chrono::system_clock::now();
     while (isForever || ticks)
     {
         //std::cin.get();
-        if (a == 6000000)
+        //if (a == 12000000)
+        if (a == 12)
         {
+            //std::cin.get();
             display->DrawAquarium();
             manager.makeTurn();
             if (!(numberOfCarnivore && numberOfHarbivore && numberOfPlankton))
             {
+                end1 = std::chrono::system_clock::now();
+                
                 std::cout << "STOP!";
+                manager.printState();
+                std::cout << "\n\nProgram: " << ((double)std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start).count())/1000 << "seconds\n";
                 break;
             }
             a = 0;
@@ -48,8 +79,18 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 
 bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 {
-    if (creatures.size() < capacity)
+    //if ((creatures.size() < capacity) && (numberOfPlankton <= 4*numberOfHarbivore) && (numberOfHarbivore <= 4*numberOfCarnivore))
+    if((creatures.size() < capacity) && 
+        ((!(type==LifeType::PLANKTON)) || (numberOfPlankton <= 4*numberOfHarbivore)) && 
+        ((!(type==LifeType::HERBIVOREFISH)) || (numberOfHarbivore <= 4*numberOfCarnivore))
+        //&&((!(type==LifeType::CARNIVOREFISH)) || (numberOfCarnivore <= 3*(numberOfHarbivore+1)))
+        )   
     {
+        if (((type == LifeType::CARNIVOREFISH) && (numberOfHarbivore!=0) && (numberOfCarnivore > 0.8*(numberOfHarbivore))) ||
+            ((type == LifeType::HERBIVOREFISH) && (numberOfPlankton!=0) && (numberOfHarbivore > 2*(numberOfPlankton))))
+        {
+            return false;
+        }
 		Creature* newCreature;
         //std::shared_ptr<Creature> newCreature1;
         if (type == LifeType::PLANKTON) 
@@ -177,4 +218,19 @@ int Aquarium::getNumberOfCreatures() const
 std::list<Creature*>& Aquarium::getListOfCreatures()
 {
     return creatures;
+}
+
+int Aquarium::getNumberOfP()
+{
+    return numberOfPlankton;
+}
+
+int Aquarium::getNumberOfHF()
+{
+    return numberOfHarbivore;
+}
+
+int Aquarium::getNumberOfCF()
+{
+    return numberOfCarnivore;
 }
