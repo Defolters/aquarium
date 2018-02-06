@@ -34,6 +34,7 @@ Object::Object(Field & origin, Vector2f size_)
 Object::~Object()
 {
 	//field->RemoveObject(this);
+	delete animation;
 }
 
 

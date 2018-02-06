@@ -170,6 +170,7 @@
     <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Plankton.cpp" />
+    <ClCompile Include="VectorOperations.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Plankton.h" />
     <ClInclude Include="SpriteList.h" />
     <ClInclude Include="TaskType.h" />
+    <ClInclude Include="VectorOperations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
