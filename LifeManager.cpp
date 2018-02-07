@@ -21,7 +21,7 @@ void LifeManager::makeTurn()
     onMoving(); // each fish moving if can
     dayPassed(); // reduce life and increase hunger
     onKilling(); // kill fishes, which died of old age or hunger
-    printState(); // print state of the day
+    //printState(); // print state of the day
 }
 
 void LifeManager::onThinking() const
@@ -107,7 +107,10 @@ void LifeManager::printState()
 {
     //print some state (например, сколько рыб умерло)
     system("CLS");
-    std::cout << "Day: " << day << std::endl;
+    std::cout << "Day: " << day << std::endl
+     << "nP: " << aquarium->getNumberOfP() << std::endl
+    << "nHF: " << aquarium->getNumberOfHF() << std::endl
+    << "nCF: " << aquarium->getNumberOfCF() << std::endl;
     /*std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
         //"\nToday dead of hunger: "<<deadOfHunger<<
         "\nToday dead of age: "<<deadOfAge <<

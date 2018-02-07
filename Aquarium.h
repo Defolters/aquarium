@@ -26,6 +26,7 @@ public:
     Aquarium(int capacity, Coordinates borders); //!< 
     ~Aquarium();
 	void bind();
+    void initialize(unsigned int numbP, unsigned int numbHF, unsigned int numbCF);
     void startGame(bool isForever, int ticks, Display* display); //!< даем сигнал менеджеру, чтобы запустить цикл работы продолжительностью ticks, if isForever is false, else work forever
 
     bool addCreature(LifeType type, Gene gene, Coordinates coord);  //!< добавить создание в аквариум по типу (у аквариума должен быть доступ к конструкторам созданий)
@@ -40,6 +41,10 @@ public:
 
     int getNumberOfCreatures() const; //< возвращает количество рыб в данный момент
     std::list<Creature*>& getListOfCreatures(); //< возвращает список рыб
+
+    int getNumberOfP();
+    int getNumberOfHF();
+    int getNumberOfCF();
 
 	std::mutex eventQueueLocker; //!< для многопоточности?
 

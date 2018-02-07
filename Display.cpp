@@ -45,12 +45,17 @@ Display::Display(Aquarium* target, Texture* plankton_, Texture* background_)
 	}
 	target->bind();
 	auto borders = aquarium->getBorders();
-	CycledObject* backSeaweed1 = new CycledObject(seaweedAnims[0], Coordinates(borders.x * 3 / 4, -40, 0), Vector2f(30,70));
-	CycledObject* backSeaweed2 = new CycledObject(seaweedAnims[1], Coordinates(20, 60, 0), Vector2f(30, 80));
-	CycledObject* backSeaweed3 = new CycledObject(seaweedAnims[2], Coordinates(borders.x / 6, 0, 0), Vector2f(30, 40));
-	MAIN_FIELD.AddObject(backSeaweed1);
+	CycledObject* backSeaweed1 = new CycledObject(seaweedAnims[0], Coordinates(borders.x -100, borders.y-200, 0), Vector2f(30,20));
+	CycledObject* backSeaweed2 = new CycledObject(seaweedAnims[1], Coordinates(20, 300, 0), Vector2f(30, 30));
+	//CycledObject* backSeaweed3 = new CycledObject(seaweedAnims[2], Coordinates(borders.x / 6, 0, 0), Vector2f(30, 40));
+    CycledObject* backSeaweed3 = new CycledObject(seaweedAnims[0], Coordinates(borders.x -400, borders.y-250, 0), Vector2f(30,28));
+    CycledObject* backSeaweed4 = new CycledObject(seaweedAnims[0], Coordinates(borders.x -600, borders.y-250, 0), Vector2f(30,25));
+    CycledObject* backSeaweed5 = new CycledObject(seaweedAnims[0], Coordinates(borders.x -650, borders.y-230, 0), Vector2f(30,25));
+	/*MAIN_FIELD.AddObject(backSeaweed1);
 	MAIN_FIELD.AddObject(backSeaweed2);
 	MAIN_FIELD.AddObject(backSeaweed3);
+    MAIN_FIELD.AddObject(backSeaweed4);
+    MAIN_FIELD.AddObject(backSeaweed5);*/
 }
 
 
@@ -100,7 +105,7 @@ void Display::DrawAquarium() const
     Event ev;
     MAIN_WINDOW.pollEvent(ev);
 	MAIN_WINDOW.clear();
-    MAIN_WINDOW.draw(backgroundSp);
+    //MAIN_WINDOW.draw(backgroundSp);
 	MAIN_FIELD.HandleObjects();
 	MAIN_WINDOW.display();
 }

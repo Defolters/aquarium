@@ -14,30 +14,30 @@ struct Gene
     {
         if (type == LifeType::PLANKTON)
         {
-            lifeExpectancy = 450;//200;
+            lifeExpectancy = 550;
             lifeWitoutFood = 600;
-            reproductionPeriod = 60;//58
+            reproductionPeriod = 35;
             rangeOfVision = 5;
             hungerLimit = 0;
-            speed = 1;//1.5
+            speed = 0.9;
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            lifeExpectancy = 1000;
-            lifeWitoutFood = 700;
-            reproductionPeriod = 125;
+            lifeExpectancy = 1400;
+            lifeWitoutFood = 800;
+            reproductionPeriod = 200; //140
             rangeOfVision = 70;
-            hungerLimit = 550;
-            speed = 0.8;
+            hungerLimit = 650;
+            speed = 0.6;
         }
         else // herbivore fish
         {
             lifeExpectancy = 900;
-            lifeWitoutFood = 550;
+            lifeWitoutFood = 470;
             reproductionPeriod = 55;
             rangeOfVision = 100;
-            hungerLimit = 400;
-            speed = 1.2;
+            hungerLimit = 350;
+            speed = 1.1;
         }
     };
 
