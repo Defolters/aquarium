@@ -117,8 +117,8 @@ Sprite Creature::getSprite()
 {
 	Sprite res = Object::getSprite();
 	Vector2f scale = Vector2f(res.getScale().x/100*(100 - position.z*downByUnit), res.getScale().y/100*(100 - position.z*downByUnit));
+	if (VectorOperations::AngleBetweenVectors(originDirection, Vector2f(direction.x, direction.y) - Vector2f(position.x,position.y)) > 90)
+		scale.x = scale.x * (-1);
 	res.setScale(scale);
-	auto dir = Vector2f(direction.x, direction.y) - Vector2f(position.x, position.y);
-	res.setRotation(VectorOperations::VectorToRotation(dir));
 	return res;
 }
