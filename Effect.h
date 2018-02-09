@@ -1,9 +1,8 @@
 ﻿#ifndef EFFECT_H
 #define EFFECT_H
+
 /*!
 \brief Класс, реализующий эффекты
-
-
 */
 #include "Animation.h"
 #include "Object.h"

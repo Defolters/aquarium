@@ -5,19 +5,17 @@
 #include "Aquarium.h"
 #include "Effect.h"
 #include "CycledObject.h"
+
 /*!
 \brief Класс, реализующий отображение на экран
-
-
 */
 class Display
 {
 public:
-    Display(Aquarium* target, Texture* plankton, Texture* background);
+    Display(Aquarium* target);
     ~Display();
 	void PullEvents() const;
 	void DrawAquarium() const;
-    //Texture* getTexture(LifeType type);
 private:
 	SpriteList* killList;
 	SpriteList* seaweedList;
@@ -25,8 +23,8 @@ private:
 	std::vector<Animation> seaweedAnims;
 	Animation killAnimation;
     Texture* background;
+    Texture* plankton;
     Sprite backgroundSp;
-	Texture* plankton;
     Animation herbivore;
     Animation carnivore;
     Aquarium* aquarium;

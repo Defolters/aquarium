@@ -13,8 +13,6 @@ LifeManager::~LifeManager()
 
 void LifeManager::makeTurn()
 {
-    /*if (day % 7 == 0)
-        eventEveryWeek();*/
     onThinking(); // each fish think about plans on the future
     onEating(); // each fish eat, if can
     onReproducing(); //each fish reproducing if can
@@ -26,7 +24,6 @@ void LifeManager::makeTurn()
 
 void LifeManager::onThinking() const
 {
-    //for each think about it
     for (auto creature : creatures)
     {
         creature->thinkAboutIt(creatures, aquarium->getBorders());
@@ -49,7 +46,6 @@ void LifeManager::onEating()
 
 void LifeManager::onReproducing()
 {
-    //for each reproduce
     for (auto creature : creatures)
     {
         if (creature->reproduce(creatures))
@@ -64,7 +60,6 @@ void LifeManager::onReproducing()
 
 void LifeManager::onMoving() const
 {
-    //for each move
     for (auto creature : creatures)
     {
         creature->move();
@@ -73,7 +68,6 @@ void LifeManager::onMoving() const
 
 void LifeManager::dayPassed()
 {
-    //for each reduce life and increase hunger
     for (auto creature : creatures)
     {
         creature->dayPassed();
@@ -99,25 +93,13 @@ void LifeManager::onKilling()
 
 void LifeManager::printState()
 {
-    //print some state (например, сколько рыб умерло)
     system("CLS");
     std::cout << "Day: " << day << std::endl
-     << "nP: " << aquarium->getNumberOfP() << std::endl
-    << "nHF: " << aquarium->getNumberOfHF() << std::endl
-    << "nCF: " << aquarium->getNumberOfCF() << std::endl;
-    /*std::cout << "Number of creatures in aquarium: " << aquarium->getNumberOfCreatures() << 
-        //"\nToday dead of hunger: "<<deadOfHunger<<
-        "\nToday dead of age: "<<deadOfAge <<
-        "\nToday newborns: " << newborns <<
-        "\nToday eaten: " << eaten << "\n" <<
-        std::endl;*/
+     << "Planktons: " << aquarium->getNumberOfP() << std::endl
+    << "Herbivore Fish: " << aquarium->getNumberOfHF() << std::endl
+    << "Carnivore Fish: " << aquarium->getNumberOfCF() << std::endl;
     deadOfAge = 0;
     deadOfHunger = 0;
     newborns = 0;
     eaten = 0;
-}
-
-void LifeManager::eventEveryWeek() const
-{
-    //std::cout << "Astrologers proclaim the week of References.\nThe number of references has doubled" << std::endl;
 }

@@ -1,9 +1,7 @@
 #ifndef GENE_H
 #define GENE_H
-/*Геном создания
 
-должны ли отличаться начальные характеристики у травоядный и плотоядных рыб?
-*/
+//!Геном создания
 struct Gene
 {
     Gene(int lifeExpectancy, int lifeWitoutFood, int reproductionPeriod, int rangeOfVision, int hungerLimit, int speed)
@@ -25,7 +23,7 @@ struct Gene
         {
             lifeExpectancy = 1500;
             lifeWitoutFood = 850;
-            reproductionPeriod = 180; //140
+            reproductionPeriod = 180;
             rangeOfVision = 70;
             hungerLimit = 650;
             speed = 0.6;
@@ -46,6 +44,6 @@ struct Gene
     int reproductionPeriod; //!< период размножения (кажд 2 дня планктон делится, а рыба плывет к другой, чтобы размножиться)
     int rangeOfVision;  //!< дальность зрения рыбы (как далеко видит вокруг)
     int hungerLimit;  //!< граница голода (выше - очень плохо!!)
-    double speed; //!< скорость перемещения (влияет на то, сколько шагов движения мы можем сделать?)
+    double speed; //!< скорость перемещения
 };
 #endif //! GENE_H

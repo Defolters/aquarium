@@ -20,20 +20,6 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
     {
         return true;
     }
-    /*if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+magicNumber)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
-    {
-        if (aim->getType() == prey)
-        {
-            std::cout << "Om-nom-nom\n";
-            task = TaskType::EAT;
-        }
-        else if (aim->getType() == type)
-        {
-            std::cout << "Ah\n";
-            task = TaskType::REPRODUCE;
-        }
-        return true;
-    }*/
     else
     {
         // если очень хочу есть » р€дом есть еда, то плыву скорее есть
@@ -63,10 +49,6 @@ bool Fish::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders)
                 return true;
             }
         }
-        //если еды нет, то плыву к паре
-        /*else if (nearBreeding(creatures))
-        {
-        }*/
         //если никого нет, то плыву просто случайно
         else// если никого не нашли, то выбрать случайное направление
         {
@@ -101,8 +83,6 @@ bool Fish::eat(std::list<Creature*>& creatures)
     }
     if (task == TaskType::EAT) // проверить, что эту рыбу другие не съели
     {
-        // ¬ throwEvent ƒќЅј¬»“№ ¬≈ “ќ– — Ќ≈ќЅ’ќƒ»ћџћ» «Ќј„≈Ќ»яћ»: съел(who id), умер(who id), родилс€(gen of parent/s)
-        //throwEvent(getPosition(), EventType::DEATH, preyIter)
         throwEvent(aim->getPosition(), EventType::KILL, aim);
         idOfPrey = aim->getId();
         aim = nullptr;
@@ -195,16 +175,14 @@ Creature * Fish::nearCreature(std::list<Creature*>& creatures, LifeType type)
 
 bool Fish::myAimIsVeryNear()
 {
-    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+magicNumber)))//gene.rangeOfEatingAndReproducing)  //а если кто-то поспал со мной? а если мы уже поспали с рыбой? а если рыба еще не готова?
+    if ((aim != nullptr) && (getPosition().getDistance(aim->getPosition()) <= (gene.speed+magicNumber)))
     {
         if (aim->getType() == prey)
         {
-            //std::cout << "Om-nom-nom\n";
             task = TaskType::EAT;
         }
         else if (aim->getType() == type)
         {
-            //std::cout << "Ah\n";
             task = TaskType::REPRODUCE;
         }
         return true;

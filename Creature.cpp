@@ -30,7 +30,6 @@ bool Creature::move()
     if (task == TaskType::RUN)
     {
         
-        //Добавить скорость существу
         //X
         if (position.x < direction.x)
         {
@@ -70,12 +69,8 @@ bool Creature::dayPassed()
 {
     hunger++; //увеличиваем голод
     age++; //увеличиваем возраст
-    reproductionReady++; //увелич. кол-во дней от последнего размножения'
-    //кидать события, если надо умереть от возраста или голода
-    /*if (age == gene.lifeExpectancy || hunger == gene.lifeWitoutFood)
-    {
-        throwEvent(position, EventType::DEATH, this);
-    }*/
+    reproductionReady++; //увелич. кол-во дней от последнего размножения
+    
     return true;
 }
 
@@ -117,8 +112,10 @@ Sprite Creature::getSprite()
 {
 	Sprite res = Object::getSprite();
 	Vector2f scale = Vector2f(res.getScale().x/100*(100 - position.z*downByUnit), res.getScale().y/100*(100 - position.z*downByUnit));
-	if (VectorOperations::AngleBetweenVectors(originDirection, Vector2f(direction.x, direction.y) - Vector2f(position.x,position.y)) > 90)
+
+    if (VectorOperations::AngleBetweenVectors(originDirection, Vector2f(direction.x, direction.y) - Vector2f(position.x,position.y)) > 90)
 		scale.x = scale.x * (-1);
 	res.setScale(scale);
+
 	return res;
 }

@@ -5,9 +5,7 @@
 
 /*!
 \brief Класс, реализующий управление аквариумом
-
 В нем течет жизнь
-а что если не ходы отлдельные будут, а пошагово животные будут действовать, одно походило, съело, потом другое
 */
 class Aquarium;
 class Display;
@@ -23,9 +21,8 @@ public:
     void onReproducing(); //!<  ход размножение
     void onMoving() const;  //!< ход движение
     void dayPassed();  //! ход день прошел
-    void onKilling();  //!< kill fishes, which died of old age or hunger (теоретически, функционал этого метода можно перенести в dayPassed)
+    void onKilling();  //!< kill fishes, which died of old age or hunger
     void printState(); // напечатать статистику (кол-во рыб всяких) в консоль
-    void eventEveryWeek() const;
 
 private:
     unsigned int day; //! количество прошедших дней
@@ -33,10 +30,8 @@ private:
     int deadOfHunger; //!< количество умерших от голода
     int newborns; //!< количество новорожденных
     int eaten;
-    //std::unique_ptr<Aquarium> aquarium;
     Aquarium* aquarium;
     std::list<Creature* >& creatures;
-
 	bool isForever;
 	int ticks;
 };

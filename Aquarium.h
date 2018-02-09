@@ -44,8 +44,6 @@ public:
     int getNumberOfHF();
     int getNumberOfCF();
 
-	//std::mutex eventQueueLocker; //!< для многопоточности?
-
 private:
 	bool binded = false;
     unsigned int capacity;  //!< максимальное количество рыб

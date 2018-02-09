@@ -35,7 +35,6 @@ bool Plankton::thinkAboutIt(std::list<Creature*>& creatures, Coordinates borders
 
 bool Plankton::reproduce(std::list<Creature*>& creatures)
 {
-    //если период прошел, то делимся, проверки на задание нет, ибо планктон
     if (reproductionReady == gene.reproductionPeriod)
     {
         reproductionReady = 0;

@@ -14,7 +14,6 @@ Field::Field(float scale_, RenderWindow& window_, Vector2f cameraPosition_, bool
 void Field::CalculateDisplayedRect()
 {
 	displayedRect = FloatRect(cameraPosition + ScreenToWorldPoint(Vector2f(SCREEN_HEIGHT / 2, SCREEN_WIDTH / 2)) - Vector2f(SCREEN_HEIGHT *scale, SCREEN_WIDTH *scale), Vector2f(SCREEN_HEIGHT*scale, SCREEN_WIDTH*scale));
-	//DEBUG std::cout << "x " << displayedRect.left << "y " << displayedRect.top << "w " << displayedRect.width << "h " << displayedRect.height << std::endl;
 }
 
 float Field::GetScale() const

@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Animation.h"
+
 class CycledObject :
 	public Object
 {

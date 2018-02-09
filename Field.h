@@ -2,6 +2,7 @@
 #define FIELD_H
 #include <vector>
 #include "Headers.h"
+
 class Object;
 /*!
 \brief Класс, реализующий поле

@@ -42,25 +42,14 @@ void Aquarium::initialize(unsigned int numbP, unsigned int numbHF, unsigned int 
 void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 {
     display = display_;
-    int a = 0;
-    //SYSTEMTIME st;
-	//GetSystemTime(&st);
     std::chrono::time_point<std::chrono::system_clock> start, start2, end1, end2;
     start = std::chrono::system_clock::now();
     while (isForever || ticks)
     {
-        //std::cin.get();
         end1 = std::chrono::system_clock::now();
         if((std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start) > std::chrono::milliseconds(90))) 
-        /*{
-            std::cout << "Fine";
-            start = std::chrono::system_clock::now();
-        }*/
-        //if (a == 1200)
-        //if (1)
         {
             start = std::chrono::system_clock::now();
-            //std::cin.get();
             display->DrawAquarium();
             manager.makeTurn();
             if (!(numberOfCarnivore && numberOfHarbivore && numberOfPlankton))
@@ -72,12 +61,8 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
                 std::cout << "\n\nProgram: " << ((double)std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start).count())/1000 << "seconds\n";
                 break;
             }
-            //if (a == 1000) { manager.printState(); a = 0; }
-            a = 0;
         }
-        
         ticks--;
-        a++;
     }
     
 }
@@ -129,7 +114,6 @@ bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 
 bool Aquarium::removeCreature(unsigned int id)
 {
-    //перебрать лист, пока не найдем нужную рыбу с id, затем очистить ее 
     for (auto iter = creatures.begin(); iter != creatures.end(); iter++)
     {
         if (id == (*iter)->getId())

@@ -18,15 +18,7 @@ int main()
 #ifdef TEST_CREATE
     Aquarium aquarium(170, Coordinates(1000, 700 , 0));
 
-    Texture background = Texture();
-	background.loadFromFile("background.png");
-	Texture plankton = Texture();
-	plankton.loadFromFile("plankton.png");
-    Texture fish = Texture();
-	fish.loadFromFile("fish.png");
-    Texture fish1 = Texture();
-	fish1.loadFromFile("fish1.png");
-	Display display = Display(&aquarium, &plankton, &background);
+	Display display = Display(&aquarium);
 #endif // TEST_CREATE
 
 #ifdef TEST_ADD

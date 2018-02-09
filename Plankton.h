@@ -2,6 +2,7 @@
 #define PLANKTON_H
 #include "Creature.h"
 #include <random>
+
 /*!
 \brief Класс, реализующий планктон
 

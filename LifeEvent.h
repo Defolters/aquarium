@@ -24,6 +24,6 @@ struct LifeEvent
 		type = type_;
         holder = holder_;
 	};
-    ~LifeEvent() { }//std::cout << "no events" << std::endl; }
+    ~LifeEvent() {}
 };
 #endif //! LIFE_EVENT_H

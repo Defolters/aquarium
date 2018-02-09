@@ -4,8 +4,6 @@
 #include "LifeType.h"
 /*!
 \brief Класс, реализующий травоядную рыбу
-
-сабж
 */
 class HerbivoreFish :
     public Fish

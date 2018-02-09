@@ -21,19 +21,9 @@ void Object::calculate()
 	resize();
 	sprite.setPosition(field->WorldToScreenPoint(position.toVector2f()));
 }
-/*
-Object::Object(Field & origin, Vector2f size_)
-{
-	that = this;
-	field = &origin;
-	field->AddObject(this);
-	float scale = field->GetScale();
-	sprite.setScale((size.x / scale)/sprite.getLocalBounds().width, (size.y / scale) / sprite.getLocalBounds().height);
-}*/
 
 Object::~Object()
 {
-	//field->RemoveObject(this);
 	delete animation;
 }
 
@@ -121,10 +111,8 @@ void Field::HandleObjects()
         Vector2f position;
         //horizont
         origin.x = toDisplay.getLocalBounds().left + toDisplay.getLocalBounds().width / 2.0f;
-        //position.x = positionOfBox.x + size.x / 2;
         //vertical
         origin.y = toDisplay.getLocalBounds().top + toDisplay.getLocalBounds().height / 2.0f;
-        //position.y = positionOfBox.y + size.y / 2;
 
         toDisplay.setOrigin(origin);
         toDisplay.setPosition(obj->getPosition().toVector2f());// - WorldToScreenPoint(cameraPosition));
@@ -137,7 +125,6 @@ int Field::GetObjectCount()
 {
 	return objects.size();
 }
-
 
 void Field::RemoveObject(Object * ptr)
 {
