@@ -13,15 +13,15 @@ LifeManager::~LifeManager()
 
 void LifeManager::makeTurn()
 {
-    if (day % 7 == 0)
-        eventEveryWeek();
+    /*if (day % 7 == 0)
+        eventEveryWeek();*/
     onThinking(); // each fish think about plans on the future
     onEating(); // each fish eat, if can
     onReproducing(); //each fish reproducing if can
     onMoving(); // each fish moving if can
     dayPassed(); // reduce life and increase hunger
     onKilling(); // kill fishes, which died of old age or hunger
-    //printState(); // print state of the day
+    printState(); // print state of the day
 }
 
 void LifeManager::onThinking() const
@@ -58,12 +58,6 @@ void LifeManager::onReproducing()
             newborns++;
 
             std::shared_ptr<LifeEvent> evM = getManagerEvent();
-            /*if (evM != nullptr)
-            {
-                // здесь можно получать гены родителей и создать нового ребенка
-                aquarium->addCreature(evM->holder->getType(), Gene(evM->holder->getType()), evM->holder->getPosition());
-                newborns++;
-            }*/
         }
     }
 }

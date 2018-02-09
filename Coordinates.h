@@ -46,13 +46,5 @@ struct Coordinates
         }
 
     }
-    /*
-    bool operator==(const Ratio& ratio2);
-    bool operator!=(const Ratio& ratio2);
-    bool operator<(const Ratio& ratio2);
-    bool operator>(const Ratio& ratio2);
-    bool operator<=(const Ratio& ratio2);
-    bool operator>=(const Ratio& ratio2);
-    */
 };
 #endif //! COORDINATES_H

@@ -3,8 +3,6 @@
 #include "Fish.h"
 /*!
 \brief Класс, реализующий плотоядную рыбу
-
-сабж
 */
 class CarnivoreFish :
     public Fish

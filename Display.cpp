@@ -24,7 +24,7 @@ Display::Display(Aquarium* target, Texture* plankton_, Texture* background_)
     background = background_;
     backgroundSp.setTexture(*background);
     backgroundSp.setPosition(0, 0);
-    backgroundSp.setScale(0.65, 0.65);
+    backgroundSp.setScale(1, 1);
 	auto creatures = aquarium->getListOfCreatures();
 	for (Creature* creature : creatures)
 	{
@@ -105,7 +105,7 @@ void Display::DrawAquarium() const
     Event ev;
     MAIN_WINDOW.pollEvent(ev);
 	MAIN_WINDOW.clear();
-    //MAIN_WINDOW.draw(backgroundSp);
+    MAIN_WINDOW.draw(backgroundSp);
 	MAIN_FIELD.HandleObjects();
 	MAIN_WINDOW.display();
 }

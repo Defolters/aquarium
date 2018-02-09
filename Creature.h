@@ -49,7 +49,7 @@ public:
     virtual unsigned int getPreyId() {return idOfPrey;};
     //virtual std::list<Creature*>::iterator getPreyIter() {return preyIter};
     void isShouldDead();
-	Sprite getSprite() override;
+	virtual Sprite getSprite() override;
     std::mutex spriteLocker; //!< ВТФ? ето для потоков, потом понадобится
 protected:
     unsigned int id; //!< уникальный номер для каждого создания

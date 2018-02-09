@@ -13,7 +13,6 @@ Aquarium::~Aquarium()
 
 void Aquarium::bind()
 {
-	//TODO
 	binded = true;
 }
 
@@ -51,9 +50,16 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
     while (isForever || ticks)
     {
         //std::cin.get();
-        //if (a == 12000000)
-        if (a == 12)
+        end1 = std::chrono::system_clock::now();
+        if((std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start) > std::chrono::milliseconds(90))) 
+        /*{
+            std::cout << "Fine";
+            start = std::chrono::system_clock::now();
+        }*/
+        //if (a == 1200)
+        //if (1)
         {
+            start = std::chrono::system_clock::now();
             //std::cin.get();
             display->DrawAquarium();
             manager.makeTurn();
@@ -66,11 +72,10 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
                 std::cout << "\n\nProgram: " << ((double)std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start).count())/1000 << "seconds\n";
                 break;
             }
+            //if (a == 1000) { manager.printState(); a = 0; }
             a = 0;
         }
         
-        //display->DrawAquarium();
-        //manager.makeTurn();
         ticks--;
         a++;
     }
@@ -79,47 +84,34 @@ void Aquarium::startGame(bool isForever, int ticks, Display* display_)
 
 bool Aquarium::addCreature(LifeType type, Gene gene, Coordinates coord)
 {
-    //if ((creatures.size() < capacity) && (numberOfPlankton <= 4*numberOfHarbivore) && (numberOfHarbivore <= 4*numberOfCarnivore))
     if((creatures.size() < capacity) && 
         ((!(type==LifeType::PLANKTON)) || (numberOfPlankton <= 4*numberOfHarbivore)) && 
         ((!(type==LifeType::HERBIVOREFISH)) || (numberOfHarbivore <= 4*numberOfCarnivore))
-        //&&((!(type==LifeType::CARNIVOREFISH)) || (numberOfCarnivore <= 3*(numberOfHarbivore+1)))
         )   
     {
-        if (((type == LifeType::CARNIVOREFISH) && (numberOfHarbivore!=0) && (numberOfCarnivore > 0.8*(numberOfHarbivore))) ||
-            ((type == LifeType::HERBIVOREFISH) && (numberOfPlankton!=0) && (numberOfHarbivore > 2*(numberOfPlankton))))
+        if (((type == LifeType::CARNIVOREFISH) && (numberOfHarbivore!=0) && (numberOfCarnivore > 0.4*(numberOfHarbivore))) ||
+            ((type == LifeType::HERBIVOREFISH) && (numberOfPlankton!=0) && (numberOfHarbivore > 1*(numberOfPlankton))))
         {
             return false;
         }
+
 		Creature* newCreature;
-        //std::shared_ptr<Creature> newCreature1;
         if (type == LifeType::PLANKTON) 
         {
 			newCreature = new Plankton(gene, coord, lastId);
             numberOfPlankton++;
-            //newCreature1 = std::make_shared<Plankton>(gene, coord, lastId);
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            
 			newCreature = new CarnivoreFish(gene, coord, lastId);
             numberOfCarnivore++;
-            //newCreature1 = std::make_shared<CarnivoreFish>(gene, coord, lastId);
         }
         else
         {
             numberOfHarbivore++;
 			newCreature = new HerbivoreFish(gene, coord, lastId);
-            //newCreature1 = std::make_shared<HerbivoreFish>(gene, coord, lastId);
         }
-        /*std::shared_ptr<Creature> add = new Plankton(gene, coord, lastId);; //= std::make_shared<Creature>(newCreature);
-        add.reset(new );
-        delete newCreature;
-        if (add == nullptr)
-            std::cout << "ITWORKS";
-        */
 		creatures.push_back(newCreature);
-        //creatures1.push_back(newCreature1);
 
         throwEvent(newCreature->getPosition(), EventType::BIRTH, newCreature);
         getManagerEvent();
@@ -154,14 +146,11 @@ bool Aquarium::removeCreature(unsigned int id)
             {
                 numberOfHarbivore--;
             }
-            //throwEvent((*i)->getPosition(), EventType::DEATH, *i);
+
             if (!binded)
                 delete *iter;
-                //MAIN_FIELD.RemoveObject(*iter);
-            //throwEvent((*iter)->getPosition(), EventType::DEATH, *iter);
-            //getManagerEvent();
+            
             creatures.erase(iter);
-            //std::cout << "remove ID: " << id << std::endl;
             return true;
         }
     }

@@ -117,7 +117,17 @@ void Field::HandleObjects()
 	for (auto obj : objects)
 	{
 		Sprite toDisplay = obj->getSprite();
-		toDisplay.setPosition(obj->getPosition().toVector2f() - WorldToScreenPoint(cameraPosition));
+        Vector2f origin;
+        Vector2f position;
+        //horizont
+        origin.x = toDisplay.getLocalBounds().left + toDisplay.getLocalBounds().width / 2.0f;
+        //position.x = positionOfBox.x + size.x / 2;
+        //vertical
+        origin.y = toDisplay.getLocalBounds().top + toDisplay.getLocalBounds().height / 2.0f;
+        //position.y = positionOfBox.y + size.y / 2;
+
+        toDisplay.setOrigin(origin);
+        toDisplay.setPosition(obj->getPosition().toVector2f());// - WorldToScreenPoint(cameraPosition));
 		//TODO size
 		window->draw(toDisplay);
 	}

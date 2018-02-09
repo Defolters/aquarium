@@ -23,16 +23,16 @@ struct Gene
         }
         else if (type == LifeType::CARNIVOREFISH)
         {
-            lifeExpectancy = 1400;
-            lifeWitoutFood = 800;
-            reproductionPeriod = 200; //140
+            lifeExpectancy = 1500;
+            lifeWitoutFood = 850;
+            reproductionPeriod = 180; //140
             rangeOfVision = 70;
             hungerLimit = 650;
             speed = 0.6;
         }
         else // herbivore fish
         {
-            lifeExpectancy = 900;
+            lifeExpectancy = 950;
             lifeWitoutFood = 470;
             reproductionPeriod = 55;
             rangeOfVision = 100;
